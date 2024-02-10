@@ -1,40 +1,21 @@
 {
   "project_info": {
-    "project_number": "686087710214",
-    "project_id": "asilapp-232417",
-    "storage_bucket": "asilapp-232417.appspot.com"
+    "project_number": "260826454098",
+    "project_id": "fithub-f124c",
+    "storage_bucket": "fithub-f124c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:686087710214:android:7aef8d69af7879547bc587",
+        "mobilesdk_app_id": "1:260826454098:android:706e0ee402f7f954dca78b",
         "android_client_info": {
-          "package_name": "it.uniba.dib.sms232417.asilapp"
+          "package_name": "it.uniba.dib.sms232417.fithub"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCrqfCabeE2QpIPZivKg7_ATsYN1XXOJbc"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:686087710214:android:0be39ea3e54fc9677bc587",
-        "android_client_info": {
-          "package_name": "it.uniba.dib.sms232417.asilapp_container"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCrqfCabeE2QpIPZivKg7_ATsYN1XXOJbc"
+          "current_key": "AIzaSyDlpiVTW8Mf11qA_Jk3JTCHILc99KZOwAM"
         }
       ],
       "services": {

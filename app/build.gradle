@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'it.uniba.dib.sms232417.asilapp'
+    namespace 'it.uniba.dib.sms232417.fithub'
     compileSdk 34
 
     defaultConfig {
-        applicationId "it.uniba.dib.sms232417.asilapp"
+        applicationId "it.uniba.dib.sms232417.fithub"
         minSdk 26
         targetSdk 34
         versionCode 1
