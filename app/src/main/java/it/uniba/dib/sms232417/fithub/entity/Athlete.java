@@ -120,7 +120,7 @@ public class Athlete implements Parcelable, Serializable {
 
     @Override
     public String toString() {
-        return "Patient{" +
+        return "Athlete{" +
                 "UUID='" + UUID + '\'' +
                 "nome='" + nome + '\'' +
                 ", cognome='" + cognome + '\'' +

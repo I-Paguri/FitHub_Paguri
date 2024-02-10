@@ -118,7 +118,7 @@ public class LoginFragment extends Fragment {
                                 SharedPreferences sharedPreferences = requireActivity().getSharedPreferences(StringUtils.AUTOMATIC_LOGIN, requireActivity().MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putString("email", athlete.getEmail());
-                                editor.putBoolean("isDoctor",false);
+                                editor.putBoolean("isCoach",false);
                                 //Encrypt password con chiave simmetrica e salva su file
                                 byte[] encryptedPassword = new byte[0];
                                 byte[] iv = new byte[0];

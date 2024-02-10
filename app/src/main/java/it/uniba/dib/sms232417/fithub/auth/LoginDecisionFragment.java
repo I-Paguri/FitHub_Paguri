@@ -30,14 +30,14 @@ public class LoginDecisionFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        MaterialButton btnPatient = getView().findViewById(R.id.btnLoginPatient);
-        MaterialButton btnDoctor = getView().findViewById(R.id.btnLoginDoctor);
+        MaterialButton btnAthlete = getView().findViewById(R.id.btnLoginAthlete);
+        MaterialButton btnCoach = getView().findViewById(R.id.btnLoginCoach);
 
-        btnPatient.setOnClickListener(v -> {
+        btnAthlete.setOnClickListener(v -> {
             ((EntryActivity) getActivity()).replaceFragment(new LoginFragment());
         });
 
-        btnDoctor.setOnClickListener(v -> {
+        btnCoach.setOnClickListener(v -> {
             ((EntryActivity) getActivity()).replaceFragment(new LoginCoachCredentialFragment());
         });
     }

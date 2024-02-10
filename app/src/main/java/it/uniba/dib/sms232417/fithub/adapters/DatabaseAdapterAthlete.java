@@ -54,7 +54,7 @@ public class DatabaseAdapterAthlete {
                                                 datiUtente.getString("dataNascita"));
                                         callback.onCallback(resultAthlete);
                                     } else {
-                                        callback.onCallbackError(new Exception(), context.getString(R.string.error_login_section_doctor));
+                                        callback.onCallbackError(new Exception(), context.getString(R.string.error_login_section_coach));
                                     }
                                 })
                                 .addOnFailureListener(task1 -> {
@@ -105,15 +105,15 @@ public class DatabaseAdapterAthlete {
         mAuth.signOut();
     }
 
-    public void addTreatment(String patientUUID, Treatment treatment, OnTreatmentsCallback onTreatmentsCallback) {
+    public void addTreatment(String athleteUUID, Treatment treatment, OnTreatmentsCallback onTreatmentsCallback) {
         Log.d("AddedNewTreatment", treatment.toString());
 
-        getTreatmentCount(patientUUID, new OnCountCallback() {
+        getTreatmentCount(athleteUUID, new OnCountCallback() {
             @Override
             public void onCallback(int count) {
                 String treatmentId = "treatment" + (count + 1);
-                db.collection("patient")
-                        .document(patientUUID)
+                db.collection("athlete")
+                        .document(athleteUUID)
                         .collection("treatments")
                         .document(treatmentId)
                         .set(treatment)
@@ -135,10 +135,10 @@ public class DatabaseAdapterAthlete {
         });
     }
 
-    private void getTreatmentCount(String patientUUID, OnCountCallback callback) {
+    private void getTreatmentCount(String athleteUUID, OnCountCallback callback) {
         try {
-            db.collection("patient")
-                    .document(patientUUID)
+            db.collection("athlete")
+                    .document(athleteUUID)
                     .collection("treatments")
                     .get()
                     .addOnSuccessListener(queryDocumentSnapshots -> {
@@ -153,10 +153,10 @@ public class DatabaseAdapterAthlete {
     }
 
 
-    public void getTreatments(String patientUUID, OnTreatmentsCallback callback) {
+    public void getTreatments(String athleteUUID, OnTreatmentsCallback callback) {
 
-        db.collection("patient")
-                .document(patientUUID)
+        db.collection("athlete")
+                .document(athleteUUID)
                 .collection("treatments")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
@@ -176,9 +176,9 @@ public class DatabaseAdapterAthlete {
     }
 
 
-    public void deleteTreatment(String patientUUID, String treatmentId) {
-        db.collection("patient")
-                .document(patientUUID)
+    public void deleteTreatment(String athleteUUID, String treatmentId) {
+        db.collection("athlete")
+                .document(athleteUUID)
                 .collection("treatments")
                 .document(treatmentId)
                 .delete()

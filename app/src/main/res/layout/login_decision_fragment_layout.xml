@@ -35,7 +35,7 @@
             android:layout_below="@+id/lblsubText"
             android:layout_centerHorizontal="true">
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnLoginPatient"
+                android:id="@+id/btnLoginAthlete"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:layout_centerHorizontal="true"
@@ -45,7 +45,7 @@
                 android:text="@string/athlete"
                 app:icon="@drawable/my_account"/>
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnLoginDoctor"
+                android:id="@+id/btnLoginCoach"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:layout_centerHorizontal="true"

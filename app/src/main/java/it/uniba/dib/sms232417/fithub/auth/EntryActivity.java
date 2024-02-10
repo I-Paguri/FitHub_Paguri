@@ -89,9 +89,9 @@ public class EntryActivity extends AppCompatActivity {
             String email = sharedPreferences.getString("email", null);
             String password = sharedPreferences.getString("password", null);
             String iv = sharedPreferences.getString("iv", null);
-            boolean isDoctor = sharedPreferences.getBoolean("isDoctor", false);
+            boolean isCoach = sharedPreferences.getBoolean("isCoach", false);
 
-            if(!isDoctor) {
+            if(!isCoach) {
                 if (email != null) {
                     if (password != null) {
 
@@ -134,11 +134,11 @@ public class EntryActivity extends AppCompatActivity {
                     frameLayout.setVisibility(FrameLayout.VISIBLE);
                 }
             }else
-                checkAutomaticLoginDoctor();
+                checkAutomaticLoginCoach();
     }
 
 
-    private void checkAutomaticLoginDoctor() {
+    private void checkAutomaticLoginCoach() {
         final Coach[] loggedCoach = {null};
         RelativeLayout loading = findViewById(R.id.loading);
         loading.setVisibility(RelativeLayout.VISIBLE);
@@ -151,8 +151,8 @@ public class EntryActivity extends AppCompatActivity {
             String email = sharedPreferences.getString("email", null);
             String password = sharedPreferences.getString("password", null);
             String iv = sharedPreferences.getString("iv", null);
-            boolean isDoctor = sharedPreferences.getBoolean("isDoctor", false);
-            if (isDoctor) {
+            boolean isCoach = sharedPreferences.getBoolean("isCoach", false);
+            if (isCoach) {
                 if (email != null) {
                     if (password != null) {
 

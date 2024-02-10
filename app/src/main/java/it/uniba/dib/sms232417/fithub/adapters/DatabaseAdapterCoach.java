@@ -79,7 +79,7 @@ public class DatabaseAdapterCoach {
                                             datiUtente.getString("cognome"),
                                             datiUtente.getString("email"),
                                             datiUtente.getString("dataNascita")
-                                            );
+                                    );
                                             /*
                                             List<String> myPatients = (List<String>) datiUtente.get("myPatients");
                                             coach.setMyPatientsUUID(myPatients);
@@ -93,7 +93,7 @@ public class DatabaseAdapterCoach {
                                              */
                                     callback.onCallback(coach);
                                 }else{
-                                    callback.onCallbackError(new Exception(), context.getString(R.string.error_login_section_patient));
+                                    callback.onCallbackError(new Exception(), context.getString(R.string.error_login_section_athlete));
                                 }
                             });
                 })

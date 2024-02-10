@@ -52,6 +52,7 @@ public class LoginCoachCredentialFragment extends Fragment {
         MaterialButton btnLogin = view.findViewById(R.id.btnLogin);
         TextInputEditText email = view.findViewById(R.id.txtEmail);
         TextInputEditText password = view.findViewById(R.id.txtPassword);
+        MaterialButton btnLoginQr = view.findViewById(R.id.btnLoginCoachQrCode);
         TextView txtForgotPassword = view.findViewById(R.id.txtForgetPass);
         TextView txtRegister = view.findViewById(R.id.txtRegister);
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +116,7 @@ public class LoginCoachCredentialFragment extends Fragment {
 
                     SharedPreferences.Editor editor = requireActivity().getSharedPreferences(StringUtils.AUTOMATIC_LOGIN, requireActivity().MODE_PRIVATE).edit();
                     editor.putString("email", coach.getEmail());
-                    editor.putBoolean("isDoctor", true);
+                    editor.putBoolean("isCoach", true);
                     //Encrypt password con chiave simmetrica e salva su file
                     byte[] encryptedPassword = new byte[0];
                     byte[] iv = new byte[0];

@@ -16,6 +16,10 @@ public class Coach implements Parcelable, Serializable {
     private String email;
     private String dataNascita;
 
+    private String regione;
+    private String specializzazione;
+    private String numeroDiRegistrazioneMedica;
+    private List<String> myAthletesUUID;
 
     public Coach() {
     }
@@ -28,6 +32,7 @@ public class Coach implements Parcelable, Serializable {
         this.dataNascita = dataNascita;
 
     }
+
 
     @Override
     public String toString() {
@@ -46,6 +51,8 @@ public class Coach implements Parcelable, Serializable {
 
     public void setUUID(String UUID) {
         this.UUID = UUID;
+        this.myAthletesUUID = new ArrayList<>();
+
     }
 
     protected Coach(Parcel in) {
@@ -54,6 +61,11 @@ public class Coach implements Parcelable, Serializable {
         cognome = in.readString();
         email = in.readString();
         dataNascita = in.readString();
+
+        regione = in.readString();
+        specializzazione = in.readString();
+        numeroDiRegistrazioneMedica = in.readString();
+        myAthletesUUID = in.createStringArrayList();
 
     }
 
@@ -68,6 +80,15 @@ public class Coach implements Parcelable, Serializable {
             return new Coach[size];
         }
     };
+
+
+    public List<String> getMyAthletesUUID() {
+        return myAthletesUUID;
+    }
+
+    public void setMyAthletesUUID(List<String> myAthletes) {
+        this.myAthletesUUID = myAthletes;
+    }
 
     public String getNome() {
         return nome;
@@ -98,6 +119,10 @@ public class Coach implements Parcelable, Serializable {
         dest.writeString(cognome);
         dest.writeString(email);
         dest.writeString(dataNascita);
+        dest.writeString(regione);
+        dest.writeString(specializzazione);
+        dest.writeString(numeroDiRegistrazioneMedica);
+        dest.writeStringList(myAthletesUUID);
     }
     /*
 

@@ -70,13 +70,16 @@ public class MyAthletesFragment extends Fragment {
     }
         /*
         if (coach.getMyPatientsUUID() == null || coach.getMyPatientsUUID().isEmpty()) {
+
+        if (coach.getMyAthletesUUID() == null || coach.getMyAthletesUUID().isEmpty()) {
+
             LayoutInflater inflater = (LayoutInflater) requireActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View noTreatmentLayout = inflater.inflate(R.layout.no_patients_layout, null);
             // Add the inflated layout to the parent layout
             LinearLayout parentLayout = view.findViewById(R.id.linearLayoutPatientsList);
             parentLayout.addView(noTreatmentLayout);
         } else {
-            dbAdapterDoctor.getDoctorPatients(coach.getMyPatientsUUID(), new OnAthleteListDataCallback() {
+            dbAdapterDoctor.getCoachAthletes(coach.getMyAthletesUUID(), new OnAthleteListDataCallback() {
                 @Override
                 public void onCallback(List<Athlete> athleteList) {
                     myPatientsList = athleteList;
