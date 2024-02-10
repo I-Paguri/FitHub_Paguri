@@ -29,7 +29,7 @@ import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterCoach;
 import it.uniba.dib.sms232417.fithub.adapters.RecyclerListViewAdapter;
 import it.uniba.dib.sms232417.fithub.entity.Athlete;
 import it.uniba.dib.sms232417.fithub.entity.Coach;
-import it.uniba.dib.sms232417.fithub.interfaces.OnPatientListDataCallback;
+import it.uniba.dib.sms232417.fithub.interfaces.OnAthleteListDataCallback;
 import it.uniba.dib.sms232417.fithub.utilities.listItem;
 
 public class MyAthletesFragment extends Fragment {
@@ -75,7 +75,7 @@ public class MyAthletesFragment extends Fragment {
             LinearLayout parentLayout = view.findViewById(R.id.linearLayoutPatientsList);
             parentLayout.addView(noTreatmentLayout);
         } else {
-            dbAdapterDoctor.getDoctorPatients(coach.getMyPatientsUUID(), new OnPatientListDataCallback() {
+            dbAdapterDoctor.getDoctorPatients(coach.getMyPatientsUUID(), new OnAthleteListDataCallback() {
                 @Override
                 public void onCallback(List<Athlete> athleteList) {
                     myPatientsList = athleteList;

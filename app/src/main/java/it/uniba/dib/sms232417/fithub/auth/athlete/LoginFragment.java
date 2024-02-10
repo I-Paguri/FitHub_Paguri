@@ -32,7 +32,7 @@ import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterAthlete;
 import it.uniba.dib.sms232417.fithub.auth.CryptoUtil;
 import it.uniba.dib.sms232417.fithub.auth.EntryActivity;
 import it.uniba.dib.sms232417.fithub.entity.Athlete;
-import it.uniba.dib.sms232417.fithub.interfaces.OnPatientDataCallback;
+import it.uniba.dib.sms232417.fithub.interfaces.OnAthleteDataCallback;
 import it.uniba.dib.sms232417.fithub.utilities.StringUtils;
 
 public class LoginFragment extends Fragment {
@@ -106,7 +106,7 @@ public class LoginFragment extends Fragment {
                     ProgressBar progressBar = (ProgressBar) getView().findViewById(R.id.progressBar);
                     progressBar.setVisibility(ProgressBar.VISIBLE);
                     dbAdapter = new DatabaseAdapterAthlete(getContext());
-                    dbAdapter.onLogin(email, password, new OnPatientDataCallback() {
+                    dbAdapter.onLogin(email, password, new OnAthleteDataCallback() {
                         @Override
                         public void onCallback(Athlete athlete) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

@@ -31,8 +31,8 @@ import it.uniba.dib.sms232417.fithub.auth.athlete.LoginFragment;
 import it.uniba.dib.sms232417.fithub.auth.athlete.RegisterFragment;
 import it.uniba.dib.sms232417.fithub.entity.Coach;
 import it.uniba.dib.sms232417.fithub.entity.Athlete;
-import it.uniba.dib.sms232417.fithub.interfaces.OnDoctorDataCallback;
-import it.uniba.dib.sms232417.fithub.interfaces.OnPatientDataCallback;
+import it.uniba.dib.sms232417.fithub.interfaces.OnCoachDataCallback;
+import it.uniba.dib.sms232417.fithub.interfaces.OnAthleteDataCallback;
 import it.uniba.dib.sms232417.fithub.utilities.StringUtils;
 
 import javax.crypto.SecretKey;
@@ -109,7 +109,7 @@ public class EntryActivity extends AppCompatActivity {
                         }
                         if (password != null) {
                             dbAdapterPatient = new DatabaseAdapterAthlete(context);
-                            dbAdapterPatient.onLogin(email, password, new OnPatientDataCallback() {
+                            dbAdapterPatient.onLogin(email, password, new OnAthleteDataCallback() {
                                 @Override
                                 public void onCallback(Athlete athlete) {
                                     RelativeLayout relativeLayout = findViewById(R.id.loading);
@@ -171,7 +171,7 @@ public class EntryActivity extends AppCompatActivity {
                         if (password != null) {
 
                             dbAdapterDoctor = new DatabaseAdapterCoach(context);
-                            dbAdapterDoctor.onLogin(email, password, new OnDoctorDataCallback() {
+                            dbAdapterDoctor.onLogin(email, password, new OnCoachDataCallback() {
 
                                 @Override
                                 public void onCallback(Coach coach) {

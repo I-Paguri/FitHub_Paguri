@@ -51,7 +51,7 @@ import it.uniba.dib.sms232417.fithub.R;
 import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterCoach;
 import it.uniba.dib.sms232417.fithub.auth.EntryActivity;
 import it.uniba.dib.sms232417.fithub.entity.Coach;
-import it.uniba.dib.sms232417.fithub.interfaces.OnDoctorDataCallback;
+import it.uniba.dib.sms232417.fithub.interfaces.OnCoachDataCallback;
 
 public class LoginAthleteQrCodeFragment extends Fragment {
 
@@ -197,7 +197,7 @@ public class LoginAthleteQrCodeFragment extends Fragment {
                             relativeLayout.setBackgroundResource(R.drawable.rounded_relative_layout_charge);
                             relativeLayout2.setVisibility(View.VISIBLE);
                             dbAdapterDoctor = new DatabaseAdapterCoach(getContext());
-                            dbAdapterDoctor.onLoginQrCode(uuid, new OnDoctorDataCallback() {
+                            dbAdapterDoctor.onLoginQrCode(uuid, new OnCoachDataCallback() {
                                 @Override
                                 public void onCallback(Coach coach) {
                                     Intent intent = new Intent(getContext(), MainActivity.class);

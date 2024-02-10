@@ -14,7 +14,7 @@ import java.util.Map;
 import it.uniba.dib.sms232417.fithub.R;
 import it.uniba.dib.sms232417.fithub.entity.Athlete;
 import it.uniba.dib.sms232417.fithub.entity.Treatment;
-import it.uniba.dib.sms232417.fithub.interfaces.OnPatientDataCallback;
+import it.uniba.dib.sms232417.fithub.interfaces.OnAthleteDataCallback;
 import it.uniba.dib.sms232417.fithub.interfaces.OnCountCallback;
 import it.uniba.dib.sms232417.fithub.interfaces.OnTreatmentsCallback;
 
@@ -32,7 +32,7 @@ public class DatabaseAdapterAthlete {
         this.context = context;
     }
 
-    public void onLogin(String emailIns, String password, OnPatientDataCallback callback) {
+    public void onLogin(String emailIns, String password, OnAthleteDataCallback callback) {
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -71,7 +71,7 @@ public class DatabaseAdapterAthlete {
                 });
     }
 
-    public void onRegister(String nome, String cognome, String email, String dataNascita, String regione, String password, OnPatientDataCallback callback) {
+    public void onRegister(String nome, String cognome, String email, String dataNascita, String regione, String password, OnAthleteDataCallback callback) {
 
         mAuth = FirebaseAuth.getInstance();
 

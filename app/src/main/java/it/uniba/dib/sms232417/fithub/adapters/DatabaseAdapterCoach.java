@@ -15,8 +15,8 @@ import it.uniba.dib.sms232417.fithub.R;
 import it.uniba.dib.sms232417.fithub.entity.Coach;
 import it.uniba.dib.sms232417.fithub.entity.Athlete;
 import it.uniba.dib.sms232417.fithub.entity.Treatment;
-import it.uniba.dib.sms232417.fithub.interfaces.OnDoctorDataCallback;
-import it.uniba.dib.sms232417.fithub.interfaces.OnPatientListDataCallback;
+import it.uniba.dib.sms232417.fithub.interfaces.OnCoachDataCallback;
+import it.uniba.dib.sms232417.fithub.interfaces.OnAthleteListDataCallback;
 
 public class DatabaseAdapterCoach {
 
@@ -30,7 +30,7 @@ public class DatabaseAdapterCoach {
         this.context = context;
     }
 
-    public void onLogin(String email, String password, OnDoctorDataCallback callback){
+    public void onLogin(String email, String password, OnCoachDataCallback callback){
         Log.d("LOGIN", "inizioMetodo");
         mAuth = FirebaseAuth.getInstance();
 
@@ -73,7 +73,7 @@ public class DatabaseAdapterCoach {
         mAuth.signOut();
     }
 
-    public void getDoctorPatients(List<String> patientUUID, OnPatientListDataCallback callback) {
+    public void getDoctorPatients(List<String> patientUUID, OnAthleteListDataCallback callback) {
     db = FirebaseFirestore.getInstance();
 
     for (String uuid : patientUUID){
@@ -93,7 +93,7 @@ public class DatabaseAdapterCoach {
                 });
     }
 }
-    public void onLoginQrCode(String token, OnDoctorDataCallback callback){
+    public void onLoginQrCode(String token, OnCoachDataCallback callback){
         mAuth = FirebaseAuth.getInstance();
         mAuth.signInWithCustomToken(token)
                 .addOnSuccessListener(authResult -> {

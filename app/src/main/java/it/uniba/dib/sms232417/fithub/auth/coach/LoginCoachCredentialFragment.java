@@ -31,7 +31,7 @@ import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterCoach;
 import it.uniba.dib.sms232417.fithub.auth.CryptoUtil;
 import it.uniba.dib.sms232417.fithub.auth.EntryActivity;
 import it.uniba.dib.sms232417.fithub.entity.Coach;
-import it.uniba.dib.sms232417.fithub.interfaces.OnDoctorDataCallback;
+import it.uniba.dib.sms232417.fithub.interfaces.OnCoachDataCallback;
 import it.uniba.dib.sms232417.fithub.utilities.StringUtils;
 
 public class LoginCoachCredentialFragment extends Fragment {
@@ -105,7 +105,7 @@ public class LoginCoachCredentialFragment extends Fragment {
         ProgressBar progressBar = (ProgressBar) getView().findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);
         dbAdapter = new DatabaseAdapterCoach(getContext());
-        dbAdapter.onLogin(email, password, new OnDoctorDataCallback() {
+        dbAdapter.onLogin(email, password, new OnCoachDataCallback() {
             @Override
             public void onCallback(Coach coach) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
