@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Fithub</string>
+    <string name="app_name">FitHub</string>
 
     <!-- Buttons strings -->
     <string name="btn_add">Misura</string>
