@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 throw new RuntimeException(e);
             }
 
-            bottomNavigationView.inflateMenu(R.menu.bottom_nav_menu_patient);
+            bottomNavigationView.inflateMenu(R.menu.bottom_nav_menu_athlete);
 
             bottomNavigationView.setOnItemSelectedListener(item -> {
 
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                 throw new RuntimeException(e);
             }
 
-            bottomNavigationView.inflateMenu(R.menu.bottom_nav_menu_doctor);
+            bottomNavigationView.inflateMenu(R.menu.bottom_nav_menu_coach);
             bottomNavigationView.setOnItemSelectedListener(item -> {
 
 
