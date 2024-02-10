@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AsilApp</string>
+    <string name="app_name">Fithub</string>
     <string name="coach" translatable="false">Doctor</string>
     <string name="athlete" translatable="false">Patient</string>
     <!-- Buttons strings -->
