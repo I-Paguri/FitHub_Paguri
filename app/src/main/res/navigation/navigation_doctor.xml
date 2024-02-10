@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="it.uniba.dib.sms232417.fithub.doctor.fragments.HomeFragment"
+        android:name="it.uniba.dib.sms232417.fithub.coach.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -23,17 +23,17 @@
     </fragment>
     <fragment
         android:id="@+id/myPatients"
-        android:name="it.uniba.dib.sms232417.fithub.doctor.fragments.MyPatientsFragment"
+        android:name="it.uniba.dib.sms232417.fithub.coach.fragments.MyAthletesFragment"
         android:label="fragment_my_patients"
         tools:layout="@layout/fragment_my_patients" />
     <fragment
         android:id="@+id/myAccountFragment"
-        android:name="it.uniba.dib.sms232417.fithub.doctor.fragments.MyAccountFragment"
+        android:name="it.uniba.dib.sms232417.fithub.coach.fragments.MyAccountFragment"
         android:label="fragment_my_account"
         tools:layout="@layout/fragment_my_account" />
     <fragment
         android:id="@+id/healthcareFragment"
-        android:name="it.uniba.dib.sms232417.fithub.doctor.fragments.HealthcareFragment"
+        android:name="it.uniba.dib.sms232417.fithub.coach.fragments.HealthcareFragment"
         android:label="fragment_healthcare"
         tools:layout="@layout/fragment_healthcare" />
 </navigation>

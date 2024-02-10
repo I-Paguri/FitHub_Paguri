@@ -1,4 +1,4 @@
-package it.uniba.dib.sms232417.fithub.patientsFragments;
+package it.uniba.dib.sms232417.fithub.athleteFragments;
 
 import static androidx.core.location.LocationManagerCompat.requestLocationUpdates;
 

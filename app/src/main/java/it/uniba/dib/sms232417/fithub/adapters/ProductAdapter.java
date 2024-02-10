@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import it.uniba.dib.sms232417.fithub.R;
-import it.uniba.dib.sms232417.fithub.patientsFragments.placeholder.OperationItem;
+import it.uniba.dib.sms232417.fithub.athleteFragments.placeholder.OperationItem;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link OperationItem}.

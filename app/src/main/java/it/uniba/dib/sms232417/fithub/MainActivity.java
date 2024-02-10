@@ -27,17 +27,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-import it.uniba.dib.sms232417.fithub.doctor.fragments.HomeFragment;
-import it.uniba.dib.sms232417.fithub.doctor.fragments.HealthcareFragment;
-import it.uniba.dib.sms232417.fithub.doctor.fragments.MeasureFragment;
-import it.uniba.dib.sms232417.fithub.doctor.fragments.MyPatientsFragment;
-import it.uniba.dib.sms232417.fithub.doctor.fragments.MyAccountFragment;
-import it.uniba.dib.sms232417.fithub.doctor.fragments.PatientFragment;
-import it.uniba.dib.sms232417.fithub.doctor.fragments.TreatmentFormGeneralFragment;
-import it.uniba.dib.sms232417.fithub.doctor.fragments.TreatmentFormMedicationsFragment;
+import it.uniba.dib.sms232417.fithub.coach.fragments.HomeFragment;
+import it.uniba.dib.sms232417.fithub.coach.fragments.HealthcareFragment;
+import it.uniba.dib.sms232417.fithub.coach.fragments.MeasureFragment;
+import it.uniba.dib.sms232417.fithub.coach.fragments.MyAthletesFragment;
+import it.uniba.dib.sms232417.fithub.coach.fragments.MyAccountFragment;
+import it.uniba.dib.sms232417.fithub.coach.fragments.AthleteFragment;
+import it.uniba.dib.sms232417.fithub.coach.fragments.TreatmentFormGeneralFragment;
+import it.uniba.dib.sms232417.fithub.coach.fragments.TreatmentFormMedicationsFragment;
 import it.uniba.dib.sms232417.fithub.entity.Doctor;
 import it.uniba.dib.sms232417.fithub.entity.Patient;
-import it.uniba.dib.sms232417.fithub.patientsFragments.ExpensesFragment;
+import it.uniba.dib.sms232417.fithub.athleteFragments.ExpensesFragment;
 import it.uniba.dib.sms232417.fithub.utilities.StringUtils;
 
 
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                         selectedFragment = new ExpensesFragment();
                     } else {
                         if (itemId == R.id.navigation_diary) {
-                            selectedFragment = new PatientFragment();
+                            selectedFragment = new AthleteFragment();
                             Bundle bundle = new Bundle();
 
                             bundle.putString("patientUUID", loggedPatient.getUUID());
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new HomeFragment();
                 } else {
                     if (itemId == R.id.navigation_my_patients) {
-                        selectedFragment = new MyPatientsFragment();
+                        selectedFragment = new MyAthletesFragment();
                         Bundle bundle = new Bundle();
                         bundle.putParcelable("doctor", loggedDoctor);
                         selectedFragment.setArguments(bundle);
@@ -253,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
 
-        if (currentFragment instanceof HealthcareFragment || currentFragment instanceof MyPatientsFragment
+        if (currentFragment instanceof HealthcareFragment || currentFragment instanceof MyAthletesFragment
                 || currentFragment instanceof MyAccountFragment || currentFragment instanceof MeasureFragment) {
             // If the current fragment is HealthcareFragment, MyPatientsFragment, or MyAccountFragment, navigate to HomeFragment
             FragmentManager fragmentManager = getSupportFragmentManager();

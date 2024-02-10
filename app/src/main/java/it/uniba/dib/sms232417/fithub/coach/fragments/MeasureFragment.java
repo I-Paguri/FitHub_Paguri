@@ -1,4 +1,4 @@
-package it.uniba.dib.sms232417.fithub.doctor.fragments;
+package it.uniba.dib.sms232417.fithub.coach.fragments;
 
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;

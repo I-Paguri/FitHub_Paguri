@@ -9,8 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import it.uniba.dib.sms232417.fithub.R;
-import it.uniba.dib.sms232417.fithub.patientsFragments.placeholder.OperationItem;
-import it.uniba.dib.sms232417.fithub.databinding.FragmentLastOperationItemBinding;
+import it.uniba.dib.sms232417.fithub.athleteFragments.placeholder.OperationItem;
 
 import java.util.List;
 

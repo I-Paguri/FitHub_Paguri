@@ -1,4 +1,4 @@
-package it.uniba.dib.sms232417.fithub.doctor.fragments;
+package it.uniba.dib.sms232417.fithub.coach.fragments;
 
 import static com.google.android.material.internal.ViewUtils.hideKeyboard;
 import static com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_CLOCK;

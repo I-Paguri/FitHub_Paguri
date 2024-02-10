@@ -1,4 +1,4 @@
-package it.uniba.dib.sms232417.fithub.patientsFragments;
+package it.uniba.dib.sms232417.fithub.athleteFragments;
 
 import android.os.Bundle;
 
@@ -15,7 +15,7 @@ import java.util.List;
 
 import it.uniba.dib.sms232417.fithub.R;
 import it.uniba.dib.sms232417.fithub.adapters.OperationItemRecyclerViewAdapter;
-import it.uniba.dib.sms232417.fithub.patientsFragments.placeholder.OperationItem;
+import it.uniba.dib.sms232417.fithub.athleteFragments.placeholder.OperationItem;
 
 /**
  * A fragment representing a list of Items.

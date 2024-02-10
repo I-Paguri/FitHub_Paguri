@@ -1,4 +1,4 @@
-package it.uniba.dib.sms232417.fithub.patientsFragments;
+package it.uniba.dib.sms232417.fithub.athleteFragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.google.android.material.card.MaterialCardView;
 
 import it.uniba.dib.sms232417.fithub.R;
-import it.uniba.dib.sms232417.fithub.doctor.fragments.TreatmentFragment;
+import it.uniba.dib.sms232417.fithub.coach.fragments.TreatmentFragment;
 
 
 public class ExpensesFragment extends Fragment {

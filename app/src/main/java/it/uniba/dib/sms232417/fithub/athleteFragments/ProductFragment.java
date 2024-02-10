@@ -1,4 +1,4 @@
-package it.uniba.dib.sms232417.fithub.patientsFragments;
+package it.uniba.dib.sms232417.fithub.athleteFragments;
 
 import android.os.Bundle;
 
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.uniba.dib.sms232417.fithub.R;
-import it.uniba.dib.sms232417.fithub.patientsFragments.placeholder.OperationItem;
+import it.uniba.dib.sms232417.fithub.athleteFragments.placeholder.OperationItem;
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ProductFragment#newInstance} factory method to

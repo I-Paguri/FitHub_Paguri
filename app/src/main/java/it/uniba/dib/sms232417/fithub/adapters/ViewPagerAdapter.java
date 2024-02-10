@@ -7,8 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import it.uniba.dib.sms232417.fithub.doctor.fragments.MeasurementsFragment;
-import it.uniba.dib.sms232417.fithub.doctor.fragments.TreatmentFragment;
+import it.uniba.dib.sms232417.fithub.coach.fragments.MeasurementsFragment;
+import it.uniba.dib.sms232417.fithub.coach.fragments.TreatmentFragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
     private Bundle bundle;

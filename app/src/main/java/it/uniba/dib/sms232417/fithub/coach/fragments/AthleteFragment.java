@@ -1,4 +1,4 @@
-package it.uniba.dib.sms232417.fithub.doctor.fragments;
+package it.uniba.dib.sms232417.fithub.coach.fragments;
 
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -25,7 +25,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-public class PatientFragment extends Fragment {
+public class AthleteFragment extends Fragment {
     private Toolbar toolbar;
     private String patientUUID, patientName, patientAge, user;
     private ViewPagerAdapter adapter;

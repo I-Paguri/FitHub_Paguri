@@ -1,4 +1,4 @@
-package it.uniba.dib.sms232417.fithub.patientsFragments.placeholder;
+package it.uniba.dib.sms232417.fithub.athleteFragments.placeholder;
 
 /**
  * Helper class for providing sample content for user interfaces created by

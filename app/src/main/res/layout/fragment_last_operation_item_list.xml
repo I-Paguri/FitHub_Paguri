@@ -58,7 +58,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
-        tools:context=".patientsFragments.LastOperationItemFragment"
+        tools:context=".athleteFragments.LastOperationItemFragment"
         tools:listitem="@layout/fragment_last_operation_item" />
 
 </LinearLayout>

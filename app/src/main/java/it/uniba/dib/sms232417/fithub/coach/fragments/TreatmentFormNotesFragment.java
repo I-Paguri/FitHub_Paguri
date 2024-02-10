@@ -1,4 +1,4 @@
-package it.uniba.dib.sms232417.fithub.doctor.fragments;
+package it.uniba.dib.sms232417.fithub.coach.fragments;
 
 import android.os.Bundle;
 
@@ -107,7 +107,7 @@ public class TreatmentFormNotesFragment extends Fragment {
                 });
 
 
-                PatientFragment patientFragment = new PatientFragment();
+                AthleteFragment athleteFragment = new AthleteFragment();
                 // Create a new bundle to pass the selected tab index
                 Bundle bundleWithSelectedTab = new Bundle();
                 bundleWithSelectedTab.putString("patientUUID", patientUUID);
@@ -116,12 +116,12 @@ public class TreatmentFormNotesFragment extends Fragment {
                 bundleWithSelectedTab.putInt("selectedTab", 1); // 1 is the index of the Treatment tab
 
 
-                patientFragment.setArguments(bundleWithSelectedTab);
+                athleteFragment.setArguments(bundleWithSelectedTab);
                 FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
 
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-                transaction.replace(R.id.nav_host_fragment_activity_main, patientFragment);
+                transaction.replace(R.id.nav_host_fragment_activity_main, athleteFragment);
 
                 //transaction.addToBackStack(null);
                 transaction.commit();

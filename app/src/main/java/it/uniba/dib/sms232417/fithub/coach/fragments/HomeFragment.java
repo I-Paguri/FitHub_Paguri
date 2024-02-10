@@ -1,4 +1,4 @@
-package it.uniba.dib.sms232417.fithub.doctor.fragments;
+package it.uniba.dib.sms232417.fithub.coach.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -113,9 +113,9 @@ public class HomeFragment extends Fragment {
         cardViewMyPatients.setOnClickListener(v -> {
             // Quando viene cliccata la cardView dei pazienti, viene aperto il fragment dei pazienti
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-            MyPatientsFragment myPatientsFragment = new MyPatientsFragment();
-            myPatientsFragment.setArguments(bundleDoctor);
-            transaction.replace(R.id.nav_host_fragment_activity_main, myPatientsFragment);
+            MyAthletesFragment myAthletesFragment = new MyAthletesFragment();
+            myAthletesFragment.setArguments(bundleDoctor);
+            transaction.replace(R.id.nav_host_fragment_activity_main, myAthletesFragment);
             transaction.addToBackStack(null);
             transaction.commit();
             // Quando viene aperto il fragment dei pazienti viene aggiornata l'icona selezionata nella bottom navigation bar

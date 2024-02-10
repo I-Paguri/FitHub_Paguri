@@ -1,4 +1,4 @@
-package it.uniba.dib.sms232417.fithub.doctor.fragments;
+package it.uniba.dib.sms232417.fithub.coach.fragments;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
@@ -32,7 +32,7 @@ import it.uniba.dib.sms232417.fithub.entity.Patient;
 import it.uniba.dib.sms232417.fithub.interfaces.OnPatientListDataCallback;
 import it.uniba.dib.sms232417.fithub.utilities.listItem;
 
-public class MyPatientsFragment extends Fragment {
+public class MyAthletesFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private RecyclerListViewAdapter adapter;
@@ -95,19 +95,19 @@ public class MyPatientsFragment extends Fragment {
 
 
                         // Open PatientFragment and pass the patient's name as an argument
-                        PatientFragment patientFragment = new PatientFragment();
+                        AthleteFragment athleteFragment = new AthleteFragment();
 
                         bundle.putString("patientUUID", clickedItem.getUUID());
                         bundle.putString("patientName", clickedItem.getTitle()); // assuming getTitle() gets the patient's name
                         bundle.putString("patientAge", clickedItem.getDescription());// assuming getSubtitle() gets the patient's age
 
 
-                        patientFragment.setArguments(bundle);
+                        athleteFragment.setArguments(bundle);
 
                         // Replace current fragment with PatientFragment
                         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                         FragmentTransaction transaction = fragmentManager.beginTransaction();
-                        transaction.replace(R.id.nav_host_fragment_activity_main, patientFragment);
+                        transaction.replace(R.id.nav_host_fragment_activity_main, athleteFragment);
                         transaction.addToBackStack(null);
                         transaction.commit();
 
