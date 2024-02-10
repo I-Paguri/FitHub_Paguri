@@ -24,7 +24,7 @@
             style="@style/TitleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login_doctor_lbl"
+            android:text="@string/login_coach_lbl"
             android:textAlignment="center"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/backArrow"/>

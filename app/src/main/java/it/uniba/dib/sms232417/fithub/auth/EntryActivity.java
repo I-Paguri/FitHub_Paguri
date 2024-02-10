@@ -2,7 +2,6 @@ package it.uniba.dib.sms232417.fithub.auth;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -26,7 +24,6 @@ import it.uniba.dib.sms232417.fithub.R;
 import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterCoach;
 import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterAthlete;
 import it.uniba.dib.sms232417.fithub.auth.coach.LoginCoachCredentialFragment;
-import it.uniba.dib.sms232417.fithub.auth.coach.LoginAthleteQrCodeFragment;
 import it.uniba.dib.sms232417.fithub.auth.athlete.LoginFragment;
 import it.uniba.dib.sms232417.fithub.auth.athlete.RegisterFragment;
 import it.uniba.dib.sms232417.fithub.entity.Coach;
@@ -204,6 +201,7 @@ public class EntryActivity extends AppCompatActivity {
                 }
         }
     }
+    /*
     public void checkPermission() {
         try {
             if (ActivityCompat.checkSelfPermission(EntryActivity.this, android.Manifest.permission.CAMERA) != getPackageManager().PERMISSION_GRANTED) {
@@ -232,7 +230,7 @@ public class EntryActivity extends AppCompatActivity {
 
                 }
             } else {
-                replaceFragment(new LoginAthleteQrCodeFragment());
+                replaceFragment(new LoginCoachQrCodeFragment());
 
             }
         } catch (Exception e) {
@@ -240,13 +238,13 @@ public class EntryActivity extends AppCompatActivity {
         }
     }
 
+     */
+
     @Override
     public void onBackPressed() {
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container_login);
 
-        if(currentFragment instanceof LoginAthleteQrCodeFragment){
-            replaceFragment(new LoginCoachCredentialFragment());
-        } else if (currentFragment instanceof LoginFragment) {
+        if (currentFragment instanceof LoginFragment) {
             replaceFragment(new LoginDecisionFragment());
         }else if(currentFragment instanceof RegisterFragment) {
             replaceFragment(new LoginFragment());

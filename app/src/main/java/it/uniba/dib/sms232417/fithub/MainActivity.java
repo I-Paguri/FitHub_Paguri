@@ -67,10 +67,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (loggedAthlete != null) {
             try {
-                FileOutputStream fos = openFileOutput(StringUtils.PATIENT_LOGGED, Context.MODE_PRIVATE);
+                FileOutputStream fos = openFileOutput(StringUtils.ATHLETE_LOGGED, Context.MODE_PRIVATE);
                 ObjectOutputStream os = new ObjectOutputStream(fos);
                 os.writeObject(loggedAthlete);
-                Log.d("Patient", "Patient saved");
+                Log.d("Atleta", "Atleta salvato");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -134,10 +134,10 @@ public class MainActivity extends AppCompatActivity {
         }
         if (loggedCoach != null) {
             try {
-                FileOutputStream fos = openFileOutput(StringUtils.DOCTOR_LOGGED, Context.MODE_PRIVATE);
+                FileOutputStream fos = openFileOutput(StringUtils.COACH_LOGGED, Context.MODE_PRIVATE);
                 ObjectOutputStream os = new ObjectOutputStream(fos);
                 os.writeObject(loggedCoach);
-                Log.d("Doctor", "Doctor saved");
+                Log.d("Coach", "Coach saved");
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

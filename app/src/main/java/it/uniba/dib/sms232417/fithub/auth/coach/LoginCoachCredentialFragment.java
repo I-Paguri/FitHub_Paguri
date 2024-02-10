@@ -30,6 +30,7 @@ import it.uniba.dib.sms232417.fithub.R;
 import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterCoach;
 import it.uniba.dib.sms232417.fithub.auth.CryptoUtil;
 import it.uniba.dib.sms232417.fithub.auth.EntryActivity;
+import it.uniba.dib.sms232417.fithub.auth.athlete.RegisterFragment;
 import it.uniba.dib.sms232417.fithub.entity.Coach;
 import it.uniba.dib.sms232417.fithub.interfaces.OnCoachDataCallback;
 import it.uniba.dib.sms232417.fithub.utilities.StringUtils;
@@ -41,7 +42,7 @@ public class LoginCoachCredentialFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.doctor_login_credential_layout, container, false);
+        return inflater.inflate(R.layout.coach_login_credential_layout, container, false);
     }
 
     @Override
@@ -51,8 +52,8 @@ public class LoginCoachCredentialFragment extends Fragment {
         MaterialButton btnLogin = view.findViewById(R.id.btnLogin);
         TextInputEditText email = view.findViewById(R.id.txtEmail);
         TextInputEditText password = view.findViewById(R.id.txtPassword);
-        MaterialButton btnLoginQr = view.findViewById(R.id.btnLoginDoctorQrCode);
         TextView txtForgotPassword = view.findViewById(R.id.txtForgetPass);
+        TextView txtRegister = view.findViewById(R.id.txtRegister);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,13 +92,13 @@ public class LoginCoachCredentialFragment extends Fragment {
             }
         });
 
-        btnLoginQr.setOnClickListener(new View.OnClickListener() {
+        txtRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((EntryActivity) getActivity()).checkPermission();
+                ((EntryActivity) getActivity()).replaceFragment(new RegistrationCoachFragment());
+
             }
         });
-
 
     }
 
@@ -133,7 +134,7 @@ public class LoginCoachCredentialFragment extends Fragment {
                     editor.commit();
 
                     Intent intent = new Intent(getContext(), MainActivity.class);
-                    intent.putExtra("loggedDoctor", (Parcelable) coach);
+                    intent.putExtra("loggedCoach", (Parcelable) coach);
                     startActivity(intent);
                     progressBar.setVisibility(ProgressBar.INVISIBLE);
                     requireActivity().finish();
@@ -141,7 +142,7 @@ public class LoginCoachCredentialFragment extends Fragment {
 
                 builder.setNegativeButton(R.string.no, (dialog, which) -> {
                     Intent intent = new Intent(getContext(), MainActivity.class);
-                    intent.putExtra("loggedDoctor", (Parcelable) coach);
+                    intent.putExtra("loggedCoach", (Parcelable) coach);
                     startActivity(intent);
                     progressBar.setVisibility(ProgressBar.INVISIBLE);
                     requireActivity().finish();

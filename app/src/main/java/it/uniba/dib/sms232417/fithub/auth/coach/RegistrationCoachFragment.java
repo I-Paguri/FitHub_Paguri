@@ -1,4 +1,4 @@
-package it.uniba.dib.sms232417.fithub.auth.athlete;
+package it.uniba.dib.sms232417.fithub.auth.coach;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -12,8 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -26,10 +24,6 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-//import java.util.Base64;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -42,30 +36,27 @@ import javax.crypto.SecretKey;
 import it.uniba.dib.sms232417.fithub.MainActivity;
 import it.uniba.dib.sms232417.fithub.R;
 import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterAthlete;
+import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterCoach;
 import it.uniba.dib.sms232417.fithub.auth.CryptoUtil;
 import it.uniba.dib.sms232417.fithub.auth.EntryActivity;
-import it.uniba.dib.sms232417.fithub.auth.coach.LoginCoachCredentialFragment;
+import it.uniba.dib.sms232417.fithub.auth.athlete.LoginFragment;
 import it.uniba.dib.sms232417.fithub.entity.Athlete;
+import it.uniba.dib.sms232417.fithub.entity.Coach;
 import it.uniba.dib.sms232417.fithub.interfaces.OnAthleteDataCallback;
+import it.uniba.dib.sms232417.fithub.interfaces.OnCoachDataCallback;
 import it.uniba.dib.sms232417.fithub.utilities.StringUtils;
 
-
-@SuppressWarnings("unchecked")
-public class RegisterFragment extends Fragment {
-
-    DatabaseAdapterAthlete dbAdapter;
+public class RegistrationCoachFragment extends Fragment {
+    DatabaseAdapterCoach dbAdapter;
 
     String strDataNascita;
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.register_fragment_layout, container, false);
-
+        return inflater.inflate(R.layout.coach_registration_layout, container, false);
     }
 
-    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
 
@@ -74,37 +65,35 @@ public class RegisterFragment extends Fragment {
         MaterialButton btnDataNascita = (MaterialButton) getView().findViewById(R.id.date_of_birth);
         strDataNascita = "";
         btnDataNascita.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        MaterialDatePicker.Builder builder = MaterialDatePicker.Builder.datePicker();
-                        builder.setTitleText("Select a Date");
+            public void onClick(View v) {
+                MaterialDatePicker.Builder builder = MaterialDatePicker.Builder.datePicker();
+                builder.setTitleText("Select a Date");
 
-                        Calendar calendarStart = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-                        calendarStart.set(1940, 0, 1);
-                        long minDate = calendarStart.getTimeInMillis();
-                        Calendar calendarEnd = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-                        calendarEnd.set(2006, 0, 1);
-                        long maxDate = calendarEnd.getTimeInMillis();
-                        builder.setCalendarConstraints(new CalendarConstraints.Builder().setStart(minDate).setEnd(maxDate).build());
+                Calendar calendarStart = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+                calendarStart.set(1940, 0, 1);
+                long minDate = calendarStart.getTimeInMillis();
+                Calendar calendarEnd = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+                calendarEnd.set(2006, 0, 1);
+                long maxDate = calendarEnd.getTimeInMillis();
+                builder.setCalendarConstraints(new CalendarConstraints.Builder().setStart(minDate).setEnd(maxDate).build());
 
-                        MaterialDatePicker<Long> materialDatePicker = builder.build();
-                        materialDatePicker.show(getFragmentManager(), "DATE_PICKER");
-                        materialDatePicker.addOnPositiveButtonClickListener(selection ->  {
-                            Date selectedDate = new Date(selection);
-                            SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
-                            String date = format.format(selectedDate);
-                            btnDataNascita.setText(date);
-                            strDataNascita = date;
+                MaterialDatePicker<Long> materialDatePicker = builder.build();
+                materialDatePicker.show(getFragmentManager(), "DATE_PICKER");
+                materialDatePicker.addOnPositiveButtonClickListener(selection ->  {
+                    Date selectedDate = new Date(selection);
+                    SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
+                    String date = format.format(selectedDate);
+                    btnDataNascita.setText(date);
+                    strDataNascita = date;
 
+                });
+                materialDatePicker.addOnNegativeButtonClickListener(
+                        dialog -> {
+                            btnDataNascita.setText(R.string.birth_date);
+                            strDataNascita = "";
                         });
-                        materialDatePicker.addOnNegativeButtonClickListener(
-                                dialog -> {
-                                    btnDataNascita.setText(R.string.birth_date);
-                                    strDataNascita = "";
-                                }
-                        );
-                    }
-                }
+            }
+        }
         );
 
 
@@ -175,7 +164,7 @@ public class RegisterFragment extends Fragment {
                     builder.setPositiveButton("Ok", null);
                     builder.show();
                 }else
-                    onRegisterUsers(v,email,password,nome,cognome, strDataNascita);
+                    onRegisterCoach(v,email,password,nome,cognome, strDataNascita);
             }
         });
 
@@ -184,32 +173,32 @@ public class RegisterFragment extends Fragment {
     }
 
     public void onLogin(View v) {
-        ((EntryActivity) getActivity()).replaceFragment(new LoginCoachCredentialFragment());
+        ((EntryActivity) getActivity()).replaceFragment(new LoginFragment());
     }
 
-    public void onRegisterUsers(View v, String email, String password, String nome, String cognome,String dataNascita) {
+    public void onRegisterCoach(View v, String email, String password, String nome, String cognome, String dataNascita) {
 
 
         ProgressBar progressBar = (ProgressBar) getView().findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);
 
-        dbAdapter = new DatabaseAdapterAthlete(getContext());
-        dbAdapter.onRegister(nome, cognome, email, dataNascita, password, new OnAthleteDataCallback() {
+        dbAdapter = new DatabaseAdapterCoach(getContext());
+        dbAdapter.onRegister(nome, cognome, email, dataNascita, password, new OnCoachDataCallback() {
             @Override
-            public void onCallback(Athlete athlete) {
+            public void onCallback(Coach coach) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle(R.string.save_password).setMessage(R.string.save_password_explain);
                 builder.setPositiveButton(R.string.yes, (dialog, which) -> {
 
                     SharedPreferences.Editor editor = requireActivity().getSharedPreferences(StringUtils.AUTOMATIC_LOGIN, requireActivity().MODE_PRIVATE).edit();
-                    editor.putString("email", athlete.getEmail());
+                    editor.putString("email", coach.getEmail());
                     editor.putBoolean("isDoctor",false);
                     //Encrypt password con chiave simmetrica e salva su file
                     byte[] encryptedPassword = new byte[0];
                     byte[] iv = new byte[0];
                     try {
-                        CryptoUtil.generateandSaveSecretKey(athlete.getEmail());
-                        SecretKey secretKey = CryptoUtil.loadSecretKey(athlete.getEmail());
+                        CryptoUtil.generateandSaveSecretKey(coach.getEmail());
+                        SecretKey secretKey = CryptoUtil.loadSecretKey(coach.getEmail());
                         Pair<byte[], byte[]> encryptionResult = CryptoUtil.encryptWithKey(secretKey, password.getBytes());
                         encryptedPassword = encryptionResult.first;
                         iv = encryptionResult.second;
@@ -222,7 +211,7 @@ public class RegisterFragment extends Fragment {
                     editor.commit();
 
                     Intent intent = new Intent(getContext(), MainActivity.class);
-                    intent.putExtra("loggedAthlete", (Parcelable) athlete);
+                    intent.putExtra("loggedCoach", (Parcelable) coach);
                     startActivity(intent);
                     progressBar.setVisibility(ProgressBar.INVISIBLE);
                     requireActivity().finish();
@@ -230,7 +219,7 @@ public class RegisterFragment extends Fragment {
 
                 builder.setNegativeButton(R.string.no, (dialog, which) -> {
                     Intent intent = new Intent(getContext(), MainActivity.class);
-                    intent.putExtra("loggedAthlete", (Parcelable) athlete);
+                    intent.putExtra("loggedCoach", (Parcelable) coach);
                     startActivity(intent);
                     requireActivity().finish();
                 });
@@ -250,6 +239,5 @@ public class RegisterFragment extends Fragment {
         });
     }
 }
-
 
 

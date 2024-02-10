@@ -29,7 +29,36 @@ public class DatabaseAdapterCoach {
         db = FirebaseFirestore.getInstance();
         this.context = context;
     }
+    public void onRegister(String nome, String cognome, String email, String dataNascita, String password, OnCoachDataCallback callback) {
 
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser utente = mAuth.getCurrentUser();
+                        db = FirebaseFirestore.getInstance();
+                        Log.d("REGISTER", "Registrazione effettuata con successo");
+
+                        coach = new Coach(utente.getUid(), nome, cognome, email, dataNascita);
+                        Log.d("REGISTER", "Utente: " + coach.toString());
+                        db.collection("coach")
+                                .document(utente.getUid())
+                                .set(coach)
+                                .addOnSuccessListener(aVoid -> {
+                                    callback.onCallback(coach);
+                                    Log.d("Firestore", "Utente scritto con successo");
+                                })
+                                .addOnFailureListener(task1 -> {
+                                    Log.d("Error", task1.toString());
+                                    callback.onCallbackError(new Exception(), task1.toString());
+                                });
+                    }
+                })
+                .addOnFailureListener(task -> {
+                    callback.onCallbackError(new Exception(), task.toString());
+                });
+    }
     public void onLogin(String email, String password, OnCoachDataCallback callback){
         Log.d("LOGIN", "inizioMetodo");
         mAuth = FirebaseAuth.getInstance();
@@ -39,26 +68,29 @@ public class DatabaseAdapterCoach {
                     FirebaseUser dottore = mAuth.getCurrentUser();
                     db = FirebaseFirestore.getInstance();
 
-                    db.collection("doctor")
+                    db.collection("coach")
                             .document(dottore.getUid())
                             .get()
                             .addOnSuccessListener(datiUtente-> {
                                 if (datiUtente.exists()) {
                                     Log.d("Login", "Login in corso");
-                                    coach = new Coach(datiUtente.getString("nome"),
+                                    coach = new Coach(datiUtente.getString("UUID"),
+                                            datiUtente.getString("nome"),
                                             datiUtente.getString("cognome"),
                                             datiUtente.getString("email"),
-                                            datiUtente.getString("dataNascita"),
-                                            datiUtente.getString("regione"),
-                                            datiUtente.getString("specializzazione"),
-                                            datiUtente.getString("numeroDiRegistrazioneMedica"));
-
+                                            datiUtente.getString("dataNascita")
+                                            );
+                                            /*
                                             List<String> myPatients = (List<String>) datiUtente.get("myPatients");
                                             coach.setMyPatientsUUID(myPatients);
+
                                             if(myPatients == null || myPatients.isEmpty())
+
                                                 Log.d("MyPatients", "Non ce");
                                             if (myPatients != null && !myPatients.isEmpty())
                                                 Log.d("MyPatients", myPatients.toString());
+
+                                             */
                                     callback.onCallback(coach);
                                 }else{
                                     callback.onCallbackError(new Exception(), context.getString(R.string.error_login_section_patient));
@@ -72,7 +104,7 @@ public class DatabaseAdapterCoach {
     public void onLogout(){
         mAuth.signOut();
     }
-
+    /*
     public void getDoctorPatients(List<String> patientUUID, OnAthleteListDataCallback callback) {
     db = FirebaseFirestore.getInstance();
 
@@ -137,4 +169,6 @@ public class DatabaseAdapterCoach {
     public void addTreatment(Treatment treatment) {
 
     }
+
+     */
 }

@@ -32,11 +32,12 @@
     <string name="name">Name</string>
     <string name="surname">Surname</string>
     <string name="sign_up">SIGN UP</string>
+    <string name="sign_up_coach" translatable="false">JOIN US COACH</string>
     <string name="forgett_pass">Did you forget the password? Click Here!</string>
     <string name="create_account">You don\'t have an account? Create Now!</string>
     <string name="login">Did you have an account? Log in!</string>
-    <string name="login_doctor" translatable="false">Are you a coach? Log in!</string>
-    <string name="login_doctor_lbl" translatable="false">Welcome Doctor!</string>
+    <string name="login_coach" translatable="false">Are you a coach? Log in!</string>
+    <string name="login_coach_lbl" translatable="false">Welcome Coach!</string>
     <string name="login_qr_code_doctor_explain" translatable="false">You can access by scanning the QRcode of your badge</string>
     <string name="btn_qr_code_doctor" translatable="false">SCAN NOW</string>
     <string name="btn_login_patient" translatable="false">Aren\'t you a coach? Log in as a athlete!</string>

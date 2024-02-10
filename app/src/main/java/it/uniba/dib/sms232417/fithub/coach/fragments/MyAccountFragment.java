@@ -44,7 +44,7 @@ public class MyAccountFragment extends Fragment {
     Coach loggedCoach;
     final String NAME_FILE = "automaticLogin";
     DatabaseAdapterAthlete dbAdapter;
-    DatabaseAdapterCoach dbAdapterDoctor;
+    DatabaseAdapterCoach dbAdapterCoach;
     BottomNavigationView bottomNavigationView;
 
     @Nullable
@@ -120,7 +120,6 @@ public class MyAccountFragment extends Fragment {
             TextView txtName = getView().findViewById(R.id.txt_name);
             TextView txtSurname = getView().findViewById(R.id.txt_surname);
             TextView txtRegion = getView().findViewById(R.id.txt_region);
-
             TextView txtage = getView().findViewById(R.id.txt_age);
             txtName.setText(loggedAthlete.getNome());
             txtSurname.setText(loggedAthlete.getCognome());
@@ -143,7 +142,7 @@ public class MyAccountFragment extends Fragment {
     }
 
     public void onLogout(View v, String email) throws Exception {
-            dbAdapterDoctor = new DatabaseAdapterCoach(getContext());
+            dbAdapterCoach = new DatabaseAdapterCoach(getContext());
             dbAdapter = new DatabaseAdapterAthlete(getContext());
 
 
@@ -156,15 +155,15 @@ public class MyAccountFragment extends Fragment {
             editor.apply();
             CryptoUtil.deleteKey(email);
 
-            File loggedPatientFile = new File(StringUtils.FILE_PATH_PATIENT_LOGGED);
-            File loggedDoctorFile = new File(StringUtils.FILE_PATH_DOCTOR_LOGGED);
-            if(loggedPatientFile.exists()){
-                loggedPatientFile.delete();
+            File loggedAthleteFile = new File(StringUtils.FILE_PATH_ATHLETE_LOGGED);
+            File loggedCoachFile = new File(StringUtils.FILE_PATH_COACH_LOGGED);
+            if(loggedAthleteFile.exists()){
+                loggedAthleteFile.delete();
                 dbAdapter.onLogout();
             }
-            if(loggedDoctorFile.exists()){
-                loggedDoctorFile.delete();
-                dbAdapterDoctor.onLogout();
+            if(loggedCoachFile.exists()){
+                loggedCoachFile.delete();
+                dbAdapterCoach.onLogout();
             }
 
             Intent esci = new Intent(getContext(), EntryActivity.class);
@@ -177,10 +176,10 @@ public class MyAccountFragment extends Fragment {
 
     public Athlete checkPatientLogged(){
         Athlete loggedAthlete;
-        File loggedPatientFile = new File("/data/data/it.uniba.dib.sms232417.fithub/files/loggedPatient");
+        File loggedPatientFile = new File(StringUtils.FILE_PATH_ATHLETE_LOGGED);
         if(loggedPatientFile.exists()){
             try {
-                FileInputStream fis = requireActivity().openFileInput(StringUtils.PATIENT_LOGGED);
+                FileInputStream fis = requireActivity().openFileInput(StringUtils.ATHLETE_LOGGED);
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 loggedAthlete = (Athlete) ois.readObject();
             } catch (FileNotFoundException e) {
@@ -198,10 +197,10 @@ public class MyAccountFragment extends Fragment {
 
     public Coach checkDoctorLogged(){
         Coach loggedCoach;
-        File loggedDoctorFile = new File("/data/data/it.uniba.dib.sms232417.fithub/files/loggedDoctor");
+        File loggedDoctorFile = new File(StringUtils.FILE_PATH_COACH_LOGGED);
         if(loggedDoctorFile.exists()){
             try {
-                FileInputStream fis = requireActivity().openFileInput(StringUtils.DOCTOR_LOGGED);
+                FileInputStream fis = requireActivity().openFileInput(StringUtils.COACH_LOGGED);
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 loggedCoach = (Coach) ois.readObject();
             } catch (FileNotFoundException e) {

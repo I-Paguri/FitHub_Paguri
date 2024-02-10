@@ -10,40 +10,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Coach implements Parcelable, Serializable {
+    private String UUID;
     private String nome;
     private String cognome;
     private String email;
     private String dataNascita;
-    private String regione;
-    private String specializzazione;
-    private String numeroDiRegistrazioneMedica;
-    private List<String> myPatientsUUID;
+
 
     public Coach() {
     }
 
-    public Coach(String nome, String cognome, String email, String dataNascita, String regione, String specializzazione, String numeroDiRegistrazioneMedica) {
+    public Coach(String uuid,String nome, String cognome, String email, String dataNascita) {
+        this.UUID = uuid;
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
         this.dataNascita = dataNascita;
-        this.regione = regione;
-        this.specializzazione = specializzazione;
 
-        this.numeroDiRegistrazioneMedica = numeroDiRegistrazioneMedica;
+    }
 
-        this.myPatientsUUID = new ArrayList<>();
+    @Override
+    public String toString() {
+        return "Coach{" +
+                "UUID='" + UUID + '\'' +
+                ", nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", email='" + email + '\'' +
+                ", dataNascita='" + dataNascita + '\'' +
+                '}';
+    }
+
+    public String getUUID() {
+        return UUID;
+    }
+
+    public void setUUID(String UUID) {
+        this.UUID = UUID;
     }
 
     protected Coach(Parcel in) {
+        UUID = in.readString();
         nome = in.readString();
         cognome = in.readString();
         email = in.readString();
         dataNascita = in.readString();
-        regione = in.readString();
-        specializzazione = in.readString();
-        numeroDiRegistrazioneMedica = in.readString();
-        myPatientsUUID = in.createStringArrayList();
+
     }
 
     public static final Creator<Coach> CREATOR = new Creator<Coach>() {
@@ -57,14 +68,6 @@ public class Coach implements Parcelable, Serializable {
             return new Coach[size];
         }
     };
-
-    public List<String> getMyPatientsUUID() {
-        return myPatientsUUID;
-    }
-
-    public void setMyPatientsUUID(List<String> myPatients) {
-        this.myPatientsUUID = myPatients;
-    }
 
     public String getNome() {
         return nome;
@@ -82,18 +85,6 @@ public class Coach implements Parcelable, Serializable {
         return dataNascita;
     }
 
-    public String getRegione() {
-        return regione;
-    }
-
-    public String getSpecializzazione() {
-        return specializzazione;
-    }
-
-
-    public String getNumeroDiRegistrazioneMedica() {
-        return numeroDiRegistrazioneMedica;
-    }
 
     @Override
     public int describeContents() {
@@ -102,14 +93,11 @@ public class Coach implements Parcelable, Serializable {
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(UUID);
         dest.writeString(nome);
         dest.writeString(cognome);
         dest.writeString(email);
         dest.writeString(dataNascita);
-        dest.writeString(regione);
-        dest.writeString(specializzazione);
-        dest.writeString(numeroDiRegistrazioneMedica);
-        dest.writeStringList(myPatientsUUID);
     }
     /*
 

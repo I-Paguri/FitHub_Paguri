@@ -136,14 +136,14 @@ public class LoginFragment extends Fragment {
                                 editor.apply();
 
                                 Intent intent = new Intent(getContext(), MainActivity.class);
-                                intent.putExtra("loggedPatient", (Parcelable) athlete);
+                                intent.putExtra("loggedAthlete", (Parcelable) athlete);
                                 startActivity(intent);
                                 progressBar.setVisibility(ProgressBar.GONE);
                                 requireActivity().finish();
                             });
                             builder.setNegativeButton(R.string.no, (dialog, which) -> {
                                 Intent intent = new Intent(getContext(), MainActivity.class);
-                                intent.putExtra("loggedPatient", (Parcelable) athlete);
+                                intent.putExtra("loggedAthlete", (Parcelable) athlete);
                                 startActivity(intent);
                                 progressBar.setVisibility(ProgressBar.GONE);
                                 requireActivity().finish();

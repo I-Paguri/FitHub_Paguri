@@ -166,10 +166,11 @@ public class HomeFragment extends Fragment {
     }
     public Athlete checkPatientLogged(){
         Athlete loggedAthlete;
-        File loggedPatientFile = new File("/data/data/it.uniba.dib.sms232417.fithub/files/loggedPatient");
+
+        File loggedPatientFile = new File(StringUtils.FILE_PATH_ATHLETE_LOGGED);
         if(loggedPatientFile.exists()){
             try {
-                FileInputStream fis = requireActivity().openFileInput(StringUtils.PATIENT_LOGGED);
+                FileInputStream fis = requireActivity().openFileInput(StringUtils.ATHLETE_LOGGED);
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 loggedAthlete = (Athlete) ois.readObject();
             } catch (FileNotFoundException e) {
@@ -179,7 +180,9 @@ public class HomeFragment extends Fragment {
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
+            Log.d("Athlete", "Athlete logged: " + loggedAthlete.toString());
             return loggedAthlete;
+
         }else
             return null;
 
@@ -187,7 +190,8 @@ public class HomeFragment extends Fragment {
 
     public Coach checkDoctorLogged(){
         Coach loggedCoach;
-        File loggedDoctorFile = new File("/data/data/it.uniba.dib.sms232417.fithub/files/loggedDoctor");
+
+        File loggedDoctorFile = new File(StringUtils.FILE_PATH_COACH_LOGGED);
         if(loggedDoctorFile.exists()){
             Log.d("FILE", "File esiste");
             try {
@@ -201,6 +205,7 @@ public class HomeFragment extends Fragment {
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
+            Log.d("Coach", "Coach logged: " + loggedCoach.toString());
             return loggedCoach;
     }else
         return null;

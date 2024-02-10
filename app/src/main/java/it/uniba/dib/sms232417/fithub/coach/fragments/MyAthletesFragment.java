@@ -67,7 +67,8 @@ public class MyAthletesFragment extends Fragment {
         }
 
         dbAdapterDoctor = new DatabaseAdapterCoach(getContext());
-
+    }
+        /*
         if (coach.getMyPatientsUUID() == null || coach.getMyPatientsUUID().isEmpty()) {
             LayoutInflater inflater = (LayoutInflater) requireActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View noTreatmentLayout = inflater.inflate(R.layout.no_patients_layout, null);
@@ -158,4 +159,6 @@ public class MyAthletesFragment extends Fragment {
         });
     }
 
+
+         */
 }
