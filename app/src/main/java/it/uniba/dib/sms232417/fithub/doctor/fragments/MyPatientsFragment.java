@@ -25,7 +25,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import it.uniba.dib.sms232417.fithub.R;
-import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterDoctor;
+import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterCoach;
 import it.uniba.dib.sms232417.fithub.adapters.RecyclerListViewAdapter;
 import it.uniba.dib.sms232417.fithub.entity.Doctor;
 import it.uniba.dib.sms232417.fithub.entity.Patient;
@@ -41,7 +41,7 @@ public class MyPatientsFragment extends Fragment {
 
     Doctor doctor;
     List<Patient> myPatientsList;
-    DatabaseAdapterDoctor dbAdapterDoctor;
+    DatabaseAdapterCoach dbAdapterDoctor;
 
     @Nullable
     @Override
@@ -66,7 +66,7 @@ public class MyPatientsFragment extends Fragment {
             doctor = (Doctor) this.getArguments().getParcelable("doctor");
         }
 
-        dbAdapterDoctor = new DatabaseAdapterDoctor(getContext());
+        dbAdapterDoctor = new DatabaseAdapterCoach(getContext());
 
         if (doctor.getMyPatientsUUID() == null || doctor.getMyPatientsUUID().isEmpty()) {
             LayoutInflater inflater = (LayoutInflater) requireActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);

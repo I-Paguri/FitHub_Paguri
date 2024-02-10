@@ -19,7 +19,7 @@ import com.kofigyan.stateprogressbar.StateProgressBar;
 import java.util.Map;
 
 import it.uniba.dib.sms232417.fithub.R;
-import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterPatient;
+import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterAthlete;
 import it.uniba.dib.sms232417.fithub.entity.Treatment;
 import it.uniba.dib.sms232417.fithub.interfaces.OnTreatmentsCallback;
 
@@ -81,7 +81,7 @@ public class TreatmentFormNotesFragment extends Fragment {
                 View bottomNavView = requireActivity().findViewById(R.id.nav_view);
 
                 // ADD TREATMENT TO DB
-                DatabaseAdapterPatient dbAdapter = new DatabaseAdapterPatient(getContext());
+                DatabaseAdapterAthlete dbAdapter = new DatabaseAdapterAthlete(getContext());
 
                 dbAdapter.addTreatment(patientUUID, treatment, new OnTreatmentsCallback() {
                     @Override

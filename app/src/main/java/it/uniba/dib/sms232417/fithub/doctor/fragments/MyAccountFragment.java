@@ -30,8 +30,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import it.uniba.dib.sms232417.fithub.R;
-import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterDoctor;
-import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterPatient;
+import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterCoach;
+import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterAthlete;
 import it.uniba.dib.sms232417.fithub.auth.CryptoUtil;
 import it.uniba.dib.sms232417.fithub.auth.EntryActivity;
 import it.uniba.dib.sms232417.fithub.entity.Doctor;
@@ -43,8 +43,8 @@ public class MyAccountFragment extends Fragment {
     Patient loggedPatient;
     Doctor loggedDoctor;
     final String NAME_FILE = "automaticLogin";
-    DatabaseAdapterPatient dbAdapter;
-    DatabaseAdapterDoctor dbAdapterDoctor;
+    DatabaseAdapterAthlete dbAdapter;
+    DatabaseAdapterCoach dbAdapterDoctor;
     BottomNavigationView bottomNavigationView;
 
     @Nullable
@@ -145,8 +145,8 @@ public class MyAccountFragment extends Fragment {
     }
 
     public void onLogout(View v, String email) throws Exception {
-            dbAdapterDoctor = new DatabaseAdapterDoctor(getContext());
-            dbAdapter = new DatabaseAdapterPatient(getContext());
+            dbAdapterDoctor = new DatabaseAdapterCoach(getContext());
+            dbAdapter = new DatabaseAdapterAthlete(getContext());
 
 
             Toast.makeText(getContext(),

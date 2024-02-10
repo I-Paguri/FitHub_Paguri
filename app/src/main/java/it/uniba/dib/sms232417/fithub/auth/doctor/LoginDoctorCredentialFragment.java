@@ -27,7 +27,7 @@ import javax.crypto.SecretKey;
 
 import it.uniba.dib.sms232417.fithub.MainActivity;
 import it.uniba.dib.sms232417.fithub.R;
-import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterDoctor;
+import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterCoach;
 import it.uniba.dib.sms232417.fithub.auth.CryptoUtil;
 import it.uniba.dib.sms232417.fithub.auth.EntryActivity;
 import it.uniba.dib.sms232417.fithub.entity.Doctor;
@@ -36,7 +36,7 @@ import it.uniba.dib.sms232417.fithub.utilities.StringUtils;
 
 public class LoginDoctorCredentialFragment extends Fragment {
 
-    DatabaseAdapterDoctor dbAdapter;
+    DatabaseAdapterCoach dbAdapter;
 
     @Nullable
     @Override
@@ -104,7 +104,7 @@ public class LoginDoctorCredentialFragment extends Fragment {
     private void onLogin(View v, String email, String password) {
         ProgressBar progressBar = (ProgressBar) getView().findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);
-        dbAdapter = new DatabaseAdapterDoctor(getContext());
+        dbAdapter = new DatabaseAdapterCoach(getContext());
         dbAdapter.onLogin(email, password, new OnDoctorDataCallback() {
             @Override
             public void onCallback(Doctor doctor) {

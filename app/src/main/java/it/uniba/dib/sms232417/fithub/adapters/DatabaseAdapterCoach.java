@@ -18,13 +18,13 @@ import it.uniba.dib.sms232417.fithub.entity.Treatment;
 import it.uniba.dib.sms232417.fithub.interfaces.OnDoctorDataCallback;
 import it.uniba.dib.sms232417.fithub.interfaces.OnPatientListDataCallback;
 
-public class DatabaseAdapterDoctor {
+public class DatabaseAdapterCoach {
 
     FirebaseAuth mAuth;
     FirebaseFirestore db;
     Doctor doctor;
     Context context;
-    public DatabaseAdapterDoctor(Context context) {
+    public DatabaseAdapterCoach(Context context) {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         this.context = context;

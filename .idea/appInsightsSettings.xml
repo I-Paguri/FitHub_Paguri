@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="it.uniba.dib.sms232417.asilapp" />
-                  <option name="mobileSdkAppId" value="1:686087710214:android:7aef8d69af7879547bc587" />
-                  <option name="projectId" value="asilapp-232417" />
-                  <option name="projectNumber" value="686087710214" />
+                  <option name="appId" value="PLACEHOLDER" />
+                  <option name="mobileSdkAppId" value="" />
+                  <option name="projectId" value="" />
+                  <option name="projectNumber" value="" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

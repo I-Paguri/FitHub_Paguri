@@ -41,7 +41,7 @@ import javax.crypto.SecretKey;
 
 import it.uniba.dib.sms232417.fithub.MainActivity;
 import it.uniba.dib.sms232417.fithub.R;
-import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterPatient;
+import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterAthlete;
 import it.uniba.dib.sms232417.fithub.auth.CryptoUtil;
 import it.uniba.dib.sms232417.fithub.auth.EntryActivity;
 import it.uniba.dib.sms232417.fithub.entity.Patient;
@@ -54,7 +54,7 @@ public class RegisterFragment extends Fragment {
 
     FirebaseFirestore db;
     FirebaseAuth mAuth;
-    DatabaseAdapterPatient dbAdapter;
+    DatabaseAdapterAthlete dbAdapter;
 
     String strDataNascita;
     String regione;
@@ -207,7 +207,7 @@ public class RegisterFragment extends Fragment {
         ProgressBar progressBar = (ProgressBar) getView().findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);
 
-        dbAdapter = new DatabaseAdapterPatient(getContext());
+        dbAdapter = new DatabaseAdapterAthlete(getContext());
         dbAdapter.onRegister(nome, cognome, email, dataNascita, regione, password, new OnPatientDataCallback() {
             @Override
             public void onCallback(Patient patient) {

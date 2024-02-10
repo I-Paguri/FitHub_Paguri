@@ -23,8 +23,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import it.uniba.dib.sms232417.fithub.MainActivity;
 import it.uniba.dib.sms232417.fithub.R;
-import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterDoctor;
-import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterPatient;
+import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterCoach;
+import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterAthlete;
 import it.uniba.dib.sms232417.fithub.auth.doctor.LoginDoctorCredentialFragment;
 import it.uniba.dib.sms232417.fithub.auth.doctor.LoginDoctorQrCodeFragment;
 import it.uniba.dib.sms232417.fithub.auth.patient.LoginFragment;
@@ -39,8 +39,8 @@ import javax.crypto.SecretKey;
 
 public class EntryActivity extends AppCompatActivity {
 
-    DatabaseAdapterPatient dbAdapterPatient;
-    DatabaseAdapterDoctor dbAdapterDoctor;
+    DatabaseAdapterAthlete dbAdapterPatient;
+    DatabaseAdapterCoach dbAdapterDoctor;
     private boolean doubleBackToExitPressedOnce = false;
 
     Context context;
@@ -108,7 +108,7 @@ public class EntryActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         if (password != null) {
-                            dbAdapterPatient = new DatabaseAdapterPatient(context);
+                            dbAdapterPatient = new DatabaseAdapterAthlete(context);
                             dbAdapterPatient.onLogin(email, password, new OnPatientDataCallback() {
                                 @Override
                                 public void onCallback(Patient patient) {
@@ -170,7 +170,7 @@ public class EntryActivity extends AppCompatActivity {
                         }
                         if (password != null) {
 
-                            dbAdapterDoctor = new DatabaseAdapterDoctor(context);
+                            dbAdapterDoctor = new DatabaseAdapterCoach(context);
                             dbAdapterDoctor.onLogin(email, password, new OnDoctorDataCallback() {
 
                                 @Override

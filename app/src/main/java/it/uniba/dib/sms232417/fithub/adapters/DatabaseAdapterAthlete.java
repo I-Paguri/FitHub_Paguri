@@ -18,7 +18,7 @@ import it.uniba.dib.sms232417.fithub.entity.Patient;
 import it.uniba.dib.sms232417.fithub.interfaces.OnCountCallback;
 import it.uniba.dib.sms232417.fithub.interfaces.OnTreatmentsCallback;
 
-public class DatabaseAdapterPatient {
+public class DatabaseAdapterAthlete {
 
     FirebaseAuth mAuth;
     FirebaseFirestore db;
@@ -26,7 +26,7 @@ public class DatabaseAdapterPatient {
     Patient resultPatient;
     Context context;
 
-    public DatabaseAdapterPatient(Context context) {
+    public DatabaseAdapterAthlete(Context context) {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         this.context = context;

@@ -47,7 +47,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import it.uniba.dib.sms232417.fithub.R;
-import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterPatient;
+import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterAthlete;
 import it.uniba.dib.sms232417.fithub.entity.Medication;
 import it.uniba.dib.sms232417.fithub.entity.Treatment;
 import it.uniba.dib.sms232417.fithub.interfaces.OnTreatmentsCallback;
@@ -87,7 +87,7 @@ public class TreatmentFragment extends Fragment {
         share.hide();
 
         // Create an instance of DatabaseAdapterPatient
-        DatabaseAdapterPatient adapter = new DatabaseAdapterPatient(requireContext());
+        DatabaseAdapterAthlete adapter = new DatabaseAdapterAthlete(requireContext());
 
         if (this.getArguments() != null) {
             patientUUID = this.getArguments().getString("patientUUID");
@@ -309,7 +309,7 @@ public class TreatmentFragment extends Fragment {
         } else {
 
             // Create an instance of DatabaseAdapterPatient
-            DatabaseAdapterPatient adapter = new DatabaseAdapterPatient(requireContext());
+            DatabaseAdapterAthlete adapter = new DatabaseAdapterAthlete(requireContext());
             // Set an OnClickListener for the delete button
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override

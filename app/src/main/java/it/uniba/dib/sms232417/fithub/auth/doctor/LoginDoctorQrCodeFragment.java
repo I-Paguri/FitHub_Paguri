@@ -48,7 +48,7 @@ import java.util.concurrent.Executors;
 
 import it.uniba.dib.sms232417.fithub.MainActivity;
 import it.uniba.dib.sms232417.fithub.R;
-import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterDoctor;
+import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterCoach;
 import it.uniba.dib.sms232417.fithub.auth.EntryActivity;
 import it.uniba.dib.sms232417.fithub.entity.Doctor;
 import it.uniba.dib.sms232417.fithub.interfaces.OnDoctorDataCallback;
@@ -59,7 +59,7 @@ public class LoginDoctorQrCodeFragment extends Fragment {
     private ExecutorService cameraExecutor;
     private PreviewView previewView;
     private LettoreQr analyzer;
-    DatabaseAdapterDoctor dbAdapterDoctor;
+    DatabaseAdapterCoach dbAdapterDoctor;
     private boolean isBarcodeRead = false;
     int i = 0;
 
@@ -196,7 +196,7 @@ public class LoginDoctorQrCodeFragment extends Fragment {
                             RelativeLayout relativeLayout2 = getView().findViewById(R.id.progressBarLayout);
                             relativeLayout.setBackgroundResource(R.drawable.rounded_relative_layout_charge);
                             relativeLayout2.setVisibility(View.VISIBLE);
-                            dbAdapterDoctor = new DatabaseAdapterDoctor(getContext());
+                            dbAdapterDoctor = new DatabaseAdapterCoach(getContext());
                             dbAdapterDoctor.onLoginQrCode(uuid, new OnDoctorDataCallback() {
                                 @Override
                                 public void onCallback(Doctor doctor) {
