@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_doctor"
+    app:startDestination="@id/homeFragment">
+
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="it.uniba.dib.sms232417.asilapp.doctor.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_healthcareFragment"
+            app:destination="@id/healthcareFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_myPatients"
+            app:destination="@id/myPatients" />
+        <action
+            android:id="@+id/action_homeFragment_to_myAccountFragment"
+            app:destination="@id/myAccountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myPatients"
+        android:name="it.uniba.dib.sms232417.asilapp.doctor.fragments.MyPatientsFragment"
+        android:label="fragment_my_patients"
+        tools:layout="@layout/fragment_my_patients" />
+    <fragment
+        android:id="@+id/myAccountFragment"
+        android:name="it.uniba.dib.sms232417.asilapp.doctor.fragments.MyAccountFragment"
+        android:label="fragment_my_account"
+        tools:layout="@layout/fragment_my_account" />
+    <fragment
+        android:id="@+id/healthcareFragment"
+        android:name="it.uniba.dib.sms232417.asilapp.doctor.fragments.HealthcareFragment"
+        android:label="fragment_healthcare"
+        tools:layout="@layout/fragment_healthcare" />
+</navigation>

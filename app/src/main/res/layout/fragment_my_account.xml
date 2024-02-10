@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".doctor.fragments.MyAccountFragment">
+
+    <TextView
+        android:id="@+id/txt_my_account"
+        style="@style/SubtitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:text="@string/btn_my_account"
+        android:textColor="@color/seed"/>
+
+    <RelativeLayout
+        android:id="@+id/users_information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_my_account">
+
+        <ImageView
+            android:id="@+id/img_my_account"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/my_account"/>
+
+        <TextView
+            android:id="@+id/txt_name"
+            style="@style/CardViewTitleText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/img_my_account"
+            android:layout_marginLeft="16dp"
+            android:text="Cioa"
+            android:textColor="@color/seed"/>
+
+        <TextView
+            android:id="@+id/txt_surname"
+            style="@style/CardViewTitleText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_name"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/img_my_account"
+            android:text="Ciao"
+            android:textColor="@color/seed" />
+
+        <TextView
+            android:id="@+id/txt_region"
+            style="@style/CardViewTitleText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_surname"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/img_my_account"
+            android:text="Ciao"
+            android:textColor="@color/seed" />
+        <TextView
+            android:id="@+id/txt_age"
+            style="@style/CardViewTitleText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_region"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/img_my_account"
+            android:text="Ciao"
+            android:textColor="@color/seed" />
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_my_account"
+            android:layout_centerInParent="true"
+            android:text="Log out"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/not_logged_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/users_information"
+        android:layout_marginTop="20dp"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/txt_notLoggedUser"
+            style="@style/CardViewTitleText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="Utente Non Loggato"
+            android:textColor="@color/seed" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

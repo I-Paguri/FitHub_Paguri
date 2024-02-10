@@ -1,0 +1,220 @@
+<resources>
+    <string name="app_name">AsilApp</string>
+
+    <!-- Buttons strings -->
+    <string name="btn_add">Misura</string>
+    <string name="btn_healthcare">Healthcare</string>
+    <string name="btn_my_patients">Pazienti</string>
+    <string name="btn_home">Home</string>
+    <string name="btn_my_account">Account</string>
+
+    <string name="home"> Home </string>
+    <string name="healthcare">Healthcare</string>
+    <string name="my_patients"> I miei pazienti </string>
+    <string name="my_account"> Il mio account </string>
+    <string name="press_back_again"> Premi di nuovo indietro per uscire </string>
+
+    <string name="measurements">Misurazioni</string>
+    <string name="last_measurement">Ultima misurazione</string>
+    <string name="history">Storico</string>
+    <string name="treatment">Terapia</string>
+    <string name="new_treatment">Nuova terapia</string>
+
+    <string name="birth_date">Inserisci la tua data di nascita</string>
+    <string name="confirm_password">Conferma la password</string>
+    <string name="password_not_match">Le password non corrispondono</string>
+
+    <string name="name" translatable="false">Nome</string>
+    <string name="surname" translatable="false">Cognome</string>
+    <string name="sign_in" translatable="false">Accedi</string>
+    <string name="sign_up">REGISTRATI</string>
+    <string name="forgett_pass" translatable="false">Hai dimenticato la password? Clicca qui</string>
+    <string name="create_account" translatable="false">Non hai un account? Crealo adesso</string>
+    <string name="login" translatable="false">Hai un account? Accedi</string>
+    <string name="incorrect_login" translatable="false">Email o password non corretti!</string>
+    <string name="registration_failed" translatable="false">Errore durante la registrazione!</string>
+    <string name="registration_success" translatable="false">Registrazione effettuata con successo!</string>
+    <string name="user_already_exists" translatable="false">Utente già registrato!</string>
+    <string name="user_not_exists" translatable="false">L\'utente non è gia registrato!</string>
+    <string name="error" translatable="false">Errore!</string>
+    <string name="something_wrong" translatable="false">Qualcosa è andato storto!</string>
+    <string name="empty_fields" translatable="false">Inserisci tutti i campi!</string>
+    <string name="measure" translatable="false">Misurazioni</string>
+    <string name="explain_measure" translatable="false">Qui ti puoi collegare al tuo contenitore di apparecchi biomedicali</string>
+    <string name="last_measure" translatable="false">Ultima misurazione</string>
+    <string name="last_measure_explain" translatable="false">Qui verrano visualizzati i risultati delle ultime misurazioni</string>
+    <string name="attention" translatable="false">Attenzione!</string>
+    <string name="explain_permission_camera" translatable="false">Devi accettare i permessi per poter accedere a tali funzioni</string>
+    <string name="cancel" translatable="false">Annulla</string>
+    <string name="confirm">Conferma</string>
+    <string name="accept">Accetta</string>
+    <string name="decline">Rifiuta</string>
+    <string name="expenses">Spese</string>
+    <string name="go_back">Torna indietro</string>
+    <string name="going_back">Tornare indietro?</string>
+    <string name="unsaved_changes">Ogni modifica non salvata sarà persa</string>
+    <string name="fill_inputs">Riempi tutti i campi per continuare</string>
+    <string name="insert_start_date">Inserisci la data di inizio</string>
+    <string name="insert_end_date">Inserisci la data di fine</string>
+    <string name="treatment_plan">Piano terapeutico</string>
+    <string name="treatment_goal">Qual è l\'obiettivo della terapia?</string>
+    <string name="insert_goal">Inserisci un obiettivo</string>
+    <string name="treatment_duration">Durata della terapia</string>
+    <string name="start_date">Data di inizio</string>
+    <string name="end_date">Data di fine</string>
+    <string name="btn_continue">Continua</string>
+    <string name="no_end_date">Nessuna data di fine</string>
+    <string name="medications">Farmaci</string>
+    <string name="medication">Farmaco</string>
+    <string name="notes">Note</string>
+    <string name="my_data">I miei dati</string>
+    <string name="last_month_expenses">Nell\'ultimo mese hai speso:</string>
+
+    <string name="treatment_goal_empty">L\'obiettivo della terapia non può essere vuoto</string>
+    <string name="insert_medication">Inserisci un farmaco</string>
+    <string name="medication_name">Come si chiama il farmaco?</string>
+    <string name="how_to_take_medication">Qual è la modalità di assunzione?</string>
+    <string name="good_morning">Buongiorno</string>
+
+    <string name="how_regularly">Con quale regolarità?</string>
+    <string name="select"> Seleziona </string>
+    <string name="additional_notes">Note aggiuntive</string>
+    <string name="insert_note">Inserisci una nota</string>
+    <string name="select_time">Seleziona l\'orario</string>
+
+    <string name="mental_health_tips">L\'importanza del benessere mentale</string>
+    <string name="healthy_food_tips">L\'importanza del cibo salutare</string>
+
+    <string-array name="medicines_list">
+        <item>Paracetamolo</item>
+        <item>Aspirina</item>
+        <item>Ibuprofene</item>
+
+        <!-- Medicines with different dosages -->
+        <item>Oki 500mg</item>
+        <item>Oki 1000mg</item>
+
+        <!-- More medicines with dosages -->
+        <item>Amoxicillina 250mg</item>
+        <item>Amoxicillina 500mg</item>
+
+        <!-- Another example -->
+        <item>Codeina 10mg</item>
+        <item>Codeina 20mg</item>
+    </string-array>
+
+    <string-array name="how_to_take_medicine_list">
+        <item> Compressa/e </item>
+        <item> Goccia/e </item>
+        <item> Bustina/e </item>
+        <item> Supposta/e </item>
+        <item> Millilitri </item>
+        <item> Siringa/he </item>
+        <item> Inalazione </item>
+    </string-array>
+
+    <string-array name="how_regularly_list">
+        <item>Ogni giorno</item>
+        <item>Intervallo</item>
+        <item>Giorni della settimana</item>
+    </string-array>
+
+    <string name="what_days_of_week">In quali giorni della settimana?</string>
+    <string name="what_interval">Con quale intervallo si deve assumere il farmaco?</string>
+    <string name="what_interval_message">Seleziona quanto tempo deve passare tra un\'assunzione e l\'altra</string>
+
+    <string name="day">giorno/i</string>
+    <string name="week">settimana/e</string>
+    <string name="month">mese/i</string>
+
+    <string name="add_intake">Aggiungi assunzione</string>
+    <string name="intake">Assunzione</string>
+    <string name="intake_time">Quando assumi questo farmaco?</string>
+    <string name="quantity">Quantità</string>
+
+    <string name="planning">Pianificazione</string>
+    <string name="every">Ogni</string>
+
+    <plurals name="days">
+        <item quantity="one">giorno</item>
+        <item quantity="other">giorni</item>
+    </plurals>
+
+    <plurals name="weeks">
+        <item quantity="one">settimana</item>
+        <item quantity="other">settimane</item>
+    </plurals>
+
+    <plurals name="months">
+        <item quantity="one">mese</item>
+        <item quantity="other">mesi</item>
+    </plurals>
+
+    <string name="select_how_to_take_first"> Seleziona prima la modalità di assunzione </string>
+    <string name="add_medication">Aggiungi farmaco</string>
+
+    <!-- ERRORS -->
+    <string name="required_field"> Questo campo non può essere vuoto </string>
+    <string name="select_weekdays"> Seleziona almeno un giorno della settimana </string>
+    <string name="end_date_before_start_date"> La data di fine non può essere dopo quella di inizio </string>
+
+    <string name="at_time">alle</string>
+    <string name="and">e</string>
+
+    <plurals name="tablet">
+        <item quantity="one">Compressa</item>
+        <item quantity="other">Compresse</item>
+    </plurals>
+
+    <plurals name="drop">
+        <item quantity="one">Goccia</item>
+        <item quantity="other">Gocce</item>
+    </plurals>
+
+    <plurals name="sachet">
+        <item quantity="one">Bustina</item>
+        <item quantity="other">Bustine</item>
+    </plurals>
+
+    <plurals name="suppository">
+        <item quantity="one">Supposta</item>
+        <item quantity="other">Supposte</item>
+    </plurals>
+
+    <plurals name="milliliter">
+        <item quantity="one">Millilitro</item>
+        <item quantity="other">Millilitri</item>
+    </plurals>
+
+    <plurals name="syringe">
+        <item quantity="one">Siringa</item>
+        <item quantity="other">Siringhe</item>
+    </plurals>
+
+    <plurals name="inhalation">
+        <item quantity="one">Inalazione</item>
+        <item quantity="other">Inalazioni</item>
+    </plurals>
+
+    <string name="ongoing">In corso</string>
+    <string name="no_treatment_found">Nessuna terapia trovata</string>
+    <string name="add_one_if_needed">Aggiungi una se necessario</string>
+    <string name="no_patient_found">Nessun paziente trovato</string>
+    <string name="delete">Elimina</string>
+    <string name="delete_treatment">Vuoi eliminare questa terapia?</string>
+    <string name="keep">Mantieni</string>
+    <string name="delete_treatment_msg">Una volta eliminata questa terapia non sarà possibile recuperarla.</string>
+    <string name="treatment_added_successfully"> Terapia aggiunta con successo! </string>
+    <string name="error_occured_treatment"> Si è verificato un errore durante l\'aggiunta della terapia! Controlla la connessione e riprova. </string>
+
+    <plurals name="age">
+        <item quantity="one">anno</item>
+        <item quantity="other">anni</item>
+    </plurals>
+
+    <string name="payments">Spese</string>
+    <string name="diary">Diario</string>
+
+    <string name="my_videos">I miei video</string>
+    <string name="treatments">Terapie</string>
+</resources>

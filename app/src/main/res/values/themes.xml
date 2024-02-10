@@ -1,0 +1,177 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.AsilApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/md_theme_light_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/md_theme_light_secondary</item>
+        <item name="colorOnSecondary">@color/md_theme_light_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/md_theme_light_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_light_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/md_theme_light_tertiary</item>
+        <item name="colorOnTertiary">@color/md_theme_light_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/md_theme_light_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/md_theme_light_onTertiaryContainer</item>
+        <item name="colorError">@color/md_theme_light_error</item>
+        <item name="colorErrorContainer">@color/md_theme_light_errorContainer</item>
+        <item name="colorOnError">@color/md_theme_light_onError</item>
+        <item name="colorOnErrorContainer">@color/md_theme_light_onErrorContainer</item>
+        <item name="android:colorBackground">@color/md_theme_light_background</item>
+        <item name="colorOnBackground">@color/md_theme_light_onBackground</item>
+        <item name="colorSurface">@color/md_theme_light_surface</item>
+        <item name="colorOnSurface">@color/md_theme_light_onSurface</item>
+        <item name="colorSurfaceVariant">@color/md_theme_light_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_light_onSurfaceVariant</item>
+        <item name="colorOutline">@color/md_theme_light_outline</item>
+        <item name="colorOnSurfaceInverse">@color/md_theme_light_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/md_theme_light_inverseSurface</item>
+        <item name="colorNavy">#006397</item>
+        <item name="colorOnNavy">#ffffff</item>
+        <item name="colorNavyContainer">#cce5ff</item>
+        <item name="colorOnNavyContainer">#001d31</item>
+        <item name="harmonizeNavy">true</item>
+        <item name="colorBeige">#9a405a</item>
+        <item name="colorOnBeige">#ffffff</item>
+        <item name="colorBeigeContainer">#ffd9e0</item>
+        <item name="colorOnBeigeContainer">#3f0018</item>
+        <item name="harmonizeBeige">true</item>
+        <item name="colorPastelRed">#9c4146</item>
+        <item name="colorOnPastelRed">#ffffff</item>
+        <item name="colorPastelRedContainer">#ffdad9</item>
+        <item name="colorOnPastelRedContainer">#40000a</item>
+        <item name="harmonizePastelRed">true</item>
+        <item name="colorPastelBrown">#934171</item>
+        <item name="colorOnPastelBrown">#ffffff</item>
+        <item name="colorPastelBrownContainer">#ffd8e9</item>
+        <item name="colorOnPastelBrownContainer">#3c0029</item>
+        <item name="harmonizePastelBrown">true</item>
+        <item name="colorPrimaryInverse">@color/md_theme_light_inversePrimary</item>
+    </style>
+
+    <!-- Style for title text -->
+    <style name="TitleText">
+        <item name="android:fontFamily">@font/ember_display_light</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:textColor">@color/seed</item>
+    </style>
+
+    <style name="TitleText2">
+        <item name="android:fontFamily">@font/ember_display_light</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/seed</item>
+    </style>
+
+    <!-- Style for subtitle text -->
+    <style name="SubtitleText">
+        <item name="android:fontFamily">@font/ember_bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/seed</item>
+    </style>
+
+    <!-- Style for subtitle text -->
+    <style name="SubtitleText2">
+        <item name="android:fontFamily">@font/ember_bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/seed</item>
+    </style>
+
+    <!-- Style for subtitle text -->
+    <style name="SubtitleText3">
+        <item name="android:fontFamily">@font/ember_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/seed</item>
+    </style>
+
+
+    <!-- Style for regular text -->
+    <style name="RegularText">
+        <item name="android:fontFamily">@font/ember_light</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/seed</item>
+    </style>
+
+    <!-- Style for card view title text -->
+    <style name="CardViewTitleText">
+        <item name="android:fontFamily">@font/ember_bold</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/seed</item>
+    </style>
+
+    <style name="CardViewTitleText2">
+        <item name="android:fontFamily">@font/ember_bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/seed</item>
+    </style>
+
+    <style name="CardViewSubtitleText">
+        <item name="android:fontFamily">@font/ember_bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/seed</item>
+    </style>
+
+
+    <style name="CardViewSubtitleText2">
+        <item name="android:fontFamily">@font/ember_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/seed</item>
+    </style>
+
+    <style name="CardViewSubtitleText3">
+        <item name="android:fontFamily">@font/ember_display</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/md_theme_light_tertiary</item>
+    </style>
+
+
+    <style name="CardViewDates">
+        <item name="android:fontFamily">@font/ember_light</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/md_theme_light_onSurfaceVariant</item>
+    </style>
+
+
+    <style name="Base.Theme.AsilApp.AppWidgetContainerParent" parent="@android:style/Theme.DeviceDefault">
+        <!-- Radius of the outer bound of widgets to make the rounded corners -->
+        <item name="appWidgetRadius">16dp</item>
+        <!--
+        Radius of the inner view's bound of widgets to make the rounded corners.
+        It needs to be 8dp or less than the value of appWidgetRadius
+        -->
+        <item name="appWidgetInnerRadius">8dp</item>
+    </style>
+
+    <style name="Base.Theme.AsilApp.AppWidgetContainer" parent="Base.Theme.AsilApp.AppWidgetContainerParent">
+        <!-- Apply padding to avoid the content of the widget colliding with the rounded corners -->
+        <item name="appWidgetPadding">16dp</item>
+    </style>
+
+    <style name="CustomMaterialButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="backgroundTint">@color/transparent</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <style name="CustomMaterialDatePicker" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/md_theme_light_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
+        <item name="colorSurface">@color/md_theme_light_surface</item>
+        <item name="colorOnSurface">@color/md_theme_light_onSurface</item>
+        <item name="colorSurfaceVariant">@color/md_theme_light_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_light_onSurfaceVariant</item>
+        <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
+        <item name="colorSurfaceInverse">@color/md_theme_light_inverseSurface</item>
+        <!-- Other attributes -->
+    </style>
+
+    <style name="CustomMaterialDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/md_theme_light_primary</item>
+        <item name="colorSecondary">@color/md_theme_light_secondary</item>
+        <item name="colorSurface">@color/md_theme_light_surface</item>
+        <item name="android:background">@color/md_theme_light_surface</item>
+    </style>
+
+
+</resources>
