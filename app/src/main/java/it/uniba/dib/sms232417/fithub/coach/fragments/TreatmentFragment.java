@@ -156,75 +156,71 @@ public class TreatmentFragment extends Fragment {
         });
 
 
-        if ("patient".equals(user)) {
-            fab.setVisibility(View.GONE);
-        } else {
+        // register the nestedScrollView from the main layout
+        NestedScrollView nestedScrollView = view.findViewById(R.id.nestedScrollView);
 
-            // register the nestedScrollView from the main layout
-            NestedScrollView nestedScrollView = view.findViewById(R.id.nestedScrollView);
-
-            // handle the nestedScrollView behaviour with OnScrollChangeListener
-            // to extend or shrink the Extended Floating Action Button
-            nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-                @Override
-                public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                    // the delay of the extension of the FAB is set for 12 items
-                    if (scrollY > oldScrollY + 12 && fab.isExtended()) {
-                        fab.shrink();
-                        share.hide();
-                    }
-
-                    // the delay of the extension of the FAB is set for 12 items
-                    if (scrollY < oldScrollY - 12 && !fab.isExtended()) {
-                        fab.extend();
-                        share.show();
-                    }
-
-                    // if the nestedScrollView is at the first item of the list then the
-                    // extended floating action should be in extended state
-                    if (scrollY == 0) {
-                        fab.extend();
-                        share.show();
-                    }
+        // handle the nestedScrollView behaviour with OnScrollChangeListener
+        // to extend or shrink the Extended Floating Action Button
+        nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                // the delay of the extension of the FAB is set for 12 items
+                if (scrollY > oldScrollY + 12 && fab.isExtended()) {
+                    fab.shrink();
+                    share.hide();
                 }
-            });
 
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Set the transition name for the FAB
-                    fab.setTransitionName("shared_element_container");
-
-                    // Create an instance of MaterialContainerTransform
-                    MaterialContainerTransform transform = new MaterialContainerTransform();
-                    transform.setDuration(600);
-                    transform.setScrimColor(Color.TRANSPARENT);
-                    transform.setAllContainerColors(requireContext().getResources().getColor(R.color.md_theme_light_surface));
-
-                    // Set the shared element enter transition for the fragment
-                    TreatmentFormGeneralFragment treatmentFormGeneralFragment = new TreatmentFormGeneralFragment();
-                    treatmentFormGeneralFragment.setSharedElementEnterTransition(transform);
-
-                    // Create a bundle and put patientUUID, patientName, and patientAge into it
-                    Bundle bundle = new Bundle();
-                    bundle.putString("patientUUID", patientUUID);
-                    bundle.putString("patientName", patientName);
-                    bundle.putString("patientAge", patientAge);
-
-                    // Set the bundle as arguments to the fragment
-                    treatmentFormGeneralFragment.setArguments(bundle);
-                    FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-                    FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-                    // Add the shared element to the transaction
-                    transaction.addSharedElement(fab, fab.getTransitionName());
-
-                    transaction.replace(R.id.nav_host_fragment_activity_main, treatmentFormGeneralFragment);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
+                // the delay of the extension of the FAB is set for 12 items
+                if (scrollY < oldScrollY - 12 && !fab.isExtended()) {
+                    fab.extend();
+                    share.show();
                 }
-            });
-        }
+
+                // if the nestedScrollView is at the first item of the list then the
+                // extended floating action should be in extended state
+                if (scrollY == 0) {
+                    fab.extend();
+                    share.show();
+                }
+            }
+        });
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Set the transition name for the FAB
+                fab.setTransitionName("shared_element_container");
+
+                // Create an instance of MaterialContainerTransform
+                MaterialContainerTransform transform = new MaterialContainerTransform();
+                transform.setDuration(600);
+                transform.setScrimColor(Color.TRANSPARENT);
+                transform.setAllContainerColors(requireContext().getResources().getColor(R.color.md_theme_light_surface));
+
+                // Set the shared element enter transition for the fragment
+                TreatmentFormGeneralFragment treatmentFormGeneralFragment = new TreatmentFormGeneralFragment();
+                treatmentFormGeneralFragment.setSharedElementEnterTransition(transform);
+
+                // Create a bundle and put patientUUID, patientName, and patientAge into it
+                Bundle bundle = new Bundle();
+                bundle.putString("patientUUID", patientUUID);
+                bundle.putString("patientName", patientName);
+                bundle.putString("patientAge", patientAge);
+
+                // Set the bundle as arguments to the fragment
+                treatmentFormGeneralFragment.setArguments(bundle);
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+                // Add the shared element to the transaction
+                transaction.addSharedElement(fab, fab.getTransitionName());
+
+                transaction.replace(R.id.nav_host_fragment_activity_main, treatmentFormGeneralFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
     }
 
 
@@ -558,7 +554,6 @@ public class TreatmentFragment extends Fragment {
                 // MEDICATION NAME
                 canvas.drawText("\u2022 " + medication.getMedicationName(), x, y, paintRegular);
                 y = y + 20;
-
 
 
                 paintRegular.setColor(getResources().getColor(R.color.md_theme_light_tertiary));
