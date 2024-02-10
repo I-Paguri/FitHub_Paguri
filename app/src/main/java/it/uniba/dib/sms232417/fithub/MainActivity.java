@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         treatmentFormMedicationsFragment = new TreatmentFormMedicationsFragment();
         Intent intent = getIntent();
-        Athlete loggedAthlete = (Athlete) intent.getParcelableExtra("loggedPatient");
-        Coach loggedCoach = (Coach) intent.getParcelableExtra("loggedDoctor");
+        Athlete loggedAthlete = (Athlete) intent.getParcelableExtra("loggedAthlete");
+        Coach loggedCoach = (Coach) intent.getParcelableExtra("loggedCoach");
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
         bottomNavigationView.getMenu().clear();

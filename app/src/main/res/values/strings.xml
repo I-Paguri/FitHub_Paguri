@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Fithub</string>
-    <string name="coach" translatable="false">Doctor</string>
-    <string name="athlete" translatable="false">Patient</string>
+    <string name="coach" translatable="false">Coach</string>
+    <string name="athlete" translatable="false">Athlete</string>
     <!-- Buttons strings -->
     <string name="btn_add">Measure</string>
     <string name="btn_healthcare">Healthcare</string>
