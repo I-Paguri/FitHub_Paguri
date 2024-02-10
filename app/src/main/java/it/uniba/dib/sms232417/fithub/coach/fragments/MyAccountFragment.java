@@ -124,17 +124,15 @@ public class MyAccountFragment extends Fragment {
             TextView txtage = getView().findViewById(R.id.txt_age);
             txtName.setText(loggedAthlete.getNome());
             txtSurname.setText(loggedAthlete.getCognome());
-            txtRegion.setText(loggedAthlete.getRegione());
             String dataNascita = loggedAthlete.getDataNascita();
 
         }else if(loggedCoach != null){
             TextView txtName = getView().findViewById(R.id.txt_name);
             TextView txtSurname = getView().findViewById(R.id.txt_surname);
-            TextView txtRegion = getView().findViewById(R.id.txt_region);
 
             txtName.setText(loggedCoach.getNome());
             txtSurname.setText(loggedCoach.getCognome());
-            txtRegion.setText(loggedCoach.getRegione());
+
         }else {
             RelativeLayout relativeLayout = getView().findViewById(R.id.not_logged_user);
             relativeLayout.setVisibility(View.VISIBLE);

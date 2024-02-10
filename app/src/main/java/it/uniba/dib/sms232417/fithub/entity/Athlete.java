@@ -19,19 +19,17 @@ public class Athlete implements Parcelable, Serializable {
     private String cognome;
     private String email;
     private String dataNascita;
-    private String regione;
     private List<Treatment> treatments;
     private Coach coach;
 
     public Athlete() {
     }
 
-    public Athlete(String UUID, String nome, String cognome, String email, String dataNascita, String regione){
+    public Athlete(String UUID, String nome, String cognome, String email, String dataNascita){
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
         this.dataNascita = dataNascita;
-        this.regione = regione;
 
         this.UUID = UUID;
 
@@ -43,7 +41,6 @@ public class Athlete implements Parcelable, Serializable {
         cognome = in.readString();
         email = in.readString();
         dataNascita = in.readString();
-        regione = in.readString();
     }
 
     public static final Creator<Athlete> CREATOR = new Creator<Athlete>() {
@@ -111,9 +108,6 @@ public class Athlete implements Parcelable, Serializable {
         return 0;
     }
 
-    public String getRegione() {
-        return regione;
-    }
 
 
     public void setTreatments(List<Treatment> treatments) {
@@ -132,7 +126,6 @@ public class Athlete implements Parcelable, Serializable {
                 ", cognome='" + cognome + '\'' +
                 ", email='" + email + '\'' +
                 ", dataNascita='" + dataNascita + '\'' +
-                ", regione='" + regione + '\'' +
                 '}';
     }
 
@@ -148,6 +141,5 @@ public class Athlete implements Parcelable, Serializable {
         dest.writeString(cognome);
         dest.writeString(email);
         dest.writeString(dataNascita);
-        dest.writeString(regione);
     }
 }

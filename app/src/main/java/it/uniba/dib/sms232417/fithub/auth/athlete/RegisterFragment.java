@@ -57,7 +57,7 @@ public class RegisterFragment extends Fragment {
     DatabaseAdapterAthlete dbAdapter;
 
     String strDataNascita;
-    String regione;
+
 
     @Nullable
     @Override
@@ -73,11 +73,7 @@ public class RegisterFragment extends Fragment {
         TextView login = (TextView) getView().findViewById(R.id.txtLogin);
         Button register = (Button) getView().findViewById(R.id.btnRegister);
         MaterialButton btnDataNascita = (MaterialButton) getView().findViewById(R.id.date_of_birth);
-        AutoCompleteTextView region = (AutoCompleteTextView) getView().findViewById(R.id.autoComplete_country);
-
-        String[] countries = getResources().getStringArray(R.array.countries_array);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.dropdown_item_region, countries);
-        region.setAdapter(adapter);
+        strDataNascita = "";
         btnDataNascita.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -111,10 +107,7 @@ public class RegisterFragment extends Fragment {
                     }
                 }
         );
-        region.setOnItemClickListener((parent, view1, position, id) -> {
-            String selected = (String) parent.getItemAtPosition(position);
-            regione = selected;
-        });
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,18 +161,12 @@ public class RegisterFragment extends Fragment {
                             .create();
                     builder.setPositiveButton("Ok", null);
                     builder.show();
-                }else if(strDataNascita.toString().isEmpty()){
+                }else if(strDataNascita.isEmpty()){
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                     builder.setTitle("Error")
                             .setMessage(R.string.empty_fields_data)
                             .create();
                     builder.setPositiveButton("Ok", null);
-                    builder.show();
-                }else if(regione.isEmpty()){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setTitle("Error")
-                            .setMessage(R.string.empty_fields_region)
-                            .create();
                     builder.show();
                 }else if(!password.equals(confermaPassword)){
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -189,7 +176,7 @@ public class RegisterFragment extends Fragment {
                     builder.setPositiveButton("Ok", null);
                     builder.show();
                 }else
-                    onRegisterUsers(v,email,password,nome,cognome, strDataNascita, regione);
+                    onRegisterUsers(v,email,password,nome,cognome, strDataNascita);
             }
         });
 
@@ -201,14 +188,14 @@ public class RegisterFragment extends Fragment {
         ((EntryActivity) getActivity()).replaceFragment(new LoginFragment());
     }
 
-    public void onRegisterUsers(View v, String email, String password, String nome, String cognome,String dataNascita, String regione) {
+    public void onRegisterUsers(View v, String email, String password, String nome, String cognome,String dataNascita) {
 
 
         ProgressBar progressBar = (ProgressBar) getView().findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);
 
         dbAdapter = new DatabaseAdapterAthlete(getContext());
-        dbAdapter.onRegister(nome, cognome, email, dataNascita, regione, password, new OnAthleteDataCallback() {
+        dbAdapter.onRegister(nome, cognome, email, dataNascita, password, new OnAthleteDataCallback() {
             @Override
             public void onCallback(Athlete athlete) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -236,7 +223,7 @@ public class RegisterFragment extends Fragment {
                     editor.commit();
 
                     Intent intent = new Intent(getContext(), MainActivity.class);
-                    intent.putExtra("loggedPatient", (Parcelable) athlete);
+                    intent.putExtra("loggedAthlete", (Parcelable) athlete);
                     startActivity(intent);
                     progressBar.setVisibility(ProgressBar.INVISIBLE);
                     requireActivity().finish();
@@ -244,7 +231,7 @@ public class RegisterFragment extends Fragment {
 
                 builder.setNegativeButton(R.string.no, (dialog, which) -> {
                     Intent intent = new Intent(getContext(), MainActivity.class);
-                    intent.putExtra("loggedPatient", (Parcelable) athlete);
+                    intent.putExtra("loggedAthlete", (Parcelable) athlete);
                     startActivity(intent);
                     requireActivity().finish();
                 });

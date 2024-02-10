@@ -39,8 +39,8 @@ import javax.crypto.SecretKey;
 
 public class EntryActivity extends AppCompatActivity {
 
-    DatabaseAdapterAthlete dbAdapterPatient;
-    DatabaseAdapterCoach dbAdapterDoctor;
+    DatabaseAdapterAthlete dbAdapterAthlete;
+    DatabaseAdapterCoach dbAdapterCoach;
     private boolean doubleBackToExitPressedOnce = false;
 
     Context context;
@@ -108,14 +108,14 @@ public class EntryActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         if (password != null) {
-                            dbAdapterPatient = new DatabaseAdapterAthlete(context);
-                            dbAdapterPatient.onLogin(email, password, new OnAthleteDataCallback() {
+                            dbAdapterAthlete = new DatabaseAdapterAthlete(context);
+                            dbAdapterAthlete.onLogin(email, password, new OnAthleteDataCallback() {
                                 @Override
                                 public void onCallback(Athlete athlete) {
                                     RelativeLayout relativeLayout = findViewById(R.id.loading);
                                     relativeLayout.setVisibility(RelativeLayout.GONE);
                                     Intent intent = new Intent(EntryActivity.this, MainActivity.class);
-                                    intent.putExtra("loggedPatient", (Parcelable) athlete);
+                                    intent.putExtra("loggedAthlete", (Parcelable) athlete);
                                     startActivity(intent);
                                     finish();
                                 }
@@ -170,8 +170,8 @@ public class EntryActivity extends AppCompatActivity {
                         }
                         if (password != null) {
 
-                            dbAdapterDoctor = new DatabaseAdapterCoach(context);
-                            dbAdapterDoctor.onLogin(email, password, new OnCoachDataCallback() {
+                            dbAdapterCoach = new DatabaseAdapterCoach(context);
+                            dbAdapterCoach.onLogin(email, password, new OnCoachDataCallback() {
 
                                 @Override
                                 public void onCallback(Coach coach) {
@@ -179,7 +179,7 @@ public class EntryActivity extends AppCompatActivity {
                                     RelativeLayout relativeLayout = findViewById(R.id.loading);
                                     relativeLayout.setVisibility(RelativeLayout.GONE);
                                     Intent intent = new Intent(EntryActivity.this, MainActivity.class);
-                                    intent.putExtra("loggedDoctor", (Parcelable) coach);
+                                    intent.putExtra("loggedCoach", (Parcelable) coach);
                                     startActivity(intent);
                                     finish();
 

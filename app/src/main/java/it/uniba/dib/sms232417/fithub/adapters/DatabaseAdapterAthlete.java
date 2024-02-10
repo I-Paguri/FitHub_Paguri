@@ -43,7 +43,7 @@ public class DatabaseAdapterAthlete {
                         db = FirebaseFirestore.getInstance();
                         Log.d("LOGIN", "Login effettuato con successo");
 
-                        db.collection("patient")
+                        db.collection("athlete")
                                 .document(utente.getUid())
                                 .get()
                                 .addOnSuccessListener(datiUtente -> {
@@ -51,8 +51,7 @@ public class DatabaseAdapterAthlete {
                                         resultAthlete = new Athlete(utente.getUid(), datiUtente.getString("nome"),
                                                 datiUtente.getString("cognome"),
                                                 datiUtente.getString("email"),
-                                                datiUtente.getString("dataNascita"),
-                                                datiUtente.getString("regione"));
+                                                datiUtente.getString("dataNascita"));
                                         callback.onCallback(resultAthlete);
                                     } else {
                                         callback.onCallbackError(new Exception(), context.getString(R.string.error_login_section_doctor));
@@ -71,7 +70,7 @@ public class DatabaseAdapterAthlete {
                 });
     }
 
-    public void onRegister(String nome, String cognome, String email, String dataNascita, String regione, String password, OnAthleteDataCallback callback) {
+    public void onRegister(String nome, String cognome, String email, String dataNascita, String password, OnAthleteDataCallback callback) {
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -82,13 +81,18 @@ public class DatabaseAdapterAthlete {
                         db = FirebaseFirestore.getInstance();
                         Log.d("REGISTER", "Registrazione effettuata con successo");
 
-                        athlete = new Athlete(utente.getUid(), nome, cognome, email, dataNascita, regione);
-
-                        db.collection("patient")
+                        athlete = new Athlete(utente.getUid(), nome, cognome, email, dataNascita);
+                        Log.d("REGISTER", "Utente: " + athlete.toString());
+                        db.collection("athlete")
                                 .document(utente.getUid())
                                 .set(athlete)
                                 .addOnSuccessListener(aVoid -> {
                                     callback.onCallback(athlete);
+                                    Log.d("Firestore", "Utente scritto con successo");
+                                })
+                                .addOnFailureListener(task1 -> {
+                                    Log.d("Error", task1.toString());
+                                    callback.onCallbackError(new Exception(), task1.toString());
                                 });
                     }
                 })
