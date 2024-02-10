@@ -1,4 +1,4 @@
-package it.uniba.dib.sms232417.fithub.auth.patient;
+package it.uniba.dib.sms232417.fithub.auth.athlete;
 
 import android.app.AlertDialog;
 import android.content.Context;

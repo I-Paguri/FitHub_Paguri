@@ -25,10 +25,10 @@ import it.uniba.dib.sms232417.fithub.MainActivity;
 import it.uniba.dib.sms232417.fithub.R;
 import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterCoach;
 import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterAthlete;
-import it.uniba.dib.sms232417.fithub.auth.doctor.LoginDoctorCredentialFragment;
-import it.uniba.dib.sms232417.fithub.auth.doctor.LoginDoctorQrCodeFragment;
-import it.uniba.dib.sms232417.fithub.auth.patient.LoginFragment;
-import it.uniba.dib.sms232417.fithub.auth.patient.RegisterFragment;
+import it.uniba.dib.sms232417.fithub.auth.coach.LoginCoachCredentialFragment;
+import it.uniba.dib.sms232417.fithub.auth.coach.LoginAthleteQrCodeFragment;
+import it.uniba.dib.sms232417.fithub.auth.athlete.LoginFragment;
+import it.uniba.dib.sms232417.fithub.auth.athlete.RegisterFragment;
 import it.uniba.dib.sms232417.fithub.entity.Doctor;
 import it.uniba.dib.sms232417.fithub.entity.Patient;
 import it.uniba.dib.sms232417.fithub.interfaces.OnDoctorDataCallback;
@@ -232,7 +232,7 @@ public class EntryActivity extends AppCompatActivity {
 
                 }
             } else {
-                replaceFragment(new LoginDoctorQrCodeFragment());
+                replaceFragment(new LoginAthleteQrCodeFragment());
 
             }
         } catch (Exception e) {
@@ -244,13 +244,13 @@ public class EntryActivity extends AppCompatActivity {
     public void onBackPressed() {
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container_login);
 
-        if(currentFragment instanceof LoginDoctorQrCodeFragment){
-            replaceFragment(new LoginDoctorCredentialFragment());
+        if(currentFragment instanceof LoginAthleteQrCodeFragment){
+            replaceFragment(new LoginCoachCredentialFragment());
         } else if (currentFragment instanceof LoginFragment) {
             replaceFragment(new LoginDecisionFragment());
         }else if(currentFragment instanceof RegisterFragment) {
             replaceFragment(new LoginFragment());
-        }else if(currentFragment instanceof LoginDoctorCredentialFragment){
+        }else if(currentFragment instanceof LoginCoachCredentialFragment){
             replaceFragment(new LoginDecisionFragment());
         }else if (currentFragment instanceof LoginDecisionFragment) {
             if (doubleBackToExitPressedOnce) {

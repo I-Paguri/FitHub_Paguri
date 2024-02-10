@@ -1,4 +1,4 @@
-package it.uniba.dib.sms232417.fithub.auth.doctor;
+package it.uniba.dib.sms232417.fithub.auth.coach;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -34,7 +34,7 @@ import it.uniba.dib.sms232417.fithub.entity.Doctor;
 import it.uniba.dib.sms232417.fithub.interfaces.OnDoctorDataCallback;
 import it.uniba.dib.sms232417.fithub.utilities.StringUtils;
 
-public class LoginDoctorCredentialFragment extends Fragment {
+public class LoginCoachCredentialFragment extends Fragment {
 
     DatabaseAdapterCoach dbAdapter;
 

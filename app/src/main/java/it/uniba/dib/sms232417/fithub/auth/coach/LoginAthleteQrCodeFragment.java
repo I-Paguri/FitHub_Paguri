@@ -1,4 +1,4 @@
-package it.uniba.dib.sms232417.fithub.auth.doctor;
+package it.uniba.dib.sms232417.fithub.auth.coach;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -53,7 +53,7 @@ import it.uniba.dib.sms232417.fithub.auth.EntryActivity;
 import it.uniba.dib.sms232417.fithub.entity.Doctor;
 import it.uniba.dib.sms232417.fithub.interfaces.OnDoctorDataCallback;
 
-public class LoginDoctorQrCodeFragment extends Fragment {
+public class LoginAthleteQrCodeFragment extends Fragment {
 
     private ListenableFuture cameraProviderFuture;
     private ExecutorService cameraExecutor;
@@ -76,7 +76,7 @@ public class LoginDoctorQrCodeFragment extends Fragment {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((EntryActivity) getActivity()).replaceFragment(new LoginDoctorCredentialFragment());
+                ((EntryActivity) getActivity()).replaceFragment(new LoginCoachCredentialFragment());
             }
         });
 
@@ -214,7 +214,7 @@ public class LoginDoctorQrCodeFragment extends Fragment {
                                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
                                             // User clicked Yes button
-                                            LoginDoctorQrCodeFragment.this.isBarcodeRead = false;
+                                            LoginAthleteQrCodeFragment.this.isBarcodeRead = false;
                                         }
                                     });
                                     builder.show();

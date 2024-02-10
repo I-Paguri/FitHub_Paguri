@@ -12,8 +12,8 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.button.MaterialButton;
 
 import it.uniba.dib.sms232417.fithub.R;
-import it.uniba.dib.sms232417.fithub.auth.doctor.LoginDoctorCredentialFragment;
-import it.uniba.dib.sms232417.fithub.auth.patient.LoginFragment;
+import it.uniba.dib.sms232417.fithub.auth.coach.LoginCoachCredentialFragment;
+import it.uniba.dib.sms232417.fithub.auth.athlete.LoginFragment;
 
 public class LoginDecisionFragment extends Fragment {
 
@@ -38,7 +38,7 @@ public class LoginDecisionFragment extends Fragment {
         });
 
         btnDoctor.setOnClickListener(v -> {
-            ((EntryActivity) getActivity()).replaceFragment(new LoginDoctorCredentialFragment());
+            ((EntryActivity) getActivity()).replaceFragment(new LoginCoachCredentialFragment());
         });
     }
 
