@@ -27,8 +27,8 @@ import java.util.List;
 import it.uniba.dib.sms232417.fithub.R;
 import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterCoach;
 import it.uniba.dib.sms232417.fithub.adapters.RecyclerListViewAdapter;
-import it.uniba.dib.sms232417.fithub.entity.Doctor;
-import it.uniba.dib.sms232417.fithub.entity.Patient;
+import it.uniba.dib.sms232417.fithub.entity.Athlete;
+import it.uniba.dib.sms232417.fithub.entity.Coach;
 import it.uniba.dib.sms232417.fithub.interfaces.OnPatientListDataCallback;
 import it.uniba.dib.sms232417.fithub.utilities.listItem;
 
@@ -39,8 +39,8 @@ public class MyAthletesFragment extends Fragment {
     private Toolbar toolbar;
     private BottomNavigationView bottomNavigationView;
 
-    Doctor doctor;
-    List<Patient> myPatientsList;
+    Coach coach;
+    List<Athlete> myPatientsList;
     DatabaseAdapterCoach dbAdapterDoctor;
 
     @Nullable
@@ -63,22 +63,22 @@ public class MyAthletesFragment extends Fragment {
         List<listItem> list = new LinkedList<>();
 
         if (this.getArguments() != null) {
-            doctor = (Doctor) this.getArguments().getParcelable("doctor");
+            coach = (Coach) this.getArguments().getParcelable("doctor");
         }
 
         dbAdapterDoctor = new DatabaseAdapterCoach(getContext());
 
-        if (doctor.getMyPatientsUUID() == null || doctor.getMyPatientsUUID().isEmpty()) {
+        if (coach.getMyPatientsUUID() == null || coach.getMyPatientsUUID().isEmpty()) {
             LayoutInflater inflater = (LayoutInflater) requireActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View noTreatmentLayout = inflater.inflate(R.layout.no_patients_layout, null);
             // Add the inflated layout to the parent layout
             LinearLayout parentLayout = view.findViewById(R.id.linearLayoutPatientsList);
             parentLayout.addView(noTreatmentLayout);
         } else {
-            dbAdapterDoctor.getDoctorPatients(doctor.getMyPatientsUUID(), new OnPatientListDataCallback() {
+            dbAdapterDoctor.getDoctorPatients(coach.getMyPatientsUUID(), new OnPatientListDataCallback() {
                 @Override
-                public void onCallback(List<Patient> patientList) {
-                    myPatientsList = patientList;
+                public void onCallback(List<Athlete> athleteList) {
+                    myPatientsList = athleteList;
 
                     int[] indexUUID = new int[myPatientsList.size()];
                     for (int i = 0; i < myPatientsList.size(); i++) {

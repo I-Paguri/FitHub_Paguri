@@ -42,7 +42,7 @@
                 android:layout_below="@+id/lblsubText"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="5dp"
-                android:text="@string/patient"
+                android:text="@string/athlete"
                 app:icon="@drawable/my_account"/>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLoginDoctor"
@@ -52,8 +52,8 @@
                 android:layout_below="@+id/lblsubText"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="20dp"
-                android:text="@string/doctor"
-                app:icon="@drawable/doctor"/>
+                android:text="@string/coach"
+                app:icon="@drawable/coach"/>
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

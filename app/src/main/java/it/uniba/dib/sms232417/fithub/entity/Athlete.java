@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class Patient implements Parcelable, Serializable {
+public class Athlete implements Parcelable, Serializable {
     private String UUID;
     private String nome;
     private String cognome;
@@ -21,12 +21,12 @@ public class Patient implements Parcelable, Serializable {
     private String dataNascita;
     private String regione;
     private List<Treatment> treatments;
-    private Doctor doctor;
+    private Coach coach;
 
-    public Patient() {
+    public Athlete() {
     }
 
-    public Patient(String UUID, String nome, String cognome, String email, String dataNascita, String regione){
+    public Athlete(String UUID, String nome, String cognome, String email, String dataNascita, String regione){
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
@@ -37,7 +37,7 @@ public class Patient implements Parcelable, Serializable {
 
     }
 
-    protected Patient(Parcel in) {
+    protected Athlete(Parcel in) {
         UUID = in.readString();
         nome = in.readString();
         cognome = in.readString();
@@ -46,15 +46,15 @@ public class Patient implements Parcelable, Serializable {
         regione = in.readString();
     }
 
-    public static final Creator<Patient> CREATOR = new Creator<Patient>() {
+    public static final Creator<Athlete> CREATOR = new Creator<Athlete>() {
         @Override
-        public Patient createFromParcel(Parcel in) {
-            return new Patient(in);
+        public Athlete createFromParcel(Parcel in) {
+            return new Athlete(in);
         }
 
         @Override
-        public Patient[] newArray(int size) {
-            return new Patient[size];
+        public Athlete[] newArray(int size) {
+            return new Athlete[size];
         }
     };
 

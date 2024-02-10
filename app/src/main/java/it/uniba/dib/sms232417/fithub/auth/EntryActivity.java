@@ -29,8 +29,8 @@ import it.uniba.dib.sms232417.fithub.auth.coach.LoginCoachCredentialFragment;
 import it.uniba.dib.sms232417.fithub.auth.coach.LoginAthleteQrCodeFragment;
 import it.uniba.dib.sms232417.fithub.auth.athlete.LoginFragment;
 import it.uniba.dib.sms232417.fithub.auth.athlete.RegisterFragment;
-import it.uniba.dib.sms232417.fithub.entity.Doctor;
-import it.uniba.dib.sms232417.fithub.entity.Patient;
+import it.uniba.dib.sms232417.fithub.entity.Coach;
+import it.uniba.dib.sms232417.fithub.entity.Athlete;
 import it.uniba.dib.sms232417.fithub.interfaces.OnDoctorDataCallback;
 import it.uniba.dib.sms232417.fithub.interfaces.OnPatientDataCallback;
 import it.uniba.dib.sms232417.fithub.utilities.StringUtils;
@@ -77,7 +77,7 @@ public class EntryActivity extends AppCompatActivity {
 
     private void checkAutomaticLogin() {
 
-        final Patient[] loggedPatient = {null};
+        final Athlete[] loggedAthlete = {null};
 
         RelativeLayout loading = findViewById(R.id.loading);
         loading.setVisibility(RelativeLayout.VISIBLE);
@@ -111,11 +111,11 @@ public class EntryActivity extends AppCompatActivity {
                             dbAdapterPatient = new DatabaseAdapterAthlete(context);
                             dbAdapterPatient.onLogin(email, password, new OnPatientDataCallback() {
                                 @Override
-                                public void onCallback(Patient patient) {
+                                public void onCallback(Athlete athlete) {
                                     RelativeLayout relativeLayout = findViewById(R.id.loading);
                                     relativeLayout.setVisibility(RelativeLayout.GONE);
                                     Intent intent = new Intent(EntryActivity.this, MainActivity.class);
-                                    intent.putExtra("loggedPatient", (Parcelable) patient);
+                                    intent.putExtra("loggedPatient", (Parcelable) athlete);
                                     startActivity(intent);
                                     finish();
                                 }
@@ -142,7 +142,7 @@ public class EntryActivity extends AppCompatActivity {
 
 
     private void checkAutomaticLoginDoctor() {
-        final Doctor[] loggedDoctor = {null};
+        final Coach[] loggedCoach = {null};
         RelativeLayout loading = findViewById(R.id.loading);
         loading.setVisibility(RelativeLayout.VISIBLE);
         FrameLayout frameLayout = findViewById(R.id.fragment_container_login);
@@ -174,12 +174,12 @@ public class EntryActivity extends AppCompatActivity {
                             dbAdapterDoctor.onLogin(email, password, new OnDoctorDataCallback() {
 
                                 @Override
-                                public void onCallback(Doctor doctor) {
+                                public void onCallback(Coach coach) {
 
                                     RelativeLayout relativeLayout = findViewById(R.id.loading);
                                     relativeLayout.setVisibility(RelativeLayout.GONE);
                                     Intent intent = new Intent(EntryActivity.this, MainActivity.class);
-                                    intent.putExtra("loggedDoctor", (Parcelable) doctor);
+                                    intent.putExtra("loggedDoctor", (Parcelable) coach);
                                     startActivity(intent);
                                     finish();
 

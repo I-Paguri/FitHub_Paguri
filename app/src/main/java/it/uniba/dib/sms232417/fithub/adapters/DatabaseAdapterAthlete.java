@@ -12,9 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import it.uniba.dib.sms232417.fithub.R;
+import it.uniba.dib.sms232417.fithub.entity.Athlete;
 import it.uniba.dib.sms232417.fithub.entity.Treatment;
 import it.uniba.dib.sms232417.fithub.interfaces.OnPatientDataCallback;
-import it.uniba.dib.sms232417.fithub.entity.Patient;
 import it.uniba.dib.sms232417.fithub.interfaces.OnCountCallback;
 import it.uniba.dib.sms232417.fithub.interfaces.OnTreatmentsCallback;
 
@@ -22,8 +22,8 @@ public class DatabaseAdapterAthlete {
 
     FirebaseAuth mAuth;
     FirebaseFirestore db;
-    Patient patient;
-    Patient resultPatient;
+    Athlete athlete;
+    Athlete resultAthlete;
     Context context;
 
     public DatabaseAdapterAthlete(Context context) {
@@ -48,12 +48,12 @@ public class DatabaseAdapterAthlete {
                                 .get()
                                 .addOnSuccessListener(datiUtente -> {
                                     if (datiUtente.exists()) {
-                                        resultPatient = new Patient(utente.getUid(), datiUtente.getString("nome"),
+                                        resultAthlete = new Athlete(utente.getUid(), datiUtente.getString("nome"),
                                                 datiUtente.getString("cognome"),
                                                 datiUtente.getString("email"),
                                                 datiUtente.getString("dataNascita"),
                                                 datiUtente.getString("regione"));
-                                        callback.onCallback(resultPatient);
+                                        callback.onCallback(resultAthlete);
                                     } else {
                                         callback.onCallbackError(new Exception(), context.getString(R.string.error_login_section_doctor));
                                     }
@@ -82,13 +82,13 @@ public class DatabaseAdapterAthlete {
                         db = FirebaseFirestore.getInstance();
                         Log.d("REGISTER", "Registrazione effettuata con successo");
 
-                        patient = new Patient(utente.getUid(), nome, cognome, email, dataNascita, regione);
+                        athlete = new Athlete(utente.getUid(), nome, cognome, email, dataNascita, regione);
 
                         db.collection("patient")
                                 .document(utente.getUid())
-                                .set(patient)
+                                .set(athlete)
                                 .addOnSuccessListener(aVoid -> {
-                                    callback.onCallback(patient);
+                                    callback.onCallback(athlete);
                                 });
                     }
                 })

@@ -12,8 +12,8 @@ import java.util.Collections;
 import java.util.List;
 
 import it.uniba.dib.sms232417.fithub.R;
-import it.uniba.dib.sms232417.fithub.entity.Doctor;
-import it.uniba.dib.sms232417.fithub.entity.Patient;
+import it.uniba.dib.sms232417.fithub.entity.Coach;
+import it.uniba.dib.sms232417.fithub.entity.Athlete;
 import it.uniba.dib.sms232417.fithub.entity.Treatment;
 import it.uniba.dib.sms232417.fithub.interfaces.OnDoctorDataCallback;
 import it.uniba.dib.sms232417.fithub.interfaces.OnPatientListDataCallback;
@@ -22,7 +22,7 @@ public class DatabaseAdapterCoach {
 
     FirebaseAuth mAuth;
     FirebaseFirestore db;
-    Doctor doctor;
+    Coach coach;
     Context context;
     public DatabaseAdapterCoach(Context context) {
         mAuth = FirebaseAuth.getInstance();
@@ -45,7 +45,7 @@ public class DatabaseAdapterCoach {
                             .addOnSuccessListener(datiUtente-> {
                                 if (datiUtente.exists()) {
                                     Log.d("Login", "Login in corso");
-                                    doctor = new Doctor(datiUtente.getString("nome"),
+                                    coach = new Coach(datiUtente.getString("nome"),
                                             datiUtente.getString("cognome"),
                                             datiUtente.getString("email"),
                                             datiUtente.getString("dataNascita"),
@@ -54,12 +54,12 @@ public class DatabaseAdapterCoach {
                                             datiUtente.getString("numeroDiRegistrazioneMedica"));
 
                                             List<String> myPatients = (List<String>) datiUtente.get("myPatients");
-                                            doctor.setMyPatientsUUID(myPatients);
+                                            coach.setMyPatientsUUID(myPatients);
                                             if(myPatients == null || myPatients.isEmpty())
                                                 Log.d("MyPatients", "Non ce");
                                             if (myPatients != null && !myPatients.isEmpty())
                                                 Log.d("MyPatients", myPatients.toString());
-                                    callback.onCallback(doctor);
+                                    callback.onCallback(coach);
                                 }else{
                                     callback.onCallbackError(new Exception(), context.getString(R.string.error_login_section_patient));
                                 }
@@ -83,9 +83,9 @@ public class DatabaseAdapterCoach {
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     if (!queryDocumentSnapshots.isEmpty()) {
-                        List<Patient> patients = queryDocumentSnapshots.toObjects(Patient.class);
+                        List<Athlete> athletes = queryDocumentSnapshots.toObjects(Athlete.class);
 
-                        callback.onCallback(patients);
+                        callback.onCallback(athletes);
                     } else {
                         Log.d("PATIENT", "Error");
                         callback.onCallbackError(new Exception(), "Errore caricamento pazienti");
@@ -107,7 +107,7 @@ public class DatabaseAdapterCoach {
                             .addOnSuccessListener(datiUtente-> {
                                 if (datiUtente.exists()) {
                                     Log.d("Login", "Login in corso");
-                                    doctor = new Doctor(datiUtente.getString("nome"),
+                                    coach = new Coach(datiUtente.getString("nome"),
                                             datiUtente.getString("cognome"),
                                             datiUtente.getString("email"),
                                             datiUtente.getString("dataNascita"),
@@ -116,12 +116,12 @@ public class DatabaseAdapterCoach {
                                             datiUtente.getString("numeroDiRegistrazioneMedica"));
 
                                     List<String> myPatients = (List<String>) datiUtente.get("myPatients");
-                                    doctor.setMyPatientsUUID(myPatients);
+                                    coach.setMyPatientsUUID(myPatients);
                                     if(myPatients == null || myPatients.isEmpty())
                                         Log.d("MyPatients", "Non ce");
                                     if (myPatients != null && !myPatients.isEmpty())
                                         Log.d("MyPatients", myPatients.toString());
-                                    callback.onCallback(doctor);
+                                    callback.onCallback(coach);
                                 }else{
                                     callback.onCallbackError(new Exception(), "QR Code non valido");
                                     Log.d("Login", "Login non effettuato");

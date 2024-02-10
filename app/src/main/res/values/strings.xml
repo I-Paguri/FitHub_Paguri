@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AsilApp</string>
-    <string name="doctor" translatable="false">Doctor</string>
-    <string name="patient" translatable="false">Patient</string>
+    <string name="coach" translatable="false">Doctor</string>
+    <string name="athlete" translatable="false">Patient</string>
     <!-- Buttons strings -->
     <string name="btn_add">Measure</string>
     <string name="btn_healthcare">Healthcare</string>
@@ -33,11 +33,11 @@
     <string name="forgett_pass">Did you forget the password? Click Here!</string>
     <string name="create_account">You don\'t have an account? Create Now!</string>
     <string name="login">Did you have an account? Log in!</string>
-    <string name="login_doctor" translatable="false">Are you a doctor? Log in!</string>
+    <string name="login_doctor" translatable="false">Are you a coach? Log in!</string>
     <string name="login_doctor_lbl" translatable="false">Welcome Doctor!</string>
     <string name="login_qr_code_doctor_explain" translatable="false">You can access by scanning the QRcode of your badge</string>
     <string name="btn_qr_code_doctor" translatable="false">SCAN NOW</string>
-    <string name="btn_login_patient" translatable="false">Aren\'t you a doctor? Log in as a patient!</string>
+    <string name="btn_login_patient" translatable="false">Aren\'t you a coach? Log in as a athlete!</string>
     <string name="numero_registrazione" translatable="false">Registration number</string>
     <string name="select_specilization" translatable="false">Choose your specialization</string>
     <string name="number_phone" translatable="false">Phone number</string>
@@ -495,7 +495,7 @@
     <string name="ongoing">Ongoing</string>
     <string name="no_treatment_found">No treatment found</string>
     <string name="add_one_if_needed">Add one if needed</string>
-    <string name="no_patient_found">No patient found</string>
+    <string name="no_patient_found">No athlete found</string>
     <string name="delete">Delete</string>
     <string name="delete_treatment">Delete this treatment?</string>
     <string name="keep">Keep</string>

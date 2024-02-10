@@ -31,8 +31,8 @@ import it.uniba.dib.sms232417.fithub.R;
 import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterAthlete;
 import it.uniba.dib.sms232417.fithub.auth.CryptoUtil;
 import it.uniba.dib.sms232417.fithub.auth.EntryActivity;
+import it.uniba.dib.sms232417.fithub.entity.Athlete;
 import it.uniba.dib.sms232417.fithub.interfaces.OnPatientDataCallback;
-import it.uniba.dib.sms232417.fithub.entity.Patient;
 import it.uniba.dib.sms232417.fithub.utilities.StringUtils;
 
 public class LoginFragment extends Fragment {
@@ -108,7 +108,7 @@ public class LoginFragment extends Fragment {
                     dbAdapter = new DatabaseAdapterAthlete(getContext());
                     dbAdapter.onLogin(email, password, new OnPatientDataCallback() {
                         @Override
-                        public void onCallback(Patient patient) {
+                        public void onCallback(Athlete athlete) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                             builder.setTitle(R.string.save_password)
                                     .setMessage(R.string.save_password_explain)
@@ -117,14 +117,14 @@ public class LoginFragment extends Fragment {
                                 //Save password
                                 SharedPreferences sharedPreferences = requireActivity().getSharedPreferences(StringUtils.AUTOMATIC_LOGIN, requireActivity().MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString("email", patient.getEmail());
+                                editor.putString("email", athlete.getEmail());
                                 editor.putBoolean("isDoctor",false);
                                 //Encrypt password con chiave simmetrica e salva su file
                                 byte[] encryptedPassword = new byte[0];
                                 byte[] iv = new byte[0];
                                 try {
-                                    CryptoUtil.generateandSaveSecretKey(patient.getEmail());
-                                    SecretKey secretKey = CryptoUtil.loadSecretKey(patient.getEmail());
+                                    CryptoUtil.generateandSaveSecretKey(athlete.getEmail());
+                                    SecretKey secretKey = CryptoUtil.loadSecretKey(athlete.getEmail());
                                     Pair<byte[], byte[]> encryptionResult = CryptoUtil.encryptWithKey(secretKey, password.getBytes());
                                     encryptedPassword = encryptionResult.first;
                                     iv = encryptionResult.second;
@@ -136,14 +136,14 @@ public class LoginFragment extends Fragment {
                                 editor.apply();
 
                                 Intent intent = new Intent(getContext(), MainActivity.class);
-                                intent.putExtra("loggedPatient", (Parcelable) patient);
+                                intent.putExtra("loggedPatient", (Parcelable) athlete);
                                 startActivity(intent);
                                 progressBar.setVisibility(ProgressBar.GONE);
                                 requireActivity().finish();
                             });
                             builder.setNegativeButton(R.string.no, (dialog, which) -> {
                                 Intent intent = new Intent(getContext(), MainActivity.class);
-                                intent.putExtra("loggedPatient", (Parcelable) patient);
+                                intent.putExtra("loggedPatient", (Parcelable) athlete);
                                 startActivity(intent);
                                 progressBar.setVisibility(ProgressBar.GONE);
                                 requireActivity().finish();

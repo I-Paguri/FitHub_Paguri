@@ -35,8 +35,8 @@ import it.uniba.dib.sms232417.fithub.coach.fragments.MyAccountFragment;
 import it.uniba.dib.sms232417.fithub.coach.fragments.AthleteFragment;
 import it.uniba.dib.sms232417.fithub.coach.fragments.TreatmentFormGeneralFragment;
 import it.uniba.dib.sms232417.fithub.coach.fragments.TreatmentFormMedicationsFragment;
-import it.uniba.dib.sms232417.fithub.entity.Doctor;
-import it.uniba.dib.sms232417.fithub.entity.Patient;
+import it.uniba.dib.sms232417.fithub.entity.Coach;
+import it.uniba.dib.sms232417.fithub.entity.Athlete;
 import it.uniba.dib.sms232417.fithub.athleteFragments.ExpensesFragment;
 import it.uniba.dib.sms232417.fithub.utilities.StringUtils;
 
@@ -59,17 +59,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         treatmentFormMedicationsFragment = new TreatmentFormMedicationsFragment();
         Intent intent = getIntent();
-        Patient loggedPatient = (Patient) intent.getParcelableExtra("loggedPatient");
-        Doctor loggedDoctor = (Doctor) intent.getParcelableExtra("loggedDoctor");
+        Athlete loggedAthlete = (Athlete) intent.getParcelableExtra("loggedPatient");
+        Coach loggedCoach = (Coach) intent.getParcelableExtra("loggedDoctor");
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
         bottomNavigationView.getMenu().clear();
 
-        if (loggedPatient != null) {
+        if (loggedAthlete != null) {
             try {
                 FileOutputStream fos = openFileOutput(StringUtils.PATIENT_LOGGED, Context.MODE_PRIVATE);
                 ObjectOutputStream os = new ObjectOutputStream(fos);
-                os.writeObject(loggedPatient);
+                os.writeObject(loggedAthlete);
                 Log.d("Patient", "Patient saved");
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -97,10 +97,10 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new AthleteFragment();
                             Bundle bundle = new Bundle();
 
-                            bundle.putString("patientUUID", loggedPatient.getUUID());
-                            bundle.putString("patientName", loggedPatient.getNome());
-                            bundle.putString("patientAge", loggedPatient.getAge() + " " + getResources().getQuantityString(R.plurals.age,
-                                    loggedPatient.getAge(), loggedPatient.getAge()));
+                            bundle.putString("patientUUID", loggedAthlete.getUUID());
+                            bundle.putString("patientName", loggedAthlete.getNome());
+                            bundle.putString("patientAge", loggedAthlete.getAge() + " " + getResources().getQuantityString(R.plurals.age,
+                                    loggedAthlete.getAge(), loggedAthlete.getAge()));
                             bundle.putString("user", "patient");
 
                             selectedFragment.setArguments(bundle);
@@ -132,11 +132,11 @@ public class MainActivity extends AppCompatActivity {
             bottomNavigationView.setSelectedItemId(R.id.navigation_home); // replace with your actual menu item id
 
         }
-        if (loggedDoctor != null) {
+        if (loggedCoach != null) {
             try {
                 FileOutputStream fos = openFileOutput(StringUtils.DOCTOR_LOGGED, Context.MODE_PRIVATE);
                 ObjectOutputStream os = new ObjectOutputStream(fos);
-                os.writeObject(loggedDoctor);
+                os.writeObject(loggedCoach);
                 Log.d("Doctor", "Doctor saved");
             } catch (Exception e) {
                 throw new RuntimeException(e);
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                     if (itemId == R.id.navigation_my_patients) {
                         selectedFragment = new MyAthletesFragment();
                         Bundle bundle = new Bundle();
-                        bundle.putParcelable("doctor", loggedDoctor);
+                        bundle.putParcelable("doctor", loggedCoach);
                         selectedFragment.setArguments(bundle);
                     } else {
                         if (itemId == R.id.navigation_my_account) {

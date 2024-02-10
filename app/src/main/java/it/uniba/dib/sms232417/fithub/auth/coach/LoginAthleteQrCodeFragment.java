@@ -50,7 +50,7 @@ import it.uniba.dib.sms232417.fithub.MainActivity;
 import it.uniba.dib.sms232417.fithub.R;
 import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterCoach;
 import it.uniba.dib.sms232417.fithub.auth.EntryActivity;
-import it.uniba.dib.sms232417.fithub.entity.Doctor;
+import it.uniba.dib.sms232417.fithub.entity.Coach;
 import it.uniba.dib.sms232417.fithub.interfaces.OnDoctorDataCallback;
 
 public class LoginAthleteQrCodeFragment extends Fragment {
@@ -199,9 +199,9 @@ public class LoginAthleteQrCodeFragment extends Fragment {
                             dbAdapterDoctor = new DatabaseAdapterCoach(getContext());
                             dbAdapterDoctor.onLoginQrCode(uuid, new OnDoctorDataCallback() {
                                 @Override
-                                public void onCallback(Doctor doctor) {
+                                public void onCallback(Coach coach) {
                                     Intent intent = new Intent(getContext(), MainActivity.class);
-                                    intent.putExtra("loggedDoctor", (Parcelable) doctor);
+                                    intent.putExtra("loggedDoctor", (Parcelable) coach);
                                     startActivity(intent);
                                     requireActivity().finish();
                                 }

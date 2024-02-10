@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Doctor implements Parcelable, Serializable {
+public class Coach implements Parcelable, Serializable {
     private String nome;
     private String cognome;
     private String email;
@@ -19,10 +19,10 @@ public class Doctor implements Parcelable, Serializable {
     private String numeroDiRegistrazioneMedica;
     private List<String> myPatientsUUID;
 
-    public Doctor() {
+    public Coach() {
     }
 
-    public Doctor(String nome, String cognome, String email, String dataNascita, String regione, String specializzazione, String numeroDiRegistrazioneMedica) {
+    public Coach(String nome, String cognome, String email, String dataNascita, String regione, String specializzazione, String numeroDiRegistrazioneMedica) {
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
@@ -35,7 +35,7 @@ public class Doctor implements Parcelable, Serializable {
         this.myPatientsUUID = new ArrayList<>();
     }
 
-    protected Doctor(Parcel in) {
+    protected Coach(Parcel in) {
         nome = in.readString();
         cognome = in.readString();
         email = in.readString();
@@ -46,15 +46,15 @@ public class Doctor implements Parcelable, Serializable {
         myPatientsUUID = in.createStringArrayList();
     }
 
-    public static final Creator<Doctor> CREATOR = new Creator<Doctor>() {
+    public static final Creator<Coach> CREATOR = new Creator<Coach>() {
         @Override
-        public Doctor createFromParcel(Parcel in) {
-            return new Doctor(in);
+        public Coach createFromParcel(Parcel in) {
+            return new Coach(in);
         }
 
         @Override
-        public Doctor[] newArray(int size) {
-            return new Doctor[size];
+        public Coach[] newArray(int size) {
+            return new Coach[size];
         }
     };
 

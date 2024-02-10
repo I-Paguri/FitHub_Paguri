@@ -32,8 +32,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import it.uniba.dib.sms232417.fithub.R;
-import it.uniba.dib.sms232417.fithub.entity.Doctor;
-import it.uniba.dib.sms232417.fithub.entity.Patient;
+import it.uniba.dib.sms232417.fithub.entity.Athlete;
+import it.uniba.dib.sms232417.fithub.entity.Coach;
 import it.uniba.dib.sms232417.fithub.utilities.StringUtils;
 
 public class HomeFragment extends Fragment {
@@ -69,16 +69,16 @@ public class HomeFragment extends Fragment {
         // You can use this method to do final initialization once these pieces are in place, such as retrieving views or restoring state.
         // Ottengo un riferimento alla cardView dei pazienti
         txtusername = view.findViewById(R.id.txtUser_Name);
-        Patient loggedPatient = checkPatientLogged();
-        Doctor loggedDoctor = checkDoctorLogged();
-        if (loggedPatient != null) {
-            txtusername.setText(loggedPatient.getNome());
+        Athlete loggedAthlete = checkPatientLogged();
+        Coach loggedCoach = checkDoctorLogged();
+        if (loggedAthlete != null) {
+            txtusername.setText(loggedAthlete.getNome());
             bundlePatient = new Bundle();
-            bundlePatient.putParcelable("patient", loggedPatient);
-        } else if(loggedDoctor != null){
-            txtusername.setText("Dottor "+loggedDoctor.getNome());
+            bundlePatient.putParcelable("patient", loggedAthlete);
+        } else if(loggedCoach != null){
+            txtusername.setText("Dottor "+ loggedCoach.getNome());
             bundleDoctor = new Bundle();
-            bundleDoctor.putParcelable("doctor", loggedDoctor);
+            bundleDoctor.putParcelable("doctor", loggedCoach);
         }else{
             txtusername.setText("Utente");
         }
@@ -104,7 +104,7 @@ public class HomeFragment extends Fragment {
         MaterialCardView cardViewMyPatients = view.findViewById(R.id.cardViewMyPatients);
 
 
-        if (loggedDoctor != null) {
+        if (loggedCoach != null) {
             cardViewMyPatients.setVisibility(View.VISIBLE);
         } else {
             cardViewMyPatients.setVisibility(View.GONE);
@@ -164,14 +164,14 @@ public class HomeFragment extends Fragment {
         // This is called when the fragment is no longer attached to its activity.
         // This is where you can clean up any references to the activity.
     }
-    public Patient checkPatientLogged(){
-        Patient loggedPatient;
+    public Athlete checkPatientLogged(){
+        Athlete loggedAthlete;
         File loggedPatientFile = new File("/data/data/it.uniba.dib.sms232417.fithub/files/loggedPatient");
         if(loggedPatientFile.exists()){
             try {
                 FileInputStream fis = requireActivity().openFileInput(StringUtils.PATIENT_LOGGED);
                 ObjectInputStream ois = new ObjectInputStream(fis);
-                loggedPatient = (Patient) ois.readObject();
+                loggedAthlete = (Athlete) ois.readObject();
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             } catch (IOException e) {
@@ -179,21 +179,21 @@ public class HomeFragment extends Fragment {
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
-            return loggedPatient;
+            return loggedAthlete;
         }else
             return null;
 
     }
 
-    public Doctor checkDoctorLogged(){
-        Doctor loggedDoctor;
+    public Coach checkDoctorLogged(){
+        Coach loggedCoach;
         File loggedDoctorFile = new File("/data/data/it.uniba.dib.sms232417.fithub/files/loggedDoctor");
         if(loggedDoctorFile.exists()){
             Log.d("FILE", "File esiste");
             try {
                 FileInputStream fis = requireActivity().openFileInput(loggedDoctorFile.getName());
                 ObjectInputStream ois = new ObjectInputStream(fis);
-                loggedDoctor = (Doctor) ois.readObject();
+                loggedCoach = (Coach) ois.readObject();
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             } catch (IOException e) {
@@ -201,7 +201,7 @@ public class HomeFragment extends Fragment {
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
-            return loggedDoctor;
+            return loggedCoach;
     }else
         return null;
     }

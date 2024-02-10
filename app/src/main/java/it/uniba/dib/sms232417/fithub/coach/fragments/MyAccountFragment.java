@@ -34,14 +34,14 @@ import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterCoach;
 import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterAthlete;
 import it.uniba.dib.sms232417.fithub.auth.CryptoUtil;
 import it.uniba.dib.sms232417.fithub.auth.EntryActivity;
-import it.uniba.dib.sms232417.fithub.entity.Doctor;
-import it.uniba.dib.sms232417.fithub.entity.Patient;
+import it.uniba.dib.sms232417.fithub.entity.Athlete;
+import it.uniba.dib.sms232417.fithub.entity.Coach;
 import it.uniba.dib.sms232417.fithub.utilities.StringUtils;
 
 public class MyAccountFragment extends Fragment {
     Toolbar toolbar;
-    Patient loggedPatient;
-    Doctor loggedDoctor;
+    Athlete loggedAthlete;
+    Coach loggedCoach;
     final String NAME_FILE = "automaticLogin";
     DatabaseAdapterAthlete dbAdapter;
     DatabaseAdapterCoach dbAdapterDoctor;
@@ -60,23 +60,23 @@ public class MyAccountFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        loggedPatient = checkPatientLogged();
-        loggedDoctor = checkDoctorLogged();
+        loggedAthlete = checkPatientLogged();
+        loggedCoach = checkDoctorLogged();
 
         bottomNavigationView = requireActivity().findViewById(R.id.nav_view);
         Button btnLogout = getView().findViewById(R.id.btn_logout);
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(loggedDoctor != null)
+                if(loggedCoach != null)
                     try {
-                        onLogout(v, loggedDoctor.getEmail());
+                        onLogout(v, loggedCoach.getEmail());
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
-                else if(loggedPatient != null){
+                else if(loggedAthlete != null){
                     try {
-                        onLogout(v, loggedPatient.getEmail());
+                        onLogout(v, loggedAthlete.getEmail());
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
@@ -116,25 +116,25 @@ public class MyAccountFragment extends Fragment {
             }
         });
 
-        if (loggedPatient != null) {
+        if (loggedAthlete != null) {
             TextView txtName = getView().findViewById(R.id.txt_name);
             TextView txtSurname = getView().findViewById(R.id.txt_surname);
             TextView txtRegion = getView().findViewById(R.id.txt_region);
 
             TextView txtage = getView().findViewById(R.id.txt_age);
-            txtName.setText(loggedPatient.getNome());
-            txtSurname.setText(loggedPatient.getCognome());
-            txtRegion.setText(loggedPatient.getRegione());
-            String dataNascita = loggedPatient.getDataNascita();
+            txtName.setText(loggedAthlete.getNome());
+            txtSurname.setText(loggedAthlete.getCognome());
+            txtRegion.setText(loggedAthlete.getRegione());
+            String dataNascita = loggedAthlete.getDataNascita();
 
-        }else if(loggedDoctor != null){
+        }else if(loggedCoach != null){
             TextView txtName = getView().findViewById(R.id.txt_name);
             TextView txtSurname = getView().findViewById(R.id.txt_surname);
             TextView txtRegion = getView().findViewById(R.id.txt_region);
 
-            txtName.setText(loggedDoctor.getNome());
-            txtSurname.setText(loggedDoctor.getCognome());
-            txtRegion.setText(loggedDoctor.getRegione());
+            txtName.setText(loggedCoach.getNome());
+            txtSurname.setText(loggedCoach.getCognome());
+            txtRegion.setText(loggedCoach.getRegione());
         }else {
             RelativeLayout relativeLayout = getView().findViewById(R.id.not_logged_user);
             relativeLayout.setVisibility(View.VISIBLE);
@@ -177,14 +177,14 @@ public class MyAccountFragment extends Fragment {
 
 
 
-    public Patient checkPatientLogged(){
-        Patient loggedPatient;
+    public Athlete checkPatientLogged(){
+        Athlete loggedAthlete;
         File loggedPatientFile = new File("/data/data/it.uniba.dib.sms232417.fithub/files/loggedPatient");
         if(loggedPatientFile.exists()){
             try {
                 FileInputStream fis = requireActivity().openFileInput(StringUtils.PATIENT_LOGGED);
                 ObjectInputStream ois = new ObjectInputStream(fis);
-                loggedPatient = (Patient) ois.readObject();
+                loggedAthlete = (Athlete) ois.readObject();
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             } catch (IOException e) {
@@ -192,20 +192,20 @@ public class MyAccountFragment extends Fragment {
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
-            return loggedPatient;
+            return loggedAthlete;
         }else
             return null;
 
     }
 
-    public Doctor checkDoctorLogged(){
-        Doctor loggedDoctor;
+    public Coach checkDoctorLogged(){
+        Coach loggedCoach;
         File loggedDoctorFile = new File("/data/data/it.uniba.dib.sms232417.fithub/files/loggedDoctor");
         if(loggedDoctorFile.exists()){
             try {
                 FileInputStream fis = requireActivity().openFileInput(StringUtils.DOCTOR_LOGGED);
                 ObjectInputStream ois = new ObjectInputStream(fis);
-                loggedDoctor = (Doctor) ois.readObject();
+                loggedCoach = (Coach) ois.readObject();
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             } catch (IOException e) {
@@ -213,7 +213,7 @@ public class MyAccountFragment extends Fragment {
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
-            return loggedDoctor;
+            return loggedCoach;
         }else
             return null;
     }
