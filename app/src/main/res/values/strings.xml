@@ -122,6 +122,69 @@
         <item>Abdomen</item>
     </string-array>
 
+    <string-array name="chest_exercise_array">
+        <item>Flat bench with barbell</item>
+        <item>Flexions</item>
+        <item>Fly with dumbbells on incline bench</item>
+        <item>Dips on parallel bars</item>
+        <item>Push-ups with tight grip</item>
+        <item>Crossover with cable</item>
+    </string-array>
+
+    <string-array name="back_exercise_array">
+        <item>Bar pull-ups (Pull-up)</item>
+        <item>Remator with barbell</item>
+        <item>Remator with dumbbell</item>
+        <item>Pull-down at the cable</item>
+        <item>Pullover with dumbbell or barbell</item>
+        <item>Pull-down to death</item>
+    </string-array>
+
+    <string-array name="shoulders_exercise_array">
+        <item>Lateral lifts with dumbbells</item>
+        <item>Front lifts with dumbbells or barbell</item>
+        <item>Shoulders with dumbbells or barbell</item>
+        <item>Shoulder lifts with dumbbells or barbell</item>
+        <item>Vertical presses with front wall</item>
+        <item>Arnold press</item>
+    </string-array>
+
+    <string-array name="biceps_exercise_array">
+        <item>Curl with barbell</item>
+        <item>Curl with dumbbells</item>
+        <item>Curl with cables</item>
+        <item>Curl hammer</item>
+        <item>Curl concentration</item>
+        <item>Chin-up (or tight pull-up)</item>
+    </string-array>
+
+    <string-array name="triceps_exercise_array">
+        <item>French press with barbell</item>
+        <item>Push-downs at cables</item>
+        <item>Overhead rope extensions</item>
+        <item>Down to parallel bars</item>
+        <item>Domed spheres (skull crush)</item>
+        <item>Extensions with dumbbells behind the head</item>
+    </string-array>
+
+    <string-array name="legs_and_glutes_exercise_array">
+        <item>Squat with barbell</item>
+        <item>Floor Jumps (Deadlift)</item>
+        <item>Dumbbell lunges with dumbbells</item>
+        <item>Presses for the legs</item>
+        <item>Bridge for glutes</item>
+        <item>Curleys</item>
+    </string-array>
+
+    <string-array name="abdominal_exercise_array">.
+        <item>Crunch</item>
+        <item>Leg raises (leg lifts)</item>
+        <item>Plank</item>
+        <item>Mountain climbers</item>
+        <item>Rolling twists</item>
+        <item>Bicycle crushers</item>
+    </string-array>
+
     <string-array name="medicines_list">
         <item>Paracetamol</item>
         <item>Aspirin</item>

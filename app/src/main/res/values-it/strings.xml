@@ -95,6 +95,70 @@
         <item>Addominali</item>
     </string-array>
 
+    <string-array name="chest_exercise_array">
+        <item>Panca piana con bilanciere</item>
+        <item>Flessioni</item>
+        <item>Fly con manubri su panca inclinata</item>
+        <item>Dips sulle parallele</item>
+        <item>Push-up con presa stretta</item>
+        <item>Crossover con cavo</item>
+    </string-array>
+
+    <string-array name="back_exercise_array">
+        <item>Trazioni alla sbarra (Pull-ups)</item>
+        <item>Rematore con bilanciere</item>
+        <item>Rematore con manubrio</item>
+        <item>Pull-down al cavo</item>
+        <item>Pullover con manubrio o bilanciere</item>
+        <item>Deadlift</item>
+    </string-array>
+
+    <string-array name="shoulders_exercise_array">
+        <item>Alzate laterali con manubri</item>
+        <item>Alzate frontali con manubri o bilanciere</item>
+        <item>Shoulder press con manubri o bilanciere</item>
+        <item>Shrugs con manubri o bilanciere</item>
+        <item>Facing wall handstand push-ups</item>
+        <item>Arnold press</item>
+    </string-array>
+
+    <string-array name="biceps_exercise_array">
+        <item>Curl con bilanciere</item>
+        <item>Curl con manubri</item>
+        <item>Curl con cavi</item>
+        <item>Curl martello</item>
+        <item>Curl concentrazione</item>
+        <item>Chin-up (o pull-up stretto)</item>
+    </string-array>
+
+    <string-array name="triceps_exercise_array">
+        <item>French press con bilanciere</item>
+        <item>Push-down al cavo</item>
+        <item>Estensioni ai cavi sopra la testa</item>
+        <item>Dips sulle parallele</item>
+        <item>Sfere bombate (Skull crushers)</item>
+        <item>Estensioni con manubrio dietro la testa</item>
+    </string-array>
+
+    <string-array name="legs_and_glutes_exercise_array">
+        <item>Squat con bilanciere</item>
+        <item>Stacchi da terra (Deadlift)</item>
+        <item>Affondi con manubri</item>
+        <item>Leg press</item>
+        <item>Glute bridge</item>
+        <item>Femorali curl</item>
+    </string-array>
+
+    <string-array name="abdominal_exercise_array">
+        <item>Crunch</item>
+        <item>Leg raises (sollevamento gambe)</item>
+        <item>Plank</item>
+        <item>Mountain climbers</item>
+        <item>Russian twists</item>
+        <item>Bicycle crunches</item>
+    </string-array>
+
+
 
     <string-array name="medicines_list">
         <item>Paracetamolo</item>
