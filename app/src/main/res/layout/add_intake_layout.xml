@@ -43,7 +43,8 @@
             android:layout_marginEnd="8dp"
             android:contentDescription="prova"
             app:icon="@drawable/close_circled"
-            app:iconTint="@color/pastel_red" />
+            app:iconTint="@color/pastel_red"
+            android:visibility="gone"/>
 
 
     </LinearLayout>
@@ -57,21 +58,6 @@
         android:layout_marginBottom="8dp"
         android:text="@string/muscle_group" />
 
-
-
-    <!--
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/intakeTime"
-        style="@style/CustomMaterialButton"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/select_time"
-        android:textAllCaps="false"
-        app:icon="@drawable/schedule"
-        app:iconGravity="end" />
-        -->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/muscleGroupInputLayout"

@@ -520,4 +520,6 @@
 
     <string name="my_videos">My videos</string>
     <string name="treatments">Treatments</string>
+
+    <string name="exercise_removed">Exercise removed</string>
 </resources>

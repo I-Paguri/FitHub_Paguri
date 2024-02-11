@@ -122,6 +122,8 @@ public class ExercisesFragment extends Fragment {
         TextView intakeLabel = view.findViewById(R.id.intakeLabel);
         intakeLabel.setText(getResources().getString(R.string.exercise) + " " + intakeCount);
 
+
+
         Button btnAddIntake = view.findViewById(R.id.btnAddIntake);
         btnAddIntake.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -238,12 +240,20 @@ public class ExercisesFragment extends Fragment {
         // Find the close button in the layout
         Button closeButton = intakeLayout.findViewById(R.id.closeButton);
 
+        updateIntakeLabels();
+        if (intakeCount == 1) {
+            closeButton.setVisibility(View.GONE);
+        } else {
+            closeButton.setVisibility(View.VISIBLE);
+        }
+
         // Set a click listener on the close button
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Remove the intakeLayout from the parent layout
                 parentLayout.removeView(intakeLayout);
+                Toast.makeText(requireActivity(), getResources().getString(R.string.exercise_removed), Toast.LENGTH_SHORT).show();
                 // Decrement intakeCount
                 intakeCount--;
                 updateIntakeLabels();
