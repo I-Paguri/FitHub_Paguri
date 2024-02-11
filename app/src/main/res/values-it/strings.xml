@@ -85,6 +85,17 @@
     <string name="mental_health_tips">L\'importanza del benessere mentale</string>
     <string name="healthy_food_tips">L\'importanza del cibo salutare</string>
 
+    <string-array name="musclegroup_array">
+        <item>Petto</item>
+        <item>Dorso</item>
+        <item>Spalle</item>
+        <item>Bicipiti</item>
+        <item>Tricipiti</item>
+        <item>Gambe e glutei</item>
+        <item>Addominali</item>
+    </string-array>
+
+
     <string-array name="medicines_list">
         <item>Paracetamolo</item>
         <item>Aspirina</item>

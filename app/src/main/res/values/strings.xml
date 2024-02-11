@@ -112,6 +112,16 @@
     <string name="mental_health_tips">Mental health</string>
     <string name="healthy_food_tips">Healthy food</string>
 
+    <string-array name="musclegroup_array">
+        <item>Chest</item>
+        <item>Back</item>
+        <item>Shoulders</item>
+        <item>Biceps</item>
+        <item>Triceps</item>
+        <item>Legs and Buttoncks</item>
+        <item>Abdomen</item>
+    </string-array>
+
     <string-array name="medicines_list">
         <item>Paracetamol</item>
         <item>Aspirin</item>

@@ -122,7 +122,15 @@ public class ExercisesFragment extends Fragment {
         TextView intakeLabel = view.findViewById(R.id.intakeLabel);
         intakeLabel.setText(getResources().getString(R.string.exercise) + " " + intakeCount);
 
+        LinearLayout parentLayout = requireView().findViewById(R.id.linearLayoutIntake);
+        AutoCompleteTextView muscleGroup = parentLayout.findViewById(R.id.muscleGroup);
 
+        // Creare un nuovo ArrayAdapter
+        String[] muscleGroups = getResources().getStringArray(R.array.musclegroup_array);
+
+        ArrayAdapter<String> adapterMuscleGroup = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_expandable_list_item_1, muscleGroups);
+
+        muscleGroup.setAdapter(adapterMuscleGroup);
 
         Button btnAddIntake = view.findViewById(R.id.btnAddIntake);
         btnAddIntake.setOnClickListener(new View.OnClickListener() {
@@ -236,6 +244,14 @@ public class ExercisesFragment extends Fragment {
         parentLayout.addView(intakeLayout, index);
 
         TextView intakeLabel = intakeLayout.findViewById(R.id.intakeLabel);
+        AutoCompleteTextView muscleGroup = intakeLayout.findViewById(R.id.muscleGroup);
+
+        // Creare un nuovo ArrayAdapter
+        String[] muscleGroups = getResources().getStringArray(R.array.musclegroup_array);
+
+        ArrayAdapter<String> adapterMuscleGroup = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_expandable_list_item_1, muscleGroups);
+
+        muscleGroup.setAdapter(adapterMuscleGroup);
         intakeLabel.setText(getResources().getString(R.string.exercise) + " " + intakeCount);
         // Find the close button in the layout
         Button closeButton = intakeLayout.findViewById(R.id.closeButton);
