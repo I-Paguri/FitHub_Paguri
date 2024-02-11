@@ -1,7 +1,6 @@
 package it.uniba.dib.sms232417.fithub.coach.fragments;
 
 import static com.google.android.material.internal.ViewUtils.hideKeyboard;
-import static com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_CLOCK;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -10,12 +9,10 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -37,15 +34,10 @@ import android.widget.Toast;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.android.material.timepicker.MaterialTimePicker;
-import com.google.android.material.timepicker.TimeFormat;
-import com.google.api.Distribution;
 import com.kofigyan.stateprogressbar.StateProgressBar;
 import com.touchboarder.weekdaysbuttons.WeekdaysDataItem;
-import com.touchboarder.weekdaysbuttons.WeekdaysDataSource;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import it.uniba.dib.sms232417.fithub.R;
@@ -64,8 +56,8 @@ public class ExercisesFragment extends Fragment {
 
     private AutoCompleteTextView howRegularly;
     private AutoCompleteTextView howToTakeMedicine;
-    private int intervalSelectedNumber;
-    private String intervalSelectedString;
+    private int selectedMinutes;
+    private int selectedSeconds;
     private ArrayAdapter<String> adapterQuantity;
     // Declare an ArrayList to hold the selected weekdays
     private ArrayList<WeekdaysDataItem> selectedWeekdays = new ArrayList<>();
@@ -114,8 +106,8 @@ public class ExercisesFragment extends Fragment {
         validInput = false;
         treatment = null;
         medications = new ArrayList<>();
-        intervalSelectedNumber = -1;
-        intervalSelectedString = "";
+        selectedMinutes = -1;
+        selectedSeconds = -1;
 
         if (bundle != null) {
             treatment = bundle.getParcelable("treatment");
@@ -651,8 +643,8 @@ public class ExercisesFragment extends Fragment {
 
         if (howRegularly.getText().toString().equals(getResources().getStringArray(R.array.how_regularly_list)[1])) {
             if (!intervalSelection.getText().toString().isEmpty()) {
-                medication.setIntervalSelectedType(mappedValues.getIntervalKey(intervalSelectedString));
-                medication.setIntervalSelectedNumber(intervalSelectedNumber);
+                //medication.setIntervalSelectedType(mappedValues.getIntervalKey(selectedSeconds));
+                medication.setIntervalSelectedNumber(selectedMinutes);
             }
         }
 
@@ -745,22 +737,26 @@ public class ExercisesFragment extends Fragment {
         labelLayout.addView(label2, layoutParams2);
 
         layout.addView(labelLayout); // Add the labelLayout to the main layout
-        
+
         // Create the NumberPickers
-        NumberPicker numberPicker1 = new NumberPicker(getActivity());
-        NumberPicker numberPicker2 = new NumberPicker(getActivity());
+        NumberPicker numberPickerMinutes = new NumberPicker(getActivity());
+        NumberPicker numberPickerSeconds = new NumberPicker(getActivity());
 
-        // Set the min and max values for numberPicker1
-        numberPicker1.setMinValue(0);
-        numberPicker1.setMaxValue(5);
+        // Set the min and max values for numberPickerMinutes
+        numberPickerMinutes.setMinValue(0);
+        numberPickerMinutes.setMaxValue(5);
 
-        // Set the min and max values for numberPicker2
-        numberPicker2.setMinValue(0);
-        numberPicker2.setMaxValue(2);
+        // Set the min and max values for numberPickerSeconds
+        numberPickerSeconds.setMinValue(0);
+        numberPickerSeconds.setMaxValue(5);
 
-        // Set the displayed values for numberPicker2
-        String[] displayedValues = new String[]{getResources().getString(R.string.day), getResources().getString(R.string.week), getResources().getString(R.string.month)};
-        numberPicker2.setDisplayedValues(displayedValues);
+        // Set a formatter
+        numberPickerSeconds.setFormatter(new NumberPicker.Formatter() {
+            @Override
+            public String format(int value) {
+                return Integer.toString(value * 10);
+            }
+        });
 
         // Create layout parameters with margins
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
@@ -773,8 +769,8 @@ public class ExercisesFragment extends Fragment {
         numberPickerLayout.setGravity(Gravity.CENTER);
 
         // Add the NumberPickers to the LinearLayout
-        numberPickerLayout.addView(numberPicker1, layoutParams); // Add layout params to numberPicker1
-        numberPickerLayout.addView(numberPicker2);
+        numberPickerLayout.addView(numberPickerMinutes, layoutParams); // Add layout params to numberPickerMinutes
+        numberPickerLayout.addView(numberPickerSeconds);
 
         layout.addView(numberPickerLayout); // Add the numberPickerLayout to the main layout
 
@@ -785,38 +781,27 @@ public class ExercisesFragment extends Fragment {
         builder.setTitle(getResources().getString(R.string.what_interval)).setMessage(getResources().getString(R.string.what_interval_message))
                 .setPositiveButton("OK", (dialog, id) -> {
                     // User clicked OK, retrieve the selected values
-                    intervalSelectedNumber = numberPicker1.getValue();
-                    intervalSelectedString = displayedValues[numberPicker2.getValue()];
+                    selectedMinutes = numberPickerMinutes.getValue();
+                    // Get the selected value from numberPickerSeconds
+                    selectedSeconds = numberPickerSeconds.getValue() * 10;
 
-                    String formattedSelectedInterval = intervalSelectedString;
 
-                    if (intervalSelectedString.equals(getResources().getString(R.string.day))) {
-                        // days
-                        formattedSelectedInterval = getResources().getQuantityString(R.plurals.days, intervalSelectedNumber, intervalSelectedNumber);
-                    } else {
-                        if (intervalSelectedString.equals(getResources().getString(R.string.week))) {
-                            // weeks
-                            formattedSelectedInterval = getResources().getQuantityString(R.plurals.weeks, intervalSelectedNumber, intervalSelectedNumber);
-                        } else {
-                            // months
-                            formattedSelectedInterval = getResources().getQuantityString(R.plurals.months, intervalSelectedNumber, intervalSelectedNumber);
-                        }
-                    }
+                    String formattedSelectedInterval = "";
 
                     AutoCompleteTextView intervalSelection = intakeLayout.findViewById(R.id.restSelection);
 
-                    if (intervalSelectedNumber == 1) {
-                        if (intervalSelectedString.equals(getResources().getString(R.string.day))) {
-                            //subtitleInterval.setVisibility(View.GONE);
-                            //linearLayoutInterval.setVisibility(View.GONE);
-
-                            //howRegularly.setText(getResources().getStringArray(R.array.how_regularly_list)[0], false);
-
-                        } else {
-                            intervalSelection.setText(getResources().getString(R.string.every) + " " + formattedSelectedInterval);
-                        }
+                    if (selectedSeconds == 0 && selectedMinutes == 0) {
+                        intervalSelection.setText(getResources().getString(R.string.no_rest));
                     } else {
-                        intervalSelection.setText(getResources().getString(R.string.every) + " " + intervalSelectedNumber + " " + formattedSelectedInterval);
+                        if (selectedMinutes == 0) {
+                            intervalSelection.setText(selectedSeconds + " " + getResources().getQuantityString(R.plurals.second, selectedSeconds, selectedSeconds));
+                        } else {
+                            if (selectedSeconds == 0) {
+                                intervalSelection.setText(selectedMinutes + " " + getResources().getQuantityString(R.plurals.minute, selectedMinutes, selectedMinutes));
+                            } else {
+                                intervalSelection.setText(selectedMinutes + " " + getResources().getQuantityString(R.plurals.minute, selectedMinutes, selectedMinutes) + " " + selectedSeconds + " " + getResources().getQuantityString(R.plurals.second, selectedSeconds, selectedSeconds));
+                            }
+                        }
                     }
                 })
                 .setNegativeButton("Cancel", (dialog, id) -> {

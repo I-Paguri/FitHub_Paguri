@@ -604,4 +604,5 @@
     <string name="treatments">Treatments</string>
 
     <string name="exercise_removed">Exercise removed</string>
+    <string name="no_rest">No rest</string>
 </resources>
