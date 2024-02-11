@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="@string/intake"
+            android:text="@string/exercise"
             android:textColor="@color/md_theme_light_primary" />
 
         <com.google.android.material.divider.MaterialDivider
@@ -55,8 +55,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/intake_time" />
+        android:text="@string/muscle_group" />
 
+
+
+    <!--
     <com.google.android.material.button.MaterialButton
         android:id="@+id/intakeTime"
         style="@style/CustomMaterialButton"
@@ -68,6 +71,29 @@
         android:textAllCaps="false"
         app:icon="@drawable/schedule"
         app:iconGravity="end" />
+        -->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/muscleGroupInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/select"
+        app:startIconContentDescription="Goal"
+        app:startIconDrawable="@drawable/scale">
+
+        <AutoCompleteTextView
+            android:id="@+id/muscleGroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:editable="false"
+            android:imeOptions="actionNext"
+            android:labelFor="@id/medicines_list">
+
+        </AutoCompleteTextView>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         style="@style/SubtitleText2"
@@ -77,7 +103,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/quantity" />
+        android:text="@string/exercise_name" />
 
     <LinearLayout
         android:id="@+id/linearLayoutQuantityString"
@@ -91,7 +117,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/quantityStringInputLayout"
+            android:id="@+id/exerciseInputLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -103,7 +129,7 @@
             app:startIconDrawable="@drawable/scale">
 
             <AutoCompleteTextView
-                android:id="@+id/quantityString"
+                android:id="@+id/exerciseString"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:editable="false"
@@ -112,6 +138,147 @@
 
             </AutoCompleteTextView>
         </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/subtitleSets"
+        style="@style/SubtitleText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/how_many_sets"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutSets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/setsInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:hint="@string/select"
+            app:startIconContentDescription="Goal"
+            app:startIconDrawable="@drawable/event_repeat">
+
+            <AutoCompleteTextView
+                android:id="@+id/setsSelection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:editable="false"
+                android:imeOptions="actionNext"
+                android:labelFor="@id/medicines_list"
+                android:spinnerMode="dialog">
+
+            </AutoCompleteTextView>
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/subtitleReps"
+        style="@style/SubtitleText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/how_many_reps"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutReps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/repsInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:hint="@string/select"
+            app:startIconContentDescription="Goal"
+            app:startIconDrawable="@drawable/event_repeat">
+
+            <AutoCompleteTextView
+                android:id="@+id/repsSelection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:editable="false"
+                android:imeOptions="actionNext"
+                android:labelFor="@id/medicines_list"
+                android:spinnerMode="dialog">
+
+            </AutoCompleteTextView>
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/subtitleRest"
+        style="@style/SubtitleText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/rest_time"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutRest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/restInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:hint="@string/select"
+            app:startIconContentDescription="Goal"
+            app:startIconDrawable="@drawable/event_repeat">
+
+            <AutoCompleteTextView
+                android:id="@+id/restSelection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:editable="false"
+                android:imeOptions="actionNext"
+                android:labelFor="@id/medicines_list"
+                android:spinnerMode="dialog">
+
+            </AutoCompleteTextView>
+        </com.google.android.material.textfield.TextInputLayout>
+
     </LinearLayout>
 
     <LinearLayout

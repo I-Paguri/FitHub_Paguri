@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="it.uniba.dib.sms232417.fithub" />
+                  <option name="mobileSdkAppId" value="1:260826454098:android:706e0ee402f7f954dca78b" />
+                  <option name="projectId" value="fithub-f124c" />
+                  <option name="projectNumber" value="260826454098" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

@@ -376,12 +376,19 @@ public class TreatmentFormGeneralFragment extends Fragment {
                     bundle.putString("patientName", patientName);
                     bundle.putString("patientAge", patientAge);
                     // Navigate to the next fragment
-                    TreatmentFormMedicationsFragment treatmentFormMedicationsFragment = new TreatmentFormMedicationsFragment();
-                    treatmentFormMedicationsFragment.setArguments(bundle);
+
+                    ExercisesFragment exerciseFragment = new ExercisesFragment();
+                    exerciseFragment.setArguments(bundle);
+
+                    //TreatmentFormMedicationsFragment treatmentFormMedicationsFragment = new TreatmentFormMedicationsFragment();
+                    //treatmentFormMedicationsFragment.setArguments(bundle);
                     FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                     FragmentTransaction transaction = fragmentManager.beginTransaction();
                     transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
-                    transaction.replace(R.id.nav_host_fragment_activity_main, treatmentFormMedicationsFragment);
+                    //transaction.replace(R.id.nav_host_fragment_activity_main, treatmentFormMedicationsFragment);
+
+                    transaction.replace(R.id.nav_host_fragment_activity_main, exerciseFragment);
+
                     transaction.addToBackStack(null);
                     transaction.commit();
                 }

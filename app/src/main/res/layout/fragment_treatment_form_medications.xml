@@ -292,7 +292,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
-                        android:text="@string/intake"
+                        android:text="@string/exercise"
                         android:textColor="@color/md_theme_light_primary" />
 
                     <com.google.android.material.divider.MaterialDivider
@@ -313,7 +313,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/intake_time" />
+                    android:text="@string/muscle_group" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/intakeTime"

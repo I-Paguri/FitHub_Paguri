@@ -424,8 +424,12 @@
 
 
     <string name="add_intake">Add intake time</string>
-    <string name="intake">Intake</string>
-    <string name="intake_time">When do you take this medication?</string>
+    <string name="exercise">Exercise</string>
+    <string name="exercise_name">What is the name of the exercise?</string>
+    <string name="muscle_group">Which muscle group would you train?</string>
+    <string name="how_many_sets">How many sets?</string>
+    <string name="how_many_reps">How many reps?</string>
+    <string name="rest_time">Rest time</string>
     <string name="quantity">Quantity</string>
     <string name="every">Every</string>
 

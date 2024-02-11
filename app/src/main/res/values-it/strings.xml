@@ -128,8 +128,12 @@
     <string name="month">mese/i</string>
 
     <string name="add_intake">Aggiungi assunzione</string>
-    <string name="intake">Assunzione</string>
-    <string name="intake_time">Quando assumi questo farmaco?</string>
+    <string name="exercise">Esercizio</string>
+    <string name="exercise_name">Qual è il nome dell\'esercizio?</string>
+    <string name="muscle_group">Quale gruppo muscolare vuoi allenare?</string>
+    <string name="how_many_sets">Quante serie?</string>
+    <string name="how_many_reps">Quante ripetizioni?</string>
+    <string name="rest_time">Tempo di recupero</string>
     <string name="quantity">Quantità</string>
 
     <string name="planning">Pianificazione</string>
