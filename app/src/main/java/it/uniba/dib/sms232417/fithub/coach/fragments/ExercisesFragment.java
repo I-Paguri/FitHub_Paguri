@@ -39,6 +39,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
+import com.google.api.Distribution;
 import com.kofigyan.stateprogressbar.StateProgressBar;
 import com.touchboarder.weekdaysbuttons.WeekdaysDataItem;
 import com.touchboarder.weekdaysbuttons.WeekdaysDataSource;
@@ -60,7 +61,7 @@ public class ExercisesFragment extends Fragment {
     private TextView subtitleWeekdays;
     private Button btnIntakeTime;
     private static int intakeCount = 1;
-    private AutoCompleteTextView intervalSelection;
+
     private AutoCompleteTextView howRegularly;
     private AutoCompleteTextView howToTakeMedicine;
     private int intervalSelectedNumber;
@@ -184,7 +185,7 @@ public class ExercisesFragment extends Fragment {
                     }
 
                     // Create the dialog
-                    showDialog();
+                    //showDialog();
                 }
                 return false;
             }
@@ -200,11 +201,12 @@ public class ExercisesFragment extends Fragment {
                     }
 
                     // Create the dialog
-                    showDialog();
+                    //showDialog();
                 }
                 return false;
             }
         });
+
         intervalSelection.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -216,7 +218,7 @@ public class ExercisesFragment extends Fragment {
                     }
 
                     // Create the dialog
-                    showDialog();
+                    showDialog(parentLayout);
                 }
                 return false;
             }
@@ -333,7 +335,7 @@ public class ExercisesFragment extends Fragment {
                     }
 
                     // Create the dialog
-                    showDialog();
+                    //showDialog();
                 }
                 return false;
             }
@@ -352,13 +354,13 @@ public class ExercisesFragment extends Fragment {
                     }
 
                     // Create the dialog
-                    showDialog();
+                    //showDialog();
                 }
                 return false;
             }
         });
 
-        intervalSelection = intakeLayout.findViewById(R.id.restSelection);
+        AutoCompleteTextView intervalSelection = intakeLayout.findViewById(R.id.restSelection);
         intervalSelection.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -370,7 +372,7 @@ public class ExercisesFragment extends Fragment {
                     }
 
                     // Create the dialog
-                    showDialog();
+                    showDialog(intakeLayout);
                 }
                 return false;
             }
@@ -468,7 +470,7 @@ public class ExercisesFragment extends Fragment {
         AutoCompleteTextView medicinesList = getView().findViewById(R.id.medicines_list);
         AutoCompleteTextView howToTakeMedicine = getView().findViewById(R.id.how_to_take_medicine);
         AutoCompleteTextView howRegularly = getView().findViewById(R.id.how_regularly);
-        AutoCompleteTextView intervalSelection = getView().findViewById(R.id.intervalSelection);
+        AutoCompleteTextView intervalSelection = getView().findViewById(R.id.restSelection);
 
         validInput = true;
 
@@ -546,7 +548,7 @@ public class ExercisesFragment extends Fragment {
         AutoCompleteTextView medicinesList = getView().findViewById(R.id.medicines_list);
         AutoCompleteTextView howToTakeMedicine = getView().findViewById(R.id.how_to_take_medicine);
         AutoCompleteTextView howRegularly = getView().findViewById(R.id.how_regularly);
-        AutoCompleteTextView intervalSelection = getView().findViewById(R.id.intervalSelection);
+        AutoCompleteTextView intervalSelection = getView().findViewById(R.id.restSelection);
 
         // Create a TextWatcher
         TextWatcher textWatcher = new TextWatcher() {
@@ -617,7 +619,7 @@ public class ExercisesFragment extends Fragment {
         AutoCompleteTextView medicinesList = requireView().findViewById(R.id.medicines_list);
         AutoCompleteTextView howToTakeMedicine = requireView().findViewById(R.id.how_to_take_medicine);
         AutoCompleteTextView howRegularly = requireView().findViewById(R.id.how_regularly);
-        AutoCompleteTextView intervalSelection = requireView().findViewById(R.id.intervalSelection);
+        AutoCompleteTextView intervalSelection = requireView().findViewById(R.id.restSelection);
 
         if (!medicinesList.getText().toString().isEmpty()) {
             medicationNameString = medicinesList.getText().toString();
@@ -696,7 +698,7 @@ public class ExercisesFragment extends Fragment {
     }
 
     @SuppressLint("SetTextI18n")
-    private void showDialog() {
+    private void showDialog(View intakeLayout) {
         // Create a dialog builder
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireActivity(), R.style.CustomMaterialDialog);
 
@@ -801,12 +803,14 @@ public class ExercisesFragment extends Fragment {
                         }
                     }
 
+                    AutoCompleteTextView intervalSelection = intakeLayout.findViewById(R.id.restSelection);
+
                     if (intervalSelectedNumber == 1) {
                         if (intervalSelectedString.equals(getResources().getString(R.string.day))) {
-                            subtitleInterval.setVisibility(View.GONE);
-                            linearLayoutInterval.setVisibility(View.GONE);
+                            //subtitleInterval.setVisibility(View.GONE);
+                            //linearLayoutInterval.setVisibility(View.GONE);
 
-                            howRegularly.setText(getResources().getStringArray(R.array.how_regularly_list)[0], false);
+                            //howRegularly.setText(getResources().getStringArray(R.array.how_regularly_list)[0], false);
 
                         } else {
                             intervalSelection.setText(getResources().getString(R.string.every) + " " + formattedSelectedInterval);
