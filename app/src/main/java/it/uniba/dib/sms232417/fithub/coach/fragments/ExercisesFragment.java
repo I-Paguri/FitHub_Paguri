@@ -129,11 +129,13 @@ public class ExercisesFragment extends Fragment {
 
         LinearLayout parentLayout = requireView().findViewById(R.id.linearLayoutIntake);
         AutoCompleteTextView muscleGroup = parentLayout.findViewById(R.id.muscleGroup);
+        AutoCompleteTextView setsSelection = parentLayout.findViewById(R.id.setsNumber);
+        AutoCompleteTextView repsSelection = parentLayout.findViewById(R.id.repsNumber);
+        AutoCompleteTextView intervalSelection = parentLayout.findViewById(R.id.restSelection);
 
         // Creare un nuovo ArrayAdapter
         String[] muscleGroups = getResources().getStringArray(R.array.musclegroup_array);
         ArrayAdapter<String> adapterMuscleGroup = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_expandable_list_item_1, muscleGroups);
-
         muscleGroup.setAdapter(adapterMuscleGroup);
 
         Button btnAddIntake = view.findViewById(R.id.btnAddIntake);
@@ -171,6 +173,54 @@ public class ExercisesFragment extends Fragment {
             }
         });
 
+        setsSelection.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    // Hide the keyboard
+                    InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null) {
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    }
+
+                    // Create the dialog
+                    showDialog();
+                }
+                return false;
+            }
+        });
+        repsSelection.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    // Hide the keyboard
+                    InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null) {
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    }
+
+                    // Create the dialog
+                    showDialog();
+                }
+                return false;
+            }
+        });
+        intervalSelection.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    // Hide the keyboard
+                    InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null) {
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    }
+
+                    // Create the dialog
+                    showDialog();
+                }
+                return false;
+            }
+        });
         btnIntakeTime = view.findViewById(R.id.intakeTime);
 
 
@@ -270,6 +320,43 @@ public class ExercisesFragment extends Fragment {
 
         // Add the new layout to the parent layout at the index of the "Add Intake" button
         parentLayout.addView(intakeLayout, index);
+        AutoCompleteTextView setsSelection = intakeLayout.findViewById(R.id.setsNumber);
+
+        setsSelection.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    // Hide the keyboard
+                    InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null) {
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    }
+
+                    // Create the dialog
+                    showDialog();
+                }
+                return false;
+            }
+        });
+
+        AutoCompleteTextView repsSelection = intakeLayout.findViewById(R.id.repsNumber);
+
+        repsSelection.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    // Hide the keyboard
+                    InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null) {
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    }
+
+                    // Create the dialog
+                    showDialog();
+                }
+                return false;
+            }
+        });
 
         intervalSelection = intakeLayout.findViewById(R.id.restSelection);
         intervalSelection.setOnTouchListener(new View.OnTouchListener() {
