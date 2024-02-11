@@ -233,6 +233,15 @@
     <string name="my_videos">I miei video</string>
     <string name="treatments">Terapie</string>
 
+    <plurals name="minute">
+        <item quantity="one">minuto</item>
+        <item quantity="other">minuti</item>
+    </plurals>
+
+    <plurals name="second">
+        <item quantity="one">secondo</item>
+        <item quantity="other">secondi</item>
+    </plurals>
 
     <string name="exercise_removed">Esercizio rimosso</string>
 </resources>

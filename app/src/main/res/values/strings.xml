@@ -527,6 +527,15 @@
 
     <string name="payments">Payments</string>
     <string name="diary">Diary</string>
+    <plurals name="minute">
+        <item quantity="one">Minute</item>
+        <item quantity="other">Minutes</item>
+    </plurals>
+
+    <plurals name="second">
+        <item quantity="one">Second</item>
+        <item quantity="other">Seconds</item>
+    </plurals>
 
     <string name="my_videos">My videos</string>
     <string name="treatments">Treatments</string>
