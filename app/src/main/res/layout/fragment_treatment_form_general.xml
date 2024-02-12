@@ -45,7 +45,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:text="@string/treatment_plan" />
+                android:text="@string/workout_plan" />
 
 
             <TextView
@@ -55,7 +55,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/treatment_goal" />
+                android:text="@string/workout_goal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -96,7 +96,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/treatment_duration" />
+                android:text="@string/workout_duration" />
 
             <TextView
                 style="@style/SubtitleText3"

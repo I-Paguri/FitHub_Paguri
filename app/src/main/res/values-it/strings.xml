@@ -215,18 +215,18 @@
     <string name="every">Ogni</string>
 
     <plurals name="days">
-        <item quantity="one">giorno</item>
-        <item quantity="other">giorni</item>
+        <item quantity="one">Giorno</item>
+        <item quantity="other">Giorni</item>
     </plurals>
 
     <plurals name="weeks">
-        <item quantity="one">settimana</item>
-        <item quantity="other">settimane</item>
+        <item quantity="one">Settimana</item>
+        <item quantity="other">Settimane</item>
     </plurals>
 
     <plurals name="months">
-        <item quantity="one">mese</item>
-        <item quantity="other">mesi</item>
+        <item quantity="one">Mese</item>
+        <item quantity="other">Mesi</item>
     </plurals>
 
     <string name="select_how_to_take_first"> Seleziona prima la modalità di assunzione </string>
@@ -309,4 +309,13 @@
 
     <string name="exercise_removed">Esercizio rimosso</string>
     <string name="no_rest">Nessun recupero</string>
+    <string name="workout_plan">Piano di allenamento</string>
+    <string name="workout_goal">Quale obiettivo vuoi raggiungere?</string>
+    <string name="workout_duration">Durata del piano di allenamento</string>
+    <string name="add_exercise">Aggiungi esercizio</string>
+    <string name="exercise_added_successfully">Esercizio aggiunto con successo</string>
+    <string name="error_occurred_exercise">Si è verificato un errore durante l\'aggiunta dell\'esercizio! Controlla la connessione e riprova.</string>
+    <string name="exercise_removed_successfully">Esercizio rimosso con successo</string>
+    <string name="add_workout_day">Aggiungi giorno di allenamento</string>
+
 </resources>

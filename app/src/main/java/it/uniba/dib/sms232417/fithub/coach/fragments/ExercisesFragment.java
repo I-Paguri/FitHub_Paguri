@@ -77,6 +77,7 @@ public class ExercisesFragment extends Fragment {
     private String patientUUID;
     private String patientName;
     private String patientAge;
+    private static int workoutDaysNumber = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -121,6 +122,11 @@ public class ExercisesFragment extends Fragment {
         intakeLabel.setText(getResources().getString(R.string.exercise) + " " + intakeCount);
 
         LinearLayout parentLayout = requireView().findViewById(R.id.linearLayoutIntake);
+
+        TextView titleText = view.findViewById(R.id.titleText);
+
+        titleText.setText(getResources().getQuantityString(R.plurals.days, 1, 1) + " " + workoutDaysNumber);
+
         AutoCompleteTextView muscleGroup = parentLayout.findViewById(R.id.muscleGroup);
         AutoCompleteTextView setsSelection = parentLayout.findViewById(R.id.setsNumber);
         AutoCompleteTextView repsSelection = parentLayout.findViewById(R.id.repsNumber);
@@ -264,6 +270,8 @@ public class ExercisesFragment extends Fragment {
                 if (validateInput()) {
                     // Get the bundle
                     Bundle bundle = setBundle();
+
+                    workoutDaysNumber++;
 
                     bundle.putString("patientName", patientName);
                     bundle.putString("patientAge", patientAge);

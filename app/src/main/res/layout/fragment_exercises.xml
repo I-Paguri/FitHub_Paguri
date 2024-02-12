@@ -42,13 +42,14 @@
                 app:spb_stateNumberForegroundColor="#eeeeee" />
 
             <TextView
+                android:id="@+id/titleText"
                 style="@style/TitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:text="@string/medications" />
+                android:text="@string/day" />
 
 
             <LinearLayout
@@ -83,9 +84,9 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="16dp"
-                    android:text="@string/add_intake"
+                    android:text="@string/add_exercise"
                     android:textAllCaps="true"
-                    app:icon="@drawable/more_time"
+                    app:icon="@drawable/add"
                     app:iconGravity="textEnd"
                     app:iconPadding="10dp" />
 
@@ -98,9 +99,9 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/add_medication"
+                    android:text="@string/add_workout_day"
                     android:textAllCaps="true"
-                    app:icon="@drawable/add"
+                    app:icon="@drawable/calendar_add"
                     app:iconGravity="textEnd"
                     tools:ignore="ButtonStyle" />
 
