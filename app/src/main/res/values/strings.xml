@@ -616,5 +616,12 @@
     <string name="workout_days">Workout days</string>
 
     <string name="muscle_group_first">Select muscle group first</string>
+    <string name="sets">Sets</string>
+    <string name="reps">Reps</string>
+
+    <plurals name="set">
+        <item quantity="one">Sets</item>
+        <item quantity="other">Sets</item>
+    </plurals>
 
 </resources>

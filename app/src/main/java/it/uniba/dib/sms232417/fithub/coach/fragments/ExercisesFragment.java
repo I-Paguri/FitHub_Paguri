@@ -3,7 +3,6 @@ package it.uniba.dib.sms232417.fithub.coach.fragments;
 import static com.google.android.material.internal.ViewUtils.hideKeyboard;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Typeface;
@@ -57,7 +56,7 @@ public class ExercisesFragment extends Fragment {
 
     private AutoCompleteTextView howRegularly;
     private AutoCompleteTextView howToTakeMedicine;
-    private int selectedMinutes;
+    private int selectedSets;
     private int selectedSeconds;
     private ArrayAdapter<String> adapterQuantity;
     // Declare an ArrayList to hold the selected weekdays
@@ -109,7 +108,7 @@ public class ExercisesFragment extends Fragment {
         validInput = false;
         treatment = null;
         medications = new ArrayList<>();
-        selectedMinutes = -1;
+        selectedSets = -1;
         selectedSeconds = -1;
 
         if (bundle != null) {
@@ -706,7 +705,7 @@ public class ExercisesFragment extends Fragment {
         if (howRegularly.getText().toString().equals(getResources().getStringArray(R.array.how_regularly_list)[1])) {
             if (!intervalSelection.getText().toString().isEmpty()) {
                 //medication.setIntervalSelectedType(mappedValues.getIntervalKey(selectedSeconds));
-                medication.setIntervalSelectedNumber(selectedMinutes);
+                medication.setIntervalSelectedNumber(selectedSets);
             }
         }
 
@@ -770,55 +769,22 @@ public class ExercisesFragment extends Fragment {
 
         // Create a TextView for the first label
         TextView label1 = new TextView(getActivity());
-        label1.setText(getResources().getQuantityString(R.plurals.minute, 2, 2)); // Set the text for the label
+        label1.setText(getResources().getString(R.string.sets)); // Set the text for the label
         label1.setGravity(Gravity.CENTER); // Center the text
         label1.setTextSize(18); // Set the text size
         label1.setTypeface(ember_bold); // Set the text style to bold
 
-        // Create layout parameters for the first label with margin end
-        LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams1.setMargins(0, 0, (int) (12 * getResources().getDisplayMetrics().density), 0); // 4dp to px
-
-        // Add the first label to the layout with layout params
-        labelLayout.addView(label1, layoutParams1);
-
-        // Create a TextView for the second label
-        TextView label2 = new TextView(getActivity());
-        label2.setText(getResources().getQuantityString(R.plurals.second, 2, 2)); // Set the text for the label
-        label2.setGravity(Gravity.CENTER); // Center the text
-        label2.setTextSize(18); // Set the text size
-        label2.setTypeface(ember_bold); // Set the text style to bold
-
-        // Create layout parameters for the second label with margin start
-        LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams2.setMargins((int) (8 * getResources().getDisplayMetrics().density), 0, 0, 0); // 4dp to px
-
-        // Add the second label to the layout with layout params
-        labelLayout.addView(label2, layoutParams2);
+        labelLayout.addView(label1); // Add the first label to the layout
 
         layout.addView(labelLayout); // Add the labelLayout to the main layout
 
         // Create the NumberPickers
-        NumberPicker numberPickerMinutes = new NumberPicker(getActivity());
-        NumberPicker numberPickerSeconds = new NumberPicker(getActivity());
+        NumberPicker numberPickerSets = new NumberPicker(getActivity());
 
-        // Set the min and max values for numberPickerMinutes
-        numberPickerMinutes.setMinValue(0);
-        numberPickerMinutes.setMaxValue(5);
+        // Set the min and max values for numberPickerSets
+        numberPickerSets.setMinValue(1);
+        numberPickerSets.setMaxValue(5);
 
-        // Set the min and max values for numberPickerSeconds
-        numberPickerSeconds.setMinValue(0);
-        numberPickerSeconds.setMaxValue(5);
-
-        // Set a formatter
-        numberPickerSeconds.setFormatter(new NumberPicker.Formatter() {
-            @Override
-            public String format(int value) {
-                return Integer.toString(value * 10);
-            }
-        });
 
         // Create layout parameters with margins
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
@@ -831,8 +797,7 @@ public class ExercisesFragment extends Fragment {
         numberPickerLayout.setGravity(Gravity.CENTER);
 
         // Add the NumberPickers to the LinearLayout
-        numberPickerLayout.addView(numberPickerMinutes, layoutParams); // Add layout params to numberPickerMinutes
-        numberPickerLayout.addView(numberPickerSeconds);
+        numberPickerLayout.addView(numberPickerSets); // Add layout params to numberPickerSets
 
         layout.addView(numberPickerLayout); // Add the numberPickerLayout to the main layout
 
@@ -842,29 +807,15 @@ public class ExercisesFragment extends Fragment {
         // Set the dialog title and buttons
         builder.setTitle(getResources().getString(R.string.what_interval)).setMessage(getResources().getString(R.string.what_interval_message))
                 .setPositiveButton("OK", (dialog, id) -> {
+
                     // User clicked OK, retrieve the selected values
-                    selectedMinutes = numberPickerMinutes.getValue();
-                    // Get the selected value from numberPickerSeconds
-                    selectedSeconds = numberPickerSeconds.getValue() * 10;
+                    selectedSets = numberPickerSets.getValue();
 
-
-                    String formattedSelectedInterval = "";
 
                     AutoCompleteTextView intervalSelection = intakeLayout.findViewById(R.id.setsNumber);
 
-                    if (selectedSeconds == 0 && selectedMinutes == 0) {
-                        intervalSelection.setText(getResources().getString(R.string.no_rest));
-                    } else {
-                        if (selectedMinutes == 0) {
-                            intervalSelection.setText(selectedSeconds + " " + getResources().getQuantityString(R.plurals.second, selectedSeconds, selectedSeconds));
-                        } else {
-                            if (selectedSeconds == 0) {
-                                intervalSelection.setText(selectedMinutes + " " + getResources().getQuantityString(R.plurals.minute, selectedMinutes, selectedMinutes));
-                            } else {
-                                intervalSelection.setText(selectedMinutes + " " + getResources().getQuantityString(R.plurals.minute, selectedMinutes, selectedMinutes) + " " + selectedSeconds + " " + getResources().getQuantityString(R.plurals.second, selectedSeconds, selectedSeconds));
-                            }
-                        }
-                    }
+
+                    intervalSelection.setText(selectedSets + " " + (getResources().getQuantityString(R.plurals.set, selectedSets, selectedSets)).toLowerCase());
                 })
                 .setNegativeButton("Cancel", (dialog, id) -> {
                     // User cancelled the dialog, do something if necessary
@@ -967,7 +918,7 @@ public class ExercisesFragment extends Fragment {
         builder.setTitle(getResources().getString(R.string.what_interval)).setMessage(getResources().getString(R.string.what_interval_message))
                 .setPositiveButton("OK", (dialog, id) -> {
                     // User clicked OK, retrieve the selected values
-                    selectedMinutes = numberPickerMinutes.getValue();
+                    selectedSets = numberPickerMinutes.getValue();
                     // Get the selected value from numberPickerSeconds
                     selectedSeconds = numberPickerSeconds.getValue() * 10;
 
@@ -976,16 +927,16 @@ public class ExercisesFragment extends Fragment {
 
                     AutoCompleteTextView intervalSelection = intakeLayout.findViewById(R.id.repsNumber);
 
-                    if (selectedSeconds == 0 && selectedMinutes == 0) {
+                    if (selectedSeconds == 0 && selectedSets == 0) {
                         intervalSelection.setText(getResources().getString(R.string.no_rest));
                     } else {
-                        if (selectedMinutes == 0) {
+                        if (selectedSets == 0) {
                             intervalSelection.setText(selectedSeconds + " " + getResources().getQuantityString(R.plurals.second, selectedSeconds, selectedSeconds));
                         } else {
                             if (selectedSeconds == 0) {
-                                intervalSelection.setText(selectedMinutes + " " + getResources().getQuantityString(R.plurals.minute, selectedMinutes, selectedMinutes));
+                                intervalSelection.setText(selectedSets + " " + getResources().getQuantityString(R.plurals.minute, selectedSets, selectedSets));
                             } else {
-                                intervalSelection.setText(selectedMinutes + " " + getResources().getQuantityString(R.plurals.minute, selectedMinutes, selectedMinutes) + " " + selectedSeconds + " " + getResources().getQuantityString(R.plurals.second, selectedSeconds, selectedSeconds));
+                                intervalSelection.setText(selectedSets + " " + getResources().getQuantityString(R.plurals.minute, selectedSets, selectedSets) + " " + selectedSeconds + " " + getResources().getQuantityString(R.plurals.second, selectedSeconds, selectedSeconds));
                             }
                         }
                     }
@@ -1091,7 +1042,7 @@ public class ExercisesFragment extends Fragment {
         builder.setTitle(getResources().getString(R.string.what_interval)).setMessage(getResources().getString(R.string.what_interval_message))
                 .setPositiveButton("OK", (dialog, id) -> {
                     // User clicked OK, retrieve the selected values
-                    selectedMinutes = numberPickerMinutes.getValue();
+                    selectedSets = numberPickerMinutes.getValue();
                     // Get the selected value from numberPickerSeconds
                     selectedSeconds = numberPickerSeconds.getValue() * 10;
 
@@ -1100,16 +1051,16 @@ public class ExercisesFragment extends Fragment {
 
                     AutoCompleteTextView intervalSelection = intakeLayout.findViewById(R.id.restSelection);
 
-                    if (selectedSeconds == 0 && selectedMinutes == 0) {
+                    if (selectedSeconds == 0 && selectedSets == 0) {
                         intervalSelection.setText(getResources().getString(R.string.no_rest));
                     } else {
-                        if (selectedMinutes == 0) {
+                        if (selectedSets == 0) {
                             intervalSelection.setText(selectedSeconds + " " + getResources().getQuantityString(R.plurals.second, selectedSeconds, selectedSeconds));
                         } else {
                             if (selectedSeconds == 0) {
-                                intervalSelection.setText(selectedMinutes + " " + getResources().getQuantityString(R.plurals.minute, selectedMinutes, selectedMinutes));
+                                intervalSelection.setText(selectedSets + " " + getResources().getQuantityString(R.plurals.minute, selectedSets, selectedSets));
                             } else {
-                                intervalSelection.setText(selectedMinutes + " " + getResources().getQuantityString(R.plurals.minute, selectedMinutes, selectedMinutes) + " " + selectedSeconds + " " + getResources().getQuantityString(R.plurals.second, selectedSeconds, selectedSeconds));
+                                intervalSelection.setText(selectedSets + " " + getResources().getQuantityString(R.plurals.minute, selectedSets, selectedSets) + " " + selectedSeconds + " " + getResources().getQuantityString(R.plurals.second, selectedSeconds, selectedSeconds));
                             }
                         }
                     }
