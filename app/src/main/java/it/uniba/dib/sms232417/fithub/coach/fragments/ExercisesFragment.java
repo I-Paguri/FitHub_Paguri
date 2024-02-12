@@ -805,7 +805,7 @@ public class ExercisesFragment extends Fragment {
         builder.setView(layout);
 
         // Set the dialog title and buttons
-        builder.setTitle(getResources().getString(R.string.what_interval)).setMessage(getResources().getString(R.string.what_interval_message))
+        builder.setTitle(getResources().getString(R.string.what_interval_sets)).setMessage(getResources().getString(R.string.what_interval_message_sets))
                 .setPositiveButton("OK", (dialog, id) -> {
 
                     // User clicked OK, retrieve the selected values
@@ -882,7 +882,7 @@ public class ExercisesFragment extends Fragment {
         builder.setView(layout);
 
         // Set the dialog title and buttons
-        builder.setTitle(getResources().getString(R.string.what_interval)).setMessage(getResources().getString(R.string.what_interval_message))
+        builder.setTitle(getResources().getString(R.string.what_interval_reps)).setMessage(getResources().getString(R.string.what_interval_message_reps))
                 .setPositiveButton("OK", (dialog, id) -> {
                     // User clicked OK, retrieve the selected values
                     selectedReps = numberPickerReps.getValue();
@@ -993,7 +993,7 @@ public class ExercisesFragment extends Fragment {
         builder.setView(layout);
 
         // Set the dialog title and buttons
-        builder.setTitle(getResources().getString(R.string.what_interval)).setMessage(getResources().getString(R.string.what_interval_message))
+        builder.setTitle(getResources().getString(R.string.what_interval_rest)).setMessage(getResources().getString(R.string.what_interval_message_rest))
                 .setPositiveButton("OK", (dialog, id) -> {
                     // User clicked OK, retrieve the selected values
                     selectedReps = numberPickerMinutes.getValue();

@@ -489,8 +489,14 @@
     </string-array>
 
     <string name="what_days_of_week">What days of the week?</string>
-    <string name="what_interval">How often this medication should be taken?</string>
-    <string name="what_interval_message">Select how much time there should be between each intake</string>
+    <string name="what_interval">How many sets?</string>
+    <string name="what_interval_message">How many sets?</string>
+    <string name="what_interval_sets">How many sets?</string>
+    <string name="what_interval_reps">How many reps?</string>
+    <string name="what_interval_rest">How much rest time?</string>
+    <string name="what_interval_message_sets">Select how many sets do you would to do?</string>
+    <string name="what_interval_message_reps">Select how many reps do you would to do?</string>
+    <string name="what_interval_message_rest">Select how much rest time?</string>
     <string name="day">day/s</string>
     <string name="week">week/s</string>
     <string name="month">month/s</string>
