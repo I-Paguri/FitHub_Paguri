@@ -3,6 +3,7 @@ package it.uniba.dib.sms232417.fithub.coach.fragments;
 import static com.google.android.material.internal.ViewUtils.hideKeyboard;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Typeface;
@@ -72,12 +73,13 @@ public class ExercisesFragment extends Fragment {
     private Treatment treatment;
 
     private ArrayList<Medication> medications;
-
     private boolean validInput;
     private String patientUUID;
     private String patientName;
     private String patientAge;
     private static int workoutDaysNumber = 1;
+    private boolean isSelectedMuscleGroup = false;
+    private boolean isSelectedExerzie = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -137,6 +139,8 @@ public class ExercisesFragment extends Fragment {
         ArrayAdapter<String> adapterMuscleGroup = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_expandable_list_item_1, muscleGroups);
         muscleGroup.setAdapter(adapterMuscleGroup);
 
+
+
         Button btnAddIntake = view.findViewById(R.id.btnAddIntake);
         btnAddIntake.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,6 +176,7 @@ public class ExercisesFragment extends Fragment {
                     exercises = getResources().getStringArray(R.array.abdominal_exercise_array);
 
                 }
+                isSelectedMuscleGroup = true;
                 TextInputLayout muscleGroupInputLayout = parentLayout.findViewById(R.id.muscleGroupInputLayout);
                 muscleGroupInputLayout.setError(null);
                 ArrayAdapter<String> adapterExercises = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_expandable_list_item_1, exercises);
@@ -179,23 +184,24 @@ public class ExercisesFragment extends Fragment {
             }
         });
 
-        exercise.setOnTouchListener(new View.OnTouchListener() {
+        exercise.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-
-                    if (muscleGroup == null || muscleGroup.getText().toString().isEmpty()) {
-                        TextInputLayout muscleGroupInputLayout = parentLayout.findViewById(R.id.muscleGroupInputLayout);
-                        muscleGroupInputLayout.setError(getResources().getString(R.string.muscle_group_first));
-                        Toast.makeText(requireActivity(), getResources().getString(R.string.muscle_group_first), Toast.LENGTH_SHORT).show();
-                    }
-                    // Hide the keyboard
-                    InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    if (imm != null) {
-                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                    }
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(!isSelectedMuscleGroup){
+                    TextInputLayout muscleGroupInputLayout = parentLayout.findViewById(R.id.muscleGroupInputLayout);
+                    muscleGroupInputLayout.setError(getResources().getString(R.string.muscle_group_first));
+                    Toast.makeText(requireActivity(), getResources().getString(R.string.muscle_group_first), Toast.LENGTH_SHORT).show();
+                }else{
+                    String selectedItem = (String) parent.getItemAtPosition(position);
+                    Log.d("Selected Exercize: ", selectedItem);
                 }
-                return false;
+            }
+        });
+
+        setsSelection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showSetsDialog(parentLayout);
             }
         });
 
@@ -347,6 +353,56 @@ public class ExercisesFragment extends Fragment {
         // Get the index of the second last view in parentLayout
         int index = parentLayout.getChildCount() - 2;
 
+        AutoCompleteTextView muscleGroup = intakeLayout.findViewById(R.id.muscleGroup);
+        AutoCompleteTextView exercise = intakeLayout.findViewById(R.id.exerciseString);
+
+        // Creare un nuovo ArrayAdapter
+        String[] muscleGroups = getResources().getStringArray(R.array.musclegroup_array);
+        ArrayAdapter<String> adapterMuscleGroup = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_expandable_list_item_1, muscleGroups);
+        muscleGroup.setAdapter(adapterMuscleGroup);
+
+        muscleGroup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String[] exercises;
+                if (position == 0) {
+                    exercises = getResources().getStringArray(R.array.chest_exercise_array);
+                } else if (position == 1) {
+                    exercises = getResources().getStringArray(R.array.back_exercise_array);
+                } else if (position == 2) {
+                    exercises = getResources().getStringArray(R.array.shoulders_exercise_array);
+                } else if (position == 3) {
+                    exercises = getResources().getStringArray(R.array.biceps_exercise_array);
+                } else if (position == 4) {
+                    exercises = getResources().getStringArray(R.array.triceps_exercise_array);
+                } else if (position == 5) {
+                    exercises = getResources().getStringArray(R.array.legs_and_glutes_exercise_array);
+                } else {
+                    exercises = getResources().getStringArray(R.array.abdominal_exercise_array);
+
+                }
+                isSelectedMuscleGroup = true;
+                TextInputLayout muscleGroupInputLayout = parentLayout.findViewById(R.id.muscleGroupInputLayout);
+                muscleGroupInputLayout.setError(null);
+                ArrayAdapter<String> adapterExercises = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_expandable_list_item_1, exercises);
+                exercise.setAdapter(adapterExercises);
+            }
+        });
+
+        exercise.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(!isSelectedMuscleGroup){
+                    TextInputLayout muscleGroupInputLayout = parentLayout.findViewById(R.id.muscleGroupInputLayout);
+                    muscleGroupInputLayout.setError(getResources().getString(R.string.muscle_group_first));
+                    Toast.makeText(requireActivity(), getResources().getString(R.string.muscle_group_first), Toast.LENGTH_SHORT).show();
+                }else{
+                    String selectedItem = (String) parent.getItemAtPosition(position);
+                    Log.d("Selected Exercize: ", selectedItem);
+                }
+            }
+        });
+
 
         // Add the new layout to the parent layout at the index of the "Add Intake" button
         parentLayout.addView(intakeLayout, index);
@@ -407,12 +463,6 @@ public class ExercisesFragment extends Fragment {
         });
 
         TextView intakeLabel = intakeLayout.findViewById(R.id.intakeLabel);
-        AutoCompleteTextView muscleGroup = intakeLayout.findViewById(R.id.muscleGroup);
-
-        // Creare un nuovo ArrayAdapter
-        String[] muscleGroups = getResources().getStringArray(R.array.musclegroup_array);
-        ArrayAdapter<String> adapterMuscleGroup = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_expandable_list_item_1, muscleGroups);
-        muscleGroup.setAdapter(adapterMuscleGroup);
 
         intakeLabel.setText(getResources().getString(R.string.exercise) + " " + intakeCount);
         // Find the close button in the layout
@@ -424,56 +474,6 @@ public class ExercisesFragment extends Fragment {
         } else {
             closeButton.setVisibility(View.VISIBLE);
         }
-
-        AutoCompleteTextView exercise = intakeLayout.findViewById(R.id.exerciseString);
-
-
-        muscleGroup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String[] excersises;
-                if (position == 0) {
-                    excersises = getResources().getStringArray(R.array.chest_exercise_array);
-                } else if (position == 1) {
-                    excersises = getResources().getStringArray(R.array.back_exercise_array);
-                } else if (position == 2) {
-                    excersises = getResources().getStringArray(R.array.shoulders_exercise_array);
-                } else if (position == 3) {
-                    excersises = getResources().getStringArray(R.array.biceps_exercise_array);
-                } else if (position == 4) {
-                    excersises = getResources().getStringArray(R.array.triceps_exercise_array);
-                } else if (position == 5) {
-                    excersises = getResources().getStringArray(R.array.legs_and_glutes_exercise_array);
-                } else {
-                    excersises = getResources().getStringArray(R.array.abdominal_exercise_array);
-
-                }
-                TextInputLayout muscleGroupInputLayout = parentLayout.findViewById(R.id.muscleGroupInputLayout);
-                muscleGroupInputLayout.setError(null);
-                ArrayAdapter<String> adapterExercises = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_expandable_list_item_1, excersises);
-                exercise.setAdapter(adapterExercises);
-            }
-        });
-
-        exercise.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-
-                    if (muscleGroup == null || muscleGroup.getText().toString().isEmpty()) {
-                        TextInputLayout muscleGroupInputLayout = intakeLayout.findViewById(R.id.muscleGroupInputLayout);
-                        muscleGroupInputLayout.setError(getResources().getString(R.string.muscle_group_first));
-                        Toast.makeText(requireActivity(), getResources().getString(R.string.muscle_group_first), Toast.LENGTH_SHORT).show();
-                    }
-                    // Hide the keyboard
-                    InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    if (imm != null) {
-                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                    }
-                }
-                return false;
-            }
-        });
 
 
         // Set a click listener on the close button
