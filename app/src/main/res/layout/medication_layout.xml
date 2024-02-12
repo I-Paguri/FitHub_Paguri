@@ -15,7 +15,7 @@
         android:layout_marginTop="2dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="0dp"
-        android:text="\u2022 Medication name" />
+        android:text="\u2022 Exercise name" />
 
 
     <TextView
@@ -26,16 +26,16 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="16dp"
-        android:text="How regularly" />
+        android:text="steps x reps" />
 
     <TextView
         android:id="@+id/intakes"
         style="@style/RegularText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:text="Quantity how to take at intake time" />
+        android:text="@string/rest_time" />
 </LinearLayout>

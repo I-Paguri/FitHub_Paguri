@@ -14,9 +14,11 @@ import java.util.Map;
 import it.uniba.dib.sms232417.fithub.R;
 import it.uniba.dib.sms232417.fithub.entity.Athlete;
 import it.uniba.dib.sms232417.fithub.entity.Treatment;
+import it.uniba.dib.sms232417.fithub.entity.WorkoutPlan;
 import it.uniba.dib.sms232417.fithub.interfaces.OnAthleteDataCallback;
 import it.uniba.dib.sms232417.fithub.interfaces.OnCountCallback;
 import it.uniba.dib.sms232417.fithub.interfaces.OnTreatmentsCallback;
+import it.uniba.dib.sms232417.fithub.interfaces.OnWorkoutPlanCallback;
 
 public class DatabaseAdapterAthlete {
 
@@ -105,18 +107,18 @@ public class DatabaseAdapterAthlete {
         mAuth.signOut();
     }
 
-    public void addTreatment(String athleteUUID, Treatment treatment, OnTreatmentsCallback onTreatmentsCallback) {
-        Log.d("AddedNewTreatment", treatment.toString());
+    public void addWorkoutPlan(String athleteUUID, WorkoutPlan workoutPlan, OnTreatmentsCallback onTreatmentsCallback) {
+        Log.d("AddedNewTreatment", workoutPlan.toString());
 
-        getTreatmentCount(athleteUUID, new OnCountCallback() {
+        getWorkoutPlanCount(athleteUUID, new OnCountCallback() {
             @Override
             public void onCallback(int count) {
-                String treatmentId = "treatment" + (count + 1);
+                String workoutPlanId = "workoutPlan" + (count + 1);
                 db.collection("athlete")
                         .document(athleteUUID)
-                        .collection("treatments")
-                        .document(treatmentId)
-                        .set(treatment)
+                        .collection("workoutPlans")
+                        .document(workoutPlanId)
+                        .set(workoutPlan)
                         .addOnSuccessListener(aVoid -> {
                             Log.d("Firestore", "Treatment successfully written!");
                             onTreatmentsCallback.onCallback(null);
@@ -135,11 +137,11 @@ public class DatabaseAdapterAthlete {
         });
     }
 
-    private void getTreatmentCount(String athleteUUID, OnCountCallback callback) {
+    private void getWorkoutPlanCount(String athleteUUID, OnCountCallback callback) {
         try {
             db.collection("athlete")
                     .document(athleteUUID)
-                    .collection("treatments")
+                    .collection("workoutPlans")
                     .get()
                     .addOnSuccessListener(queryDocumentSnapshots -> {
                         callback.onCallback(queryDocumentSnapshots.size());
@@ -153,22 +155,23 @@ public class DatabaseAdapterAthlete {
     }
 
 
-    public void getTreatments(String athleteUUID, OnTreatmentsCallback callback) {
+    public void getWorkoutPlan(String athleteUUID, OnWorkoutPlanCallback callback) {
 
         db.collection("athlete")
                 .document(athleteUUID)
-                .collection("treatments")
+                .collection("workoutPlans")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
-                    Map<String, Treatment> treatments = new HashMap<>();
+                    Map<String, WorkoutPlan> workoutPlans = new HashMap<>();
 
                     for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-                        Treatment treatment = doc.toObject(Treatment.class);
-                        String treatmentId = doc.getId(); // Get the treatmentId
+                        WorkoutPlan workoutPlan = doc.toObject(WorkoutPlan.class);
+                        String workoutPlanId = doc.getId();
 
-                        treatments.put(treatmentId, treatment); // Add the treatmentId and Treatment object to the map
+
+                        workoutPlans.put(workoutPlanId, workoutPlan); // Add the treatmentId and Treatment object to the map
                     }
-                    callback.onCallback(treatments); // Pass the map to the callback
+                    callback.onCallback(workoutPlans); // Pass the map to the callback
                 })
                 .addOnFailureListener(e -> {
                     callback.onCallbackFailed(e);

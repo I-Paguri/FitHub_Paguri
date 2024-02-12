@@ -58,7 +58,7 @@ public class TreatmentFormNotesFragment extends Fragment {
         Bundle bundle = this.getArguments();
 
         if (bundle != null) {
-            workoutPlan = bundle.getParcelable("treatment");
+            workoutPlan = bundle.getParcelable("workoutPlan");
             patientUUID = bundle.getString("patientUUID");
             patientName = bundle.getString("patientName");
             patientAge = bundle.getString("patientAge");
@@ -83,6 +83,27 @@ public class TreatmentFormNotesFragment extends Fragment {
 
                 // ADD TREATMENT TO DB
                 DatabaseAdapterAthlete dbAdapter = new DatabaseAdapterAthlete(getContext());
+                dbAdapter.addWorkoutPlan(patientUUID, workoutPlan, new OnTreatmentsCallback() {
+                            @Override
+                            public void onCallback(Map<String, Treatment> treatments) {
+                                View rootView = requireActivity().findViewById(android.R.id.content);
+                                Snackbar snackbar = Snackbar.make(rootView, getResources().getString(R.string.treatment_added_successfully), Snackbar.LENGTH_LONG);
+                                // Set the anchor view to bottom navigation view to show the snackbar above the bottom navigation view
+                                snackbar.setAnchorView(bottomNavView);
+                                snackbar.show();
+                                Log.d("TreatmentAdded", "Treatment added successfully");
+                            }
+
+                            @Override
+                            public void onCallbackFailed(Exception e) {
+                                View rootView = requireActivity().findViewById(android.R.id.content);
+                                Snackbar snackbar = Snackbar.make(rootView, getResources().getString(R.string.error_occured_treatment), Snackbar.LENGTH_LONG);
+                                // Set the anchor view to bottom navigation view to show the snackbar above the bottom navigation view
+                                snackbar.setAnchorView(bottomNavView);
+                                snackbar.show();
+                            }
+                });
+
                 /*
                 dbAdapter.addTreatment(patientUUID, workoutPlan, new OnTreatmentsCallback() {
                     @Override
@@ -99,15 +120,11 @@ public class TreatmentFormNotesFragment extends Fragment {
                     @Override
                     public void onCallbackFailed(Exception e) {
 
-                        View rootView = requireActivity().findViewById(android.R.id.content);
-                        Snackbar snackbar = Snackbar.make(rootView, getResources().getString(R.string.error_occured_treatment), Snackbar.LENGTH_LONG);
-                        // Set the anchor view to bottom navigation view to show the snackbar above the bottom navigation view
-                        snackbar.setAnchorView(bottomNavView);
-                        snackbar.show();
+
 
                     }
                 });
-                */
+
 
                 AthleteFragment athleteFragment = new AthleteFragment();
                 // Create a new bundle to pass the selected tab index
@@ -127,6 +144,8 @@ public class TreatmentFormNotesFragment extends Fragment {
 
                 //transaction.addToBackStack(null);
                 transaction.commit();
+
+                 */
             }
         });
 

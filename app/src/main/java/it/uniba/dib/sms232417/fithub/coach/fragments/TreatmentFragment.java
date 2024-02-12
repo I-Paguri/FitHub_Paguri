@@ -50,7 +50,9 @@ import it.uniba.dib.sms232417.fithub.R;
 import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterAthlete;
 import it.uniba.dib.sms232417.fithub.entity.Medication;
 import it.uniba.dib.sms232417.fithub.entity.Treatment;
+import it.uniba.dib.sms232417.fithub.entity.WorkoutPlan;
 import it.uniba.dib.sms232417.fithub.interfaces.OnTreatmentsCallback;
+import it.uniba.dib.sms232417.fithub.interfaces.OnWorkoutPlanCallback;
 import it.uniba.dib.sms232417.fithub.utilities.MappedValues;
 
 
@@ -99,7 +101,20 @@ public class TreatmentFragment extends Fragment {
             }
         }
 
-        adapter.getTreatments(patientUUID, new OnTreatmentsCallback() {
+        adapter.getWorkoutPlan(patientUUID, new OnWorkoutPlanCallback() {
+            @Override
+            public void onCallback(Map<String, WorkoutPlan> workoutPlans) {
+                Log.d("WorkoutPlan", "WorkoutPlan: " + workoutPlans.toString());
+            }
+
+            @Override
+            public void onCallbackFailed(Exception e) {
+
+            }
+        });
+
+        /*
+        adapter.getWorkoutPlan(patientUUID, new OnTreatmentsCallback() {
             @Override
             public void onCallback(Map<String, Treatment> treatments) {
                 TreatmentFragment.this.treatments = treatments;
@@ -154,6 +169,8 @@ public class TreatmentFragment extends Fragment {
                 parentLayout.addView(noTreatmentLayout);
             }
         });
+
+         */
 
 
         // register the nestedScrollView from the main layout
