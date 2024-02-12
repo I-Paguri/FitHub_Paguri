@@ -21,11 +21,12 @@ import java.util.Map;
 import it.uniba.dib.sms232417.fithub.R;
 import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterAthlete;
 import it.uniba.dib.sms232417.fithub.entity.Treatment;
+import it.uniba.dib.sms232417.fithub.entity.WorkoutPlan;
 import it.uniba.dib.sms232417.fithub.interfaces.OnTreatmentsCallback;
 
 public class TreatmentFormNotesFragment extends Fragment {
 
-    private Treatment treatment;
+    private WorkoutPlan workoutPlan;
     private String notesString;
     private String patientUUID;
     private String patientName;
@@ -53,11 +54,11 @@ public class TreatmentFormNotesFragment extends Fragment {
         patientAge = "";
         patientUUID = "";
 
-        treatment = null;
+        workoutPlan = null;
         Bundle bundle = this.getArguments();
 
         if (bundle != null) {
-            treatment = bundle.getParcelable("treatment");
+            workoutPlan = bundle.getParcelable("treatment");
             patientUUID = bundle.getString("patientUUID");
             patientName = bundle.getString("patientName");
             patientAge = bundle.getString("patientAge");
@@ -74,7 +75,7 @@ public class TreatmentFormNotesFragment extends Fragment {
                 notesString = "";
                 if (!notes.getText().toString().isEmpty()) {
                     notesString = notes.getText().toString();
-                    treatment.setNotes(notesString);
+                    workoutPlan.setNotes(notesString);
                 }
 
 
@@ -82,8 +83,8 @@ public class TreatmentFormNotesFragment extends Fragment {
 
                 // ADD TREATMENT TO DB
                 DatabaseAdapterAthlete dbAdapter = new DatabaseAdapterAthlete(getContext());
-
-                dbAdapter.addTreatment(patientUUID, treatment, new OnTreatmentsCallback() {
+                /*
+                dbAdapter.addTreatment(patientUUID, workoutPlan, new OnTreatmentsCallback() {
                     @Override
                     public void onCallback(Map<String, Treatment> treatments) {
                         View rootView = requireActivity().findViewById(android.R.id.content);
@@ -93,6 +94,7 @@ public class TreatmentFormNotesFragment extends Fragment {
                         snackbar.show();
                         Log.d("TreatmentAdded", "Treatment added successfully");
                     }
+
 
                     @Override
                     public void onCallbackFailed(Exception e) {
@@ -105,7 +107,7 @@ public class TreatmentFormNotesFragment extends Fragment {
 
                     }
                 });
-
+                */
 
                 AthleteFragment athleteFragment = new AthleteFragment();
                 // Create a new bundle to pass the selected tab index
