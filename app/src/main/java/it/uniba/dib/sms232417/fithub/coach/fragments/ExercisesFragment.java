@@ -41,44 +41,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.uniba.dib.sms232417.fithub.R;
-import it.uniba.dib.sms232417.fithub.entity.Medication;
+import it.uniba.dib.sms232417.fithub.entity.Exercise;
 import it.uniba.dib.sms232417.fithub.entity.Treatment;
+import it.uniba.dib.sms232417.fithub.entity.WorkoutPlan;
 import it.uniba.dib.sms232417.fithub.utilities.MappedValues;
 
 public class ExercisesFragment extends Fragment {
 
-    private View linearLayoutInterval;
-    private TextView subtitleInterval;
-    private View linearLayoutWeekdays;
-    private TextView subtitleWeekdays;
-    private Button btnIntakeTime;
+
     private static int intakeCount = 1;
 
-    private AutoCompleteTextView howRegularly;
-    private AutoCompleteTextView howToTakeMedicine;
     private int selectedReps;
     private int selectedSeconds;
-    private ArrayAdapter<String> adapterQuantity;
-    // Declare an ArrayList to hold the selected weekdays
     private ArrayList<WeekdaysDataItem> selectedWeekdays = new ArrayList<>();
-    private String[] quantityValues;
-    private List<String> quantityValuesList;
     private boolean isMilliliters = false;
 
-    // Received data from TreatmentFormGeneralFragment
-    private String treatmentTarget;
-    private long startDate, endDate;
-    private boolean endDateSwitch;
-    private Treatment treatment;
 
-    private ArrayList<Medication> medications;
+    private List<Exercise> exercises;
+    private WorkoutPlan workoutPlan;
+
     private boolean validInput;
     private String patientUUID;
     private String patientName;
     private String patientAge;
     private static int workoutDaysNumber = 1;
     private boolean isSelectedMuscleGroup = false;
-    private boolean isSelectedExerzie = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -106,18 +93,20 @@ public class ExercisesFragment extends Fragment {
         // Get the bundle
         Bundle bundle = this.getArguments();
         validInput = false;
-        treatment = null;
-        medications = new ArrayList<>();
+        workoutPlan = null;
         selectedReps = -1;
         selectedSeconds = -1;
 
         if (bundle != null) {
-            treatment = bundle.getParcelable("treatment");
+            workoutPlan = bundle.getParcelable("workoutPlan");
+            Log.d("WorkoutPlan (ExercisesFragment): ", workoutPlan.toString());
             patientName = bundle.getString("patientName");
             patientAge = bundle.getString("patientAge");
             patientUUID = bundle.getString("patientUUID");
         }
 
+        //Initialize the list of execises
+        exercises = new ArrayList<>();
 
         TextView intakeLabel = view.findViewById(R.id.intakeLabel);
         intakeLabel.setText(getResources().getString(R.string.exercise) + " " + intakeCount);
@@ -190,9 +179,6 @@ public class ExercisesFragment extends Fragment {
                     TextInputLayout muscleGroupInputLayout = parentLayout.findViewById(R.id.muscleGroupInputLayout);
                     muscleGroupInputLayout.setError(getResources().getString(R.string.muscle_group_first));
                     Toast.makeText(requireActivity(), getResources().getString(R.string.muscle_group_first), Toast.LENGTH_SHORT).show();
-                }else{
-                    String selectedItem = (String) parent.getItemAtPosition(position);
-                    Log.d("Selected Exercize: ", selectedItem);
                 }
             }
         });
@@ -254,7 +240,7 @@ public class ExercisesFragment extends Fragment {
                 return false;
             }
         });
-        btnIntakeTime = view.findViewById(R.id.intakeTime);
+
 
 
         Button btnContinue = requireView().findViewById(R.id.goNext);
@@ -310,11 +296,21 @@ public class ExercisesFragment extends Fragment {
                     bundle.putString("patientAge", patientAge);
                     bundle.putString("patientUUID", patientUUID);
 
+                    /*
                     TreatmentFormMedicationsFragment treatmentFormMedicationsFragment = new TreatmentFormMedicationsFragment();
                     treatmentFormMedicationsFragment.setArguments(bundle);
                     FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
                     FragmentTransaction transaction = fragmentManager.beginTransaction();
                     transaction.replace(R.id.nav_host_fragment_activity_main, treatmentFormMedicationsFragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+
+                     */
+                    ExercisesFragment exercisesFragment = new ExercisesFragment();
+                    exercisesFragment.setArguments(bundle);
+                    FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+                    transaction.replace(R.id.nav_host_fragment_activity_main, exercisesFragment);
                     transaction.addToBackStack(null);
                     transaction.commit();
                 } else {
@@ -329,7 +325,7 @@ public class ExercisesFragment extends Fragment {
             @Override
             public void handleOnBackPressed() {
                 // Handle the back button event
-                treatment.removeMedicationAtIndex(treatment.getMedications().size() - 1);
+                workoutPlan.removeExerciseAtIndex(workoutPlan.getExercises().size() - 1);
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
@@ -517,45 +513,58 @@ public class ExercisesFragment extends Fragment {
     }
 
 
-    private boolean validateInput() {
+    private boolean validateInput() {return true;
+
         setupTextWatchers();
 
-        AutoCompleteTextView medicinesList = getView().findViewById(R.id.medicines_list);
-        AutoCompleteTextView howToTakeMedicine = getView().findViewById(R.id.how_to_take_medicine);
-        AutoCompleteTextView howRegularly = getView().findViewById(R.id.how_regularly);
-        AutoCompleteTextView intervalSelection = getView().findViewById(R.id.restSelection);
+
+        AutoCompleteTextView muscleGroup = getView().findViewById(R.id.muscleGroup);
+        AutoCompleteTextView excerciseString = getView().findViewById(R.id.exerciseString);
+        AutoCompleteTextView setsNumber = getView().findViewById(R.id.setsNumber);
+        AutoCompleteTextView repsNumber = getView().findViewById(R.id.repsNumber);
+        AutoCompleteTextView restTime = getView().findViewById(R.id.restSelection)
 
         validInput = true;
 
-        if (medicinesList.getText().toString().isEmpty()) {
+        if (muscleGroup.getText().toString().isEmpty()) {
             TextInputLayout medicationsListLayout = getView().findViewById(R.id.medicationNameInputLayout);
             medicationsListLayout.setError(getResources().getString(R.string.required_field));
             validInput = false;
         }
-        if (howToTakeMedicine.getText().toString().isEmpty()) {
+        if (excerciseString.getText().toString().isEmpty()) {
             TextInputLayout howToTakeMedicineLayout = getView().findViewById(R.id.how_to_take_medicine_input_layout);
             howToTakeMedicineLayout.setError(getResources().getString(R.string.required_field));
             validInput = false;
         }
-        if (howRegularly.getText().toString().isEmpty()) {
+        if (setsNumber.getText().toString().isEmpty()) {
             TextInputLayout howRegularlyInputLayout = getView().findViewById(R.id.how_regularly_input_layout);
             howRegularlyInputLayout.setError(getResources().getString(R.string.required_field));
             validInput = false;
         } else {
-            if (howRegularly.getText().toString().equals(getResources().getStringArray(R.array.how_regularly_list)[1])) {
-                if (intervalSelection.getText().toString().isEmpty()) {
+            if (setsNumber.getText().toString().equals(getResources().getStringArray(R.array.how_regularly_list)[1])) {
+                if (restTime.getText().toString().isEmpty()) {
                     TextInputLayout intervalSelectionInputLayout = getView().findViewById(R.id.intervalSelectionInputLayout);
                     intervalSelectionInputLayout.setError(getResources().getString(R.string.required_field));
                     validInput = false;
                 }
             } else {
-                if (howRegularly.getText().toString().equals(getResources().getStringArray(R.array.how_regularly_list)[2])) {
+                if (setsNumber.getText().toString().equals(getResources().getStringArray(R.array.how_regularly_list)[2])) {
                     if (selectedWeekdays.isEmpty()) {
                         // Assuming you have a TextView to display this error
                         Toast.makeText(requireActivity(), getResources().getString(R.string.select_weekdays), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
+        }
+        if (repsNumber.getText().toString().isEmpty()){
+            TextInputLayout howRegularlyInputLayout = getView().findViewById(R.id.how_regularly_input_layout);
+            howRegularlyInputLayout.setError(getResources().getString(R.string.required_field));
+            validInput = false;
+        }
+        if (restTime.getText().toString().isEmpty()) {
+            TextInputLayout intervalSelectionInputLayout = getView().findViewById(R.id.intervalSelectionInputLayout);
+            intervalSelectionInputLayout.setError(getResources().getString(R.string.required_field));
+            validInput = false;
         }
 
         // Get the parent layout
@@ -598,10 +607,11 @@ public class ExercisesFragment extends Fragment {
     }
 
     private void setupTextWatchers() {
-        AutoCompleteTextView medicinesList = getView().findViewById(R.id.medicines_list);
-        AutoCompleteTextView howToTakeMedicine = getView().findViewById(R.id.how_to_take_medicine);
-        AutoCompleteTextView howRegularly = getView().findViewById(R.id.how_regularly);
-        AutoCompleteTextView intervalSelection = getView().findViewById(R.id.restSelection);
+        AutoCompleteTextView muscleGroup = getView().findViewById(R.id.muscleGroup);
+        AutoCompleteTextView exerciseString = getView().findViewById(R.id.exerciseString);
+        AutoCompleteTextView setsNumber = getView().findViewById(R.id.setsNumber);
+        AutoCompleteTextView repsNumber = getView().findViewById(R.id.repsNumber);
+        AutoCompleteTextView restSelection = getView().findViewById(R.id.restSelection);
 
         // Create a TextWatcher
         TextWatcher textWatcher = new TextWatcher() {
@@ -628,15 +638,16 @@ public class ExercisesFragment extends Fragment {
         };
 
         // Add the TextWatcher to your AutoCompleteTextViews
-        medicinesList.addTextChangedListener(textWatcher);
-        howToTakeMedicine.addTextChangedListener(textWatcher);
-        howRegularly.addTextChangedListener(textWatcher);
-        intervalSelection.addTextChangedListener(textWatcher);
+        muscleGroup.addTextChangedListener(textWatcher);
+        exerciseString.addTextChangedListener(textWatcher);
+        setsNumber.addTextChangedListener(textWatcher);
+        restSelection.addTextChangedListener(textWatcher);
 
         // Get the parent layout
         LinearLayout parentLayout = requireView().findViewById(R.id.parentLinearLayout);
 
         // Iterate over all the child views of the parent layout
+        /*
         for (int i = 0; i < parentLayout.getChildCount(); i++) {
             View childView = parentLayout.getChildAt(i);
 
@@ -657,34 +668,33 @@ public class ExercisesFragment extends Fragment {
             }
         }
 
+         */
+
     }
 
     private Bundle setBundle() {
         Bundle bundle = new Bundle();
         MappedValues mappedValues = new MappedValues(requireActivity());
 
-        String medicationNameString, howToTakeString, howRegularlyString, intervalSelected;
-        medicationNameString = "";
-        howToTakeString = "";
-        howRegularlyString = "";
-        intervalSelected = "";
+        String name_exercise = "";
+        String muscleGroup_exercise ="";
+        String reps_exercise="";
+        int sets_exercise=0;
+        String rest_exercise="";
 
-        AutoCompleteTextView medicinesList = requireView().findViewById(R.id.medicines_list);
-        AutoCompleteTextView howToTakeMedicine = requireView().findViewById(R.id.how_to_take_medicine);
-        AutoCompleteTextView howRegularly = requireView().findViewById(R.id.how_regularly);
-        AutoCompleteTextView intervalSelection = requireView().findViewById(R.id.restSelection);
+        AutoCompleteTextView muscleGroup = requireView().findViewById(R.id.muscleGroup);
+        AutoCompleteTextView exerciseName = requireView().findViewById(R.id.exerciseString);
+        AutoCompleteTextView numberSet= requireView().findViewById(R.id.setsNumber);
+        AutoCompleteTextView numberRep = requireView().findViewById(R.id.repsNumber);
+        AutoCompleteTextView restTime = requireView().findViewById(R.id.restSelection);
 
-        if (!medicinesList.getText().toString().isEmpty()) {
-            medicationNameString = medicinesList.getText().toString();
+        if (!muscleGroup.getText().toString().isEmpty()) {
+            muscleGroup_exercise = muscleGroup.getText().toString();
         }
 
-        if (!howToTakeMedicine.getText().toString().isEmpty()) {
-            howToTakeString = howToTakeMedicine.getText().toString();
 
-        }
-
-        if (!howRegularly.getText().toString().isEmpty()) {
-            howRegularlyString = howRegularly.getText().toString();
+        if (!exerciseName.getText().toString().isEmpty()) {
+            name_exercise = exerciseName.getText().toString();
 
             /*
             if (howRegularly.getText().toString().equals(getResources().getStringArray(R.array.how_regularly_list)[1])) {
@@ -694,10 +704,21 @@ public class ExercisesFragment extends Fragment {
             }
              */
         }
+        if(!numberSet.getText().toString().isEmpty()){
+            sets_exercise = Integer.parseInt(numberSet.getText().toString());
+        }
+        if(!numberRep.getText().toString().isEmpty()){
+            reps_exercise = numberRep.getText().toString();
+        }
+        if(!restTime.getText().toString().isEmpty()){
+            rest_exercise = restTime.getText().toString();
+        }
 
 
-        Medication medication = new Medication(medicationNameString, mappedValues.getHowToTakeKey(howToTakeString), mappedValues.getHowRegularlyKey(howRegularlyString), selectedWeekdays);
+        //Medication medication = new Medication(medicationNameString, mappedValues.getHowToTakeKey(howToTakeString), mappedValues.getHowRegularlyKey(howRegularlyString), selectedWeekdays);
 
+        Exercise exercise = new Exercise(name_exercise, muscleGroup_exercise, reps_exercise, sets_exercise, rest_exercise);
+        /*
         medication.setSelectedWeekdays(selectedWeekdays);
         medication.setSelectedWeekdaysString(medication.convertWeekdaysToString());
         Log.d("SelectedWeekdaysString (TreatmentFormMedication): ", medication.getSelectedWeekdaysString());
@@ -708,6 +729,8 @@ public class ExercisesFragment extends Fragment {
                 medication.setIntervalSelectedNumber(selectedReps);
             }
         }
+
+
 
         // Get the parent layout
         LinearLayout parentLayout = requireView().findViewById(R.id.parentLinearLayout);
@@ -741,12 +764,12 @@ public class ExercisesFragment extends Fragment {
                 }
 
             }
-        }
+        } */
+        workoutPlan.addExercise(exercise);
 
-        treatment.addMedication(medication);
 
-        bundle.putParcelable("treatment", treatment);
-
+        bundle.putParcelable("workoutPlan", workoutPlan);
+        Log.d("WorkoutPlan (ExercisesFragment): ", workoutPlan.toString());
         return bundle;
     }
 
@@ -813,7 +836,6 @@ public class ExercisesFragment extends Fragment {
 
 
                     AutoCompleteTextView intervalSelection = intakeLayout.findViewById(R.id.setsNumber);
-
 
                     intervalSelection.setText(selectedReps + " " + (getResources().getQuantityString(R.plurals.set, selectedReps, selectedReps)).toLowerCase());
                 })

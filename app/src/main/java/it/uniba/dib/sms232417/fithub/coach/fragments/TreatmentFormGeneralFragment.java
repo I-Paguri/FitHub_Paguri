@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,7 @@ import java.util.Locale;
 
 import it.uniba.dib.sms232417.fithub.R;
 import it.uniba.dib.sms232417.fithub.entity.Treatment;
+import it.uniba.dib.sms232417.fithub.entity.WorkoutPlan;
 
 public class TreatmentFormGeneralFragment extends Fragment {
 
@@ -59,7 +61,8 @@ public class TreatmentFormGeneralFragment extends Fragment {
     private Toolbar toolbar;
     private String[] descriptionData;
 
-    private Treatment treatment;
+   // private Treatment treatment;
+    private WorkoutPlan workoutPlan;
     private String patientUUID;
     private String patientName;
     private String patientAge;
@@ -432,9 +435,11 @@ public class TreatmentFormGeneralFragment extends Fragment {
 
         String treatmentTargetString = treatmentTarget.getText().toString();
 
-        treatment = new Treatment(treatmentTargetString, startDate, endDate);
+        workoutPlan = new WorkoutPlan(treatmentTargetString, startDate, endDate);
 
-        bundle.putParcelable("treatment", treatment);
+
+        bundle.putParcelable("workoutPlan", workoutPlan);
+        Log.d("workoutPlan_primo", workoutPlan.toString());
 
         return bundle;
     }
