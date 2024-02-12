@@ -319,4 +319,5 @@
     <string name="add_workout_day">Aggiungi giorno di allenamento</string>
     <string name="workout_days">Giorni di allenamento</string>
 
+    <string name="muscle_group_first">Seleziona il gruppo muscolare prima</string>
 </resources>

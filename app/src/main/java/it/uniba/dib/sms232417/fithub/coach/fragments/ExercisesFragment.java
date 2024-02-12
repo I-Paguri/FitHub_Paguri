@@ -146,29 +146,49 @@ public class ExercisesFragment extends Fragment {
             }
         });
 
+        AutoCompleteTextView exercise = parentLayout.findViewById(R.id.exerciseString);
         muscleGroup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String[] excersises;
+                String[] exercises;
                 if (position == 0) {
-                    excersises = getResources().getStringArray(R.array.chest_exercise_array);
+                    exercises = getResources().getStringArray(R.array.chest_exercise_array);
                 } else if (position == 1) {
-                    excersises = getResources().getStringArray(R.array.back_exercise_array);
+                    exercises = getResources().getStringArray(R.array.back_exercise_array);
                 } else if (position == 2) {
-                    excersises = getResources().getStringArray(R.array.shoulders_exercise_array);
+                    exercises = getResources().getStringArray(R.array.shoulders_exercise_array);
                 } else if (position == 3) {
-                    excersises = getResources().getStringArray(R.array.biceps_exercise_array);
+                    exercises = getResources().getStringArray(R.array.biceps_exercise_array);
                 } else if (position == 4) {
-                    excersises = getResources().getStringArray(R.array.triceps_exercise_array);
+                    exercises = getResources().getStringArray(R.array.triceps_exercise_array);
                 } else if (position == 5) {
-                    excersises = getResources().getStringArray(R.array.legs_and_glutes_exercise_array);
+                    exercises = getResources().getStringArray(R.array.legs_and_glutes_exercise_array);
                 } else {
-                    excersises = getResources().getStringArray(R.array.abdominal_exercise_array);
+                    exercises = getResources().getStringArray(R.array.abdominal_exercise_array);
 
                 }
-                ArrayAdapter<String> adapterExercises = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_expandable_list_item_1, excersises);
-                AutoCompleteTextView exercise = parentLayout.findViewById(R.id.exerciseString);
+                ArrayAdapter<String> adapterExercises = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_expandable_list_item_1, exercises);
                 exercise.setAdapter(adapterExercises);
+            }
+        });
+
+        exercise.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+
+                    if (muscleGroup == null || muscleGroup.getText().toString().isEmpty()) {
+                        TextInputLayout muscleGroupInputLayout = parentLayout.findViewById(R.id.muscleGroupInputLayout);
+                        muscleGroupInputLayout.setError(getResources().getString(R.string.muscle_group_first));
+                        Toast.makeText(requireActivity(), getResources().getString(R.string.muscle_group_first), Toast.LENGTH_SHORT).show();
+                    }
+                    // Hide the keyboard
+                    InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null) {
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    }
+                }
+                return false;
             }
         });
 
@@ -188,6 +208,7 @@ public class ExercisesFragment extends Fragment {
                 return false;
             }
         });
+
         repsSelection.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -397,6 +418,7 @@ public class ExercisesFragment extends Fragment {
             closeButton.setVisibility(View.VISIBLE);
         }
 
+        AutoCompleteTextView exercise = intakeLayout.findViewById(R.id.exerciseString);
         muscleGroup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -418,10 +440,31 @@ public class ExercisesFragment extends Fragment {
 
                 }
                 ArrayAdapter<String> adapterExercises = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_expandable_list_item_1, excersises);
-                AutoCompleteTextView exercise = intakeLayout.findViewById(R.id.exerciseString);
                 exercise.setAdapter(adapterExercises);
             }
         });
+
+        exercise.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+
+                    if (muscleGroup == null || muscleGroup.getText().toString().isEmpty()) {
+                        TextInputLayout muscleGroupInputLayout = intakeLayout.findViewById(R.id.muscleGroupInputLayout);
+                        muscleGroupInputLayout.setError(getResources().getString(R.string.muscle_group_first));
+                        Toast.makeText(requireActivity(), getResources().getString(R.string.muscle_group_first), Toast.LENGTH_SHORT).show();
+                    }
+                    // Hide the keyboard
+                    InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null) {
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    }
+                }
+                return false;
+            }
+        });
+
+
         // Set a click listener on the close button
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override

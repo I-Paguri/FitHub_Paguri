@@ -615,4 +615,6 @@
     <string name="add_workout_day">Add workout day</string>
     <string name="workout_days">Workout days</string>
 
+    <string name="muscle_group_first">Select muscle group first</string>
+
 </resources>
