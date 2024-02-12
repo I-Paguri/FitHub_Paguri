@@ -68,7 +68,7 @@
         android:layout_marginEnd="16dp"
         android:hint="@string/select"
         app:startIconContentDescription="Goal"
-        app:startIconDrawable="@drawable/scale">
+        app:startIconDrawable="@drawable/body">
 
         <AutoCompleteTextView
             android:id="@+id/muscleGroup"
@@ -112,7 +112,7 @@
             android:layout_weight="1"
             android:hint="@string/select"
             app:startIconContentDescription="Goal"
-            app:startIconDrawable="@drawable/scale">
+            app:startIconDrawable="@drawable/exercise">
 
             <AutoCompleteTextView
                 android:id="@+id/exerciseString"
@@ -157,7 +157,7 @@
             android:layout_weight="1"
             android:hint="@string/select"
             app:startIconContentDescription="Goal"
-            app:startIconDrawable="@drawable/event_repeat">
+            app:startIconDrawable="@drawable/sets">
 
             <AutoCompleteTextView
                 android:id="@+id/setsNumber"
@@ -204,7 +204,7 @@
             android:layout_weight="1"
             android:hint="@string/select"
             app:startIconContentDescription="Goal"
-            app:startIconDrawable="@drawable/event_repeat">
+            app:startIconDrawable="@drawable/repeat">
 
             <AutoCompleteTextView
                 android:id="@+id/repsNumber"
@@ -251,7 +251,7 @@
             android:layout_weight="1"
             android:hint="@string/select"
             app:startIconContentDescription="Goal"
-            app:startIconDrawable="@drawable/event_repeat">
+            app:startIconDrawable="@drawable/timer">
 
             <AutoCompleteTextView
                 android:id="@+id/restSelection"
