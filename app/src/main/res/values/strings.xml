@@ -613,5 +613,6 @@
     <string name="error_occurred_exercise">An error occurred while adding the exercise. Check your network and try again.</string>
     <string name="exercise_removed_successfully">Exercise removed successfully</string>
     <string name="add_workout_day">Add workout day</string>
+    <string name="workout_days">Workout days</string>
 
 </resources>

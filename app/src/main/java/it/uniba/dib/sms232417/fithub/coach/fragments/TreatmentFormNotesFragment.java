@@ -34,7 +34,7 @@ public class TreatmentFormNotesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        String[] descriptionData = new String[]{getResources().getString(R.string.planning), getResources().getString(R.string.medications), getResources().getString(R.string.notes)};
+        String[] descriptionData = new String[]{getResources().getString(R.string.planning), getResources().getString(R.string.workout_days), getResources().getString(R.string.notes)};
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_treatment_form_notes, container, false);

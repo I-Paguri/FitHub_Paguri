@@ -317,5 +317,6 @@
     <string name="error_occurred_exercise">Si è verificato un errore durante l\'aggiunta dell\'esercizio! Controlla la connessione e riprova.</string>
     <string name="exercise_removed_successfully">Esercizio rimosso con successo</string>
     <string name="add_workout_day">Aggiungi giorno di allenamento</string>
+    <string name="workout_days">Giorni di allenamento</string>
 
 </resources>

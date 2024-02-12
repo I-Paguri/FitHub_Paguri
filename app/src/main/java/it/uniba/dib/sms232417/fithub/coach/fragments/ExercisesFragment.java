@@ -85,7 +85,7 @@ public class ExercisesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_exercises, container, false);
 
-        String[] descriptionData = new String[]{getResources().getString(R.string.planning), getResources().getString(R.string.medications), getResources().getString(R.string.notes)};
+        String[] descriptionData = new String[]{getResources().getString(R.string.planning), getResources().getString(R.string.workout_days), getResources().getString(R.string.notes)};
 
         StateProgressBar stateProgressBar = view.findViewById(R.id.state_progress_bar);
         stateProgressBar.setStateDescriptionData(descriptionData);

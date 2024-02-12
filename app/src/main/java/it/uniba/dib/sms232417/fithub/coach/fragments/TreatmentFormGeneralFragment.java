@@ -140,7 +140,7 @@ public class TreatmentFormGeneralFragment extends Fragment {
         btnEndDate.setStrokeColor(ColorStateList.valueOf(textInputLayout.getBoxStrokeColor()));
         btnEndDate.setStrokeWidth(textInputLayout.getBoxStrokeWidth());
 
-        descriptionData = new String[]{getResources().getString(R.string.planning), getResources().getString(R.string.medications), getResources().getString(R.string.notes)};
+        descriptionData = new String[]{getResources().getString(R.string.planning), getResources().getString(R.string.workout_days), getResources().getString(R.string.notes)};
 
         StateProgressBar stateProgressBar = (StateProgressBar) constraintLayout.findViewById(R.id.state_progress_bar);
         stateProgressBar.setStateDescriptionData(descriptionData);
