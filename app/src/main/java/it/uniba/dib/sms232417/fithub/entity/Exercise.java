@@ -10,12 +10,12 @@ public class Exercise implements Parcelable {
     private String name;
     private String muscleGroup;
     private String reps;
-    private int sets;
+    private String sets;
     private String rest;
 
     public Exercise() {
     }
-    public Exercise(String name, String muscleGroup, String reps, int sets, String rest) {
+    public Exercise(String name, String muscleGroup, String reps, String sets, String rest) {
         this.name = name;
         this.muscleGroup = muscleGroup;
         this.reps = reps;
@@ -27,7 +27,7 @@ public class Exercise implements Parcelable {
         name = in.readString();
         muscleGroup = in.readString();
         reps = in.readString();
-        sets = in.readInt();
+        sets = in.readString();
         rest = in.readString();
     }
 
@@ -67,11 +67,11 @@ public class Exercise implements Parcelable {
         this.reps = reps;
     }
 
-    public int getSets() {
+    public String getSets() {
         return sets;
     }
 
-    public void setSets(int sets) {
+    public void setSets(String sets) {
         this.sets = sets;
     }
 
@@ -105,7 +105,7 @@ public class Exercise implements Parcelable {
         dest.writeString(name);
         dest.writeString(muscleGroup);
         dest.writeString(reps);
-        dest.writeInt(sets);
+        dest.writeString(sets);
         dest.writeString(rest);
     }
 }

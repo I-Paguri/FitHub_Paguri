@@ -513,7 +513,7 @@ public class ExercisesFragment extends Fragment {
     }
 
 
-    private boolean validateInput() {return true;
+    private boolean validateInput() {
 
         setupTextWatchers();
 
@@ -522,50 +522,39 @@ public class ExercisesFragment extends Fragment {
         AutoCompleteTextView excerciseString = getView().findViewById(R.id.exerciseString);
         AutoCompleteTextView setsNumber = getView().findViewById(R.id.setsNumber);
         AutoCompleteTextView repsNumber = getView().findViewById(R.id.repsNumber);
-        AutoCompleteTextView restTime = getView().findViewById(R.id.restSelection)
+        AutoCompleteTextView restTime = getView().findViewById(R.id.restSelection);
 
         validInput = true;
 
         if (muscleGroup.getText().toString().isEmpty()) {
-            TextInputLayout medicationsListLayout = getView().findViewById(R.id.medicationNameInputLayout);
-            medicationsListLayout.setError(getResources().getString(R.string.required_field));
+            TextInputLayout muscleGroupInputLayout = getView().findViewById(R.id.muscleGroupInputLayout);
+            muscleGroupInputLayout.setError(getResources().getString(R.string.required_field));
             validInput = false;
         }
         if (excerciseString.getText().toString().isEmpty()) {
-            TextInputLayout howToTakeMedicineLayout = getView().findViewById(R.id.how_to_take_medicine_input_layout);
-            howToTakeMedicineLayout.setError(getResources().getString(R.string.required_field));
+            TextInputLayout exerciseInputLayout = getView().findViewById(R.id.exerciseInputLayout);
+            exerciseInputLayout.setError(getResources().getString(R.string.required_field));
             validInput = false;
         }
         if (setsNumber.getText().toString().isEmpty()) {
-            TextInputLayout howRegularlyInputLayout = getView().findViewById(R.id.how_regularly_input_layout);
-            howRegularlyInputLayout.setError(getResources().getString(R.string.required_field));
+            TextInputLayout setsInputLayout = getView().findViewById(R.id.setsInputLayout);
+            setsInputLayout.setError(getResources().getString(R.string.required_field));
             validInput = false;
-        } else {
-            if (setsNumber.getText().toString().equals(getResources().getStringArray(R.array.how_regularly_list)[1])) {
-                if (restTime.getText().toString().isEmpty()) {
-                    TextInputLayout intervalSelectionInputLayout = getView().findViewById(R.id.intervalSelectionInputLayout);
-                    intervalSelectionInputLayout.setError(getResources().getString(R.string.required_field));
-                    validInput = false;
-                }
-            } else {
-                if (setsNumber.getText().toString().equals(getResources().getStringArray(R.array.how_regularly_list)[2])) {
-                    if (selectedWeekdays.isEmpty()) {
-                        // Assuming you have a TextView to display this error
-                        Toast.makeText(requireActivity(), getResources().getString(R.string.select_weekdays), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
         }
+
         if (repsNumber.getText().toString().isEmpty()){
-            TextInputLayout howRegularlyInputLayout = getView().findViewById(R.id.how_regularly_input_layout);
-            howRegularlyInputLayout.setError(getResources().getString(R.string.required_field));
+            TextInputLayout repsInputLayout = getView().findViewById(R.id.repsInputLayout);
+            repsInputLayout.setError(getResources().getString(R.string.required_field));
             validInput = false;
         }
+
         if (restTime.getText().toString().isEmpty()) {
-            TextInputLayout intervalSelectionInputLayout = getView().findViewById(R.id.intervalSelectionInputLayout);
-            intervalSelectionInputLayout.setError(getResources().getString(R.string.required_field));
+            TextInputLayout restInputLayout = getView().findViewById(R.id.restInputLayout);
+            restInputLayout.setError(getResources().getString(R.string.required_field));
             validInput = false;
         }
+
+        /*
 
         // Get the parent layout
         LinearLayout parentLayout = requireView().findViewById(R.id.parentLinearLayout);
@@ -602,7 +591,7 @@ public class ExercisesFragment extends Fragment {
                 }
             }
         }
-
+        */
         return validInput;
     }
 
@@ -642,9 +631,10 @@ public class ExercisesFragment extends Fragment {
         exerciseString.addTextChangedListener(textWatcher);
         setsNumber.addTextChangedListener(textWatcher);
         restSelection.addTextChangedListener(textWatcher);
+        repsNumber.addTextChangedListener(textWatcher);
 
         // Get the parent layout
-        LinearLayout parentLayout = requireView().findViewById(R.id.parentLinearLayout);
+        //LinearLayout parentLayout = requireView().findViewById(R.id.parentLinearLayout);
 
         // Iterate over all the child views of the parent layout
         /*
@@ -679,7 +669,7 @@ public class ExercisesFragment extends Fragment {
         String name_exercise = "";
         String muscleGroup_exercise ="";
         String reps_exercise="";
-        int sets_exercise=0;
+        String sets_exercise = "";
         String rest_exercise="";
 
         AutoCompleteTextView muscleGroup = requireView().findViewById(R.id.muscleGroup);
@@ -705,7 +695,7 @@ public class ExercisesFragment extends Fragment {
              */
         }
         if(!numberSet.getText().toString().isEmpty()){
-            sets_exercise = Integer.parseInt(numberSet.getText().toString());
+            sets_exercise = numberSet.getText().toString();
         }
         if(!numberRep.getText().toString().isEmpty()){
             reps_exercise = numberRep.getText().toString();
