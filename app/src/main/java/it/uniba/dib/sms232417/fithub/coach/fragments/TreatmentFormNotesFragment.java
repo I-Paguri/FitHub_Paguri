@@ -59,6 +59,7 @@ public class TreatmentFormNotesFragment extends Fragment {
 
         if (bundle != null) {
             workoutPlan = bundle.getParcelable("workoutPlan");
+            Log.d("WorkoutPlan_Note", workoutPlan.toString());
             patientUUID = bundle.getString("patientUUID");
             patientName = bundle.getString("patientName");
             patientAge = bundle.getString("patientAge");

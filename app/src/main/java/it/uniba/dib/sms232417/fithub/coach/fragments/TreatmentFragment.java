@@ -1,6 +1,5 @@
 package it.uniba.dib.sms232417.fithub.coach.fragments;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,8 +14,6 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.widget.NestedScrollView;
@@ -48,10 +45,10 @@ import java.util.Map;
 
 import it.uniba.dib.sms232417.fithub.R;
 import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterAthlete;
+import it.uniba.dib.sms232417.fithub.entity.Exercise;
 import it.uniba.dib.sms232417.fithub.entity.Medication;
 import it.uniba.dib.sms232417.fithub.entity.Treatment;
 import it.uniba.dib.sms232417.fithub.entity.WorkoutPlan;
-import it.uniba.dib.sms232417.fithub.interfaces.OnTreatmentsCallback;
 import it.uniba.dib.sms232417.fithub.interfaces.OnWorkoutPlanCallback;
 import it.uniba.dib.sms232417.fithub.utilities.MappedValues;
 
@@ -65,6 +62,7 @@ public class TreatmentFragment extends Fragment {
     private ExtendedFloatingActionButton fab;
     private FloatingActionButton share;
     private Map<String, Treatment> treatments;
+    private Map<String, WorkoutPlan> exercises;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -105,6 +103,48 @@ public class TreatmentFragment extends Fragment {
             @Override
             public void onCallback(Map<String, WorkoutPlan> workoutPlans) {
                 Log.d("WorkoutPlan", "WorkoutPlan: " + workoutPlans.toString());
+                TreatmentFragment.this.exercises = workoutPlans;
+
+                if (workoutPlans == null || workoutPlans.isEmpty()) {
+                    LayoutInflater inflater = (LayoutInflater) requireActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    View noTreatmentLayout = inflater.inflate(R.layout.no_treatments_found_layout, null);
+                    // Add the inflated layout to the parent layout
+                    LinearLayout parentLayout = view.findViewById(R.id.linearLayoutCardView);
+                    parentLayout.addView(noTreatmentLayout);
+                } else {
+                    Iterator<Map.Entry<String, WorkoutPlan>> iterator = workoutPlans.entrySet().iterator();
+                    while (iterator.hasNext()) {
+                        Map.Entry<String, WorkoutPlan> entry = iterator.next();
+                        String workoutPlanID = entry.getKey();
+                        WorkoutPlan workoutPlan = entry.getValue();
+
+                        // Add the treatment to the parent layout
+                        // Check if it is the last treatment
+                        // if it is last treatment then a bottom margin of 85dp is added to the last treatment layout
+                        addTreatmentCardView(workoutPlanID, workoutPlan, !iterator.hasNext());
+                    }
+                    /*
+                    share.show();
+
+                    // Set the OnClickListener for the share button here
+
+                    share.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // Check if the application has the WRITE_EXTERNAL_STORAGE and READ_EXTERNAL_STORAGE permissions
+                            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                                    && ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                                // If the application has the permissions, call the createAndSharePdf method
+                                createAndSharePdf(treatments);
+                            } else {
+                                // If the application does not have the permissions, request them from the user
+                                ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 101);
+                            }
+                        }
+                    });ù
+                        */
+                }
+
             }
 
             @Override
@@ -114,6 +154,7 @@ public class TreatmentFragment extends Fragment {
         });
 
         /*
+
         adapter.getWorkoutPlan(patientUUID, new OnTreatmentsCallback() {
             @Override
             public void onCallback(Map<String, Treatment> treatments) {
@@ -137,7 +178,7 @@ public class TreatmentFragment extends Fragment {
                         // if it is last treatment then a bottom margin of 85dp is added to the last treatment layout
                         addTreatmentCardView(treatmentId, treatment, !iterator.hasNext());
                     }
-
+                    /*
                     share.show();
 
                     // Set the OnClickListener for the share button here
@@ -155,7 +196,8 @@ public class TreatmentFragment extends Fragment {
                                 ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 101);
                             }
                         }
-                    });
+                    });ù
+
                 }
             }
 
@@ -171,6 +213,8 @@ public class TreatmentFragment extends Fragment {
         });
 
          */
+
+
 
 
         // register the nestedScrollView from the main layout
@@ -241,11 +285,12 @@ public class TreatmentFragment extends Fragment {
     }
 
 
-    protected void addTreatmentCardView(String treatmentId, Treatment treatment, boolean isLast) {
-        String treatmentTarget, notes;
+    protected void addTreatmentCardView(String treatmentId, WorkoutPlan workoutPlan, boolean isLast) {
+        String workoutPlanTarget, notes;
         int i;
-        ArrayList<Medication> medications;
-        Medication medication;
+        ArrayList<Exercise> exercises;
+        Exercise exercise;
+
 
         LayoutInflater inflater = (LayoutInflater) requireActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         @SuppressLint("InflateParams")
@@ -267,31 +312,32 @@ public class TreatmentFragment extends Fragment {
         // Get the parent layout
         LinearLayout parentLayout = requireView().findViewById(R.id.linearLayoutCardView);
 
-        // TREATMENT TARGET
-        treatmentTarget = treatment.getTreatmentTarget();
+        // TREATMENT TARGET -> Workout Plan targert
+        workoutPlanTarget = workoutPlan.getWorkoutTarget();
         TextView treatmentTargetText = treatmentLayout.findViewById(R.id.treatmentTarget);
-        treatmentTargetText.setText(treatmentTarget);
+        treatmentTargetText.setText(workoutPlanTarget);
 
         // DATE
         TextView dateText = treatmentLayout.findViewById(R.id.dateText);
-        if (treatment.getEndDateString().equals("")) {
-            dateText.setText(treatment.getStartDateString() + " - " + getResources().getString(R.string.ongoing));
+        if (workoutPlan.getEndDateString().equals("")) {
+            dateText.setText(workoutPlan.getStartDateString() + " - " + getResources().getString(R.string.ongoing));
         } else {
-            dateText.setText(treatment.getStartDateString() + " - " + treatment.getEndDateString());
+            dateText.setText(workoutPlan.getStartDateString() + " - " + workoutPlan.getEndDateString());
         }
 
         // MEDICATIONS
         LinearLayout medicationsLayout = treatmentLayout.findViewById(R.id.linearLayoutMedications);
-        medications = treatment.getMedications();
-        for (i = 0; i < medications.size(); i++) {
-            medication = medications.get(i);
-            medicationsLayout.addView(getMedicationLayout(medication));
+        exercises = workoutPlan.getExercises(); //getExerciseList();
+        for (i = 0; i < exercises.size(); i++) {
+            exercise = exercises.get(i);
+            medicationsLayout.addView(getMedicationLayout(exercise));
+            Log.d("Exercise "+ i, "Exercise: " + exercise.toString());
         }
 
         parentLayout.addView(treatmentLayout);
 
         // NOTES
-        notes = treatment.getNotes();
+        notes = workoutPlan.getNotes();
         if (notes == null || notes.equals("")) {
             LinearLayout linearLayoutNotes = treatmentLayout.findViewById(R.id.linearLayoutNotes);
             linearLayoutNotes.setVisibility(View.GONE);
@@ -365,50 +411,55 @@ public class TreatmentFragment extends Fragment {
         }
     }
 
-    protected View getMedicationLayout(Medication medication) {
+    protected View getMedicationLayout(Exercise exercise) {
         MappedValues mappedValues = new MappedValues(requireContext());
-        String medicationName, howToTake, howRegularly;
+        String muscleGroup, nameExercise, numSets, numReps, restTime;
         ArrayList<WeekdaysDataItem> selectedWeekdays;
 
 
-        medicationName = medication.getMedicationName();
-        howToTake = medication.toStringHowToTake(requireContext());
-        howRegularly = medication.toStringHowRegularly(requireContext());
+        muscleGroup = exercise.getMuscleGroup();
+        nameExercise = exercise.getName();
+        numSets = exercise.getSets();
+        numReps = exercise.getReps();
+        restTime = exercise.getRest();
 
-        ArrayList<String> intakeTimes;
-        intakeTimes = medication.getIntakesTime();
-
-        ArrayList<String> quantities;
-        quantities = medication.getQuantities();
-
-        if (medication.getSelectedWeekdays() != null) {
-            selectedWeekdays = medication.getSelectedWeekdays();
-        }
 
         LayoutInflater inflater = (LayoutInflater) requireActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         @SuppressLint("InflateParams") View medicationLayout = inflater.inflate(R.layout.medication_layout, null);
 
-        // MEDICATION NAME
-        TextView medicationNameText = medicationLayout.findViewById(R.id.medicationName);
-        medicationNameText.setText("\u2022 " + medicationName);
+        // Exercise NAME
+        TextView exerciseNameText = medicationLayout.findViewById(R.id.exerciseName);
+        exerciseNameText.setText("\u2022 " + nameExercise); //exercises.get(i).getExerciseName());
 
-        // HOW REGULARLY
-        TextView howRegularlyText = medicationLayout.findViewById(R.id.howRegularly);
+        // Muscle Group
+        TextView muscleGroupText = medicationLayout.findViewById(R.id.muscleGroup); //steps x Reps
+        muscleGroupText.setText(muscleGroup);
 
-        if (medication.getHowRegularly() == 0) {
+        // Sets and Reps
+        TextView setsAndRepsStr = medicationLayout.findViewById(R.id.setsAndReps);
+        setsAndRepsStr.setText(numSets + " " + getResources().getString(R.string.sets) + " x " + numReps + " " + getResources().getString(R.string.reps)); //exercises.get(i).getExerciseName());
+
+        // Rest Time
+        TextView medicationNameText = medicationLayout.findViewById(R.id.restTime);
+        medicationNameText.setText(restTime);
+
+        TextView restTimeText = medicationLayout.findViewById(R.id.restTime);
+        restTimeText.setText(restTime + " min");
+        /*
+        if (exercise.getHowRegularly() == 0) {
             // Daily
-            howRegularlyText.setText(howRegularly);
+            setsAndRepsStr.setText(numSets);
         } else {
-            if (medication.getHowRegularly() == 1) {
+            if (exercise.getHowRegularly() == 1) {
                 // Interval
-                howRegularlyText.setText(mappedValues.getFormattedInterval(medication.getIntervalSelectedType(), medication.getIntervalSelectedNumber()));
+                setsAndRepsStr.setText(mappedValues.getFormattedInterval(exercise.getIntervalSelectedType(), exercise.getIntervalSelectedNumber()));
             } else {
                 // Weekdays
                 String selectedWeekdaysString;
 
-                selectedWeekdaysString = medication.getSelectedWeekdaysString();
+                selectedWeekdaysString = exercise.getSelectedWeekdaysString();
 
-                howRegularlyText.setText(selectedWeekdaysString);
+                setsAndRepsStr.setText(selectedWeekdaysString);
             }
         }
 
@@ -434,15 +485,15 @@ public class TreatmentFragment extends Fragment {
                 quantityNumber = 2; // Plural
             }
 
-            intakesString = intakesString + quantity + " " + (mappedValues.getFormattedHowToTake(mappedValues.getHowToTakeKey(howToTake), quantityNumber)).toLowerCase() + " " + requireContext().getResources().getString(R.string.at_time) + " " + intakeTime;
+            intakesString = intakesString + quantity + " " + (mappedValues.getFormattedHowToTake(mappedValues.getHowToTakeKey(nameExercise), quantityNumber)).toLowerCase() + " " + requireContext().getResources().getString(R.string.at_time) + " " + intakeTime;
 
             if (i != size - 1) {
                 intakesString = intakesString + "\n";
             }
         }
 
-        intakesText.setText(intakesString);
-
+        intakesText.setText(intakesString); //rest time
+        */
         return medicationLayout;
     }
 

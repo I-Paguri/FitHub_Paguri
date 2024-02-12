@@ -42,7 +42,6 @@ import java.util.List;
 
 import it.uniba.dib.sms232417.fithub.R;
 import it.uniba.dib.sms232417.fithub.entity.Exercise;
-import it.uniba.dib.sms232417.fithub.entity.Treatment;
 import it.uniba.dib.sms232417.fithub.entity.WorkoutPlan;
 import it.uniba.dib.sms232417.fithub.utilities.MappedValues;
 
@@ -117,7 +116,7 @@ public class ExercisesFragment extends Fragment {
 
         titleText.setText(getResources().getQuantityString(R.plurals.days, 1, 1) + " " + workoutDaysNumber);
 
-        AutoCompleteTextView muscleGroup = parentLayout.findViewById(R.id.muscleGroup);
+        AutoCompleteTextView muscleGroup = parentLayout.findViewById(R.id.exerciseName);
         AutoCompleteTextView setsSelection = parentLayout.findViewById(R.id.setsNumber);
         AutoCompleteTextView repsSelection = parentLayout.findViewById(R.id.repsNumber);
         AutoCompleteTextView intervalSelection = parentLayout.findViewById(R.id.restSelection);
@@ -348,7 +347,7 @@ public class ExercisesFragment extends Fragment {
         // Get the index of the second last view in parentLayout
         int index = parentLayout.getChildCount() - 2;
 
-        AutoCompleteTextView muscleGroup = intakeLayout.findViewById(R.id.muscleGroup);
+        AutoCompleteTextView muscleGroup = intakeLayout.findViewById(R.id.exerciseName);
         AutoCompleteTextView exercise = intakeLayout.findViewById(R.id.exerciseString);
 
         // Creare un nuovo ArrayAdapter
@@ -518,7 +517,7 @@ public class ExercisesFragment extends Fragment {
         setupTextWatchers();
 
 
-        AutoCompleteTextView muscleGroup = getView().findViewById(R.id.muscleGroup);
+        AutoCompleteTextView muscleGroup = getView().findViewById(R.id.exerciseName);
         AutoCompleteTextView excerciseString = getView().findViewById(R.id.exerciseString);
         AutoCompleteTextView setsNumber = getView().findViewById(R.id.setsNumber);
         AutoCompleteTextView repsNumber = getView().findViewById(R.id.repsNumber);
@@ -596,7 +595,7 @@ public class ExercisesFragment extends Fragment {
     }
 
     private void setupTextWatchers() {
-        AutoCompleteTextView muscleGroup = getView().findViewById(R.id.muscleGroup);
+        AutoCompleteTextView muscleGroup = getView().findViewById(R.id.exerciseName);
         AutoCompleteTextView exerciseString = getView().findViewById(R.id.exerciseString);
         AutoCompleteTextView setsNumber = getView().findViewById(R.id.setsNumber);
         AutoCompleteTextView repsNumber = getView().findViewById(R.id.repsNumber);
@@ -672,7 +671,7 @@ public class ExercisesFragment extends Fragment {
         String sets_exercise = "";
         String rest_exercise="";
 
-        AutoCompleteTextView muscleGroup = requireView().findViewById(R.id.muscleGroup);
+        AutoCompleteTextView muscleGroup = requireView().findViewById(R.id.exerciseName);
         AutoCompleteTextView exerciseName = requireView().findViewById(R.id.exerciseString);
         AutoCompleteTextView numberSet= requireView().findViewById(R.id.setsNumber);
         AutoCompleteTextView numberRep = requireView().findViewById(R.id.repsNumber);

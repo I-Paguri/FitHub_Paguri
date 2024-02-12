@@ -923,7 +923,7 @@ public class TreatmentFormMedicationsFragment extends Fragment implements Weekda
 
         treatment.addMedication(medication);
 
-        bundle.putParcelable("treatment", treatment);
+        bundle.putParcelable("workoutPlan", treatment);
 
         return bundle;
     }

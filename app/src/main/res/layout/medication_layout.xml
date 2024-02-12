@@ -6,8 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <TextView
-        android:id="@+id/medicationName"
+        android:id="@+id/exerciseName"
         style="@style/CardViewSubtitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,17 +20,27 @@
 
 
     <TextView
-        android:id="@+id/howRegularly"
+        android:id="@+id/muscleGroup"
         style="@style/CardViewSubtitleText3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="16dp"
-        android:text="steps x reps" />
+        android:text="muscleGroup" />
 
     <TextView
-        android:id="@+id/intakes"
+        android:id="@+id/setsAndReps"
+        style="@style/RegularText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="16dp"
+        android:text="sets x reps" />
+
+    <TextView
+        android:id="@+id/restTime"
         style="@style/RegularText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
