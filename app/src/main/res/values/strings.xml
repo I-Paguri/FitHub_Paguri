@@ -624,4 +624,9 @@
         <item quantity="other">Sets</item>
     </plurals>
 
+    <plurals name="rep">
+        <item quantity="one">Rep</item>
+        <item quantity="other">Reps</item>
+    </plurals>
+
 </resources>

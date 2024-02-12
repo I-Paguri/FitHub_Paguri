@@ -328,4 +328,10 @@
         <item quantity="other">Serie</item>
     </plurals>
 
+
+    <plurals name="rep">
+        <item quantity="one">Ripetizione</item>
+        <item quantity="other">Ripetizioni</item>
+    </plurals>
+
 </resources>
