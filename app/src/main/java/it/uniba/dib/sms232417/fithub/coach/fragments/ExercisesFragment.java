@@ -193,7 +193,7 @@ public class ExercisesFragment extends Fragment {
                     }
 
                     // Create the dialog
-                    //showDialog();
+                    showRepsDialog(parentLayout);
                 }
                 return false;
             }
@@ -210,7 +210,7 @@ public class ExercisesFragment extends Fragment {
                     }
 
                     // Create the dialog
-                    showDialog(parentLayout);
+                    showRestDialog(parentLayout);
                 }
                 return false;
             }
@@ -346,7 +346,7 @@ public class ExercisesFragment extends Fragment {
                     }
 
                     // Create the dialog
-                    //showDialog();
+                    showRepsDialog(intakeLayout);
                 }
                 return false;
             }
@@ -364,7 +364,7 @@ public class ExercisesFragment extends Fragment {
                     }
 
                     // Create the dialog
-                    showDialog(intakeLayout);
+                    showRestDialog(intakeLayout);
                 }
                 return false;
             }
@@ -690,7 +690,131 @@ public class ExercisesFragment extends Fragment {
     }
 
     @SuppressLint("SetTextI18n")
-    private void showDialog(View intakeLayout) {
+    private void showRepsDialog(View intakeLayout) {
+        // Create a dialog builder
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireActivity(), R.style.CustomMaterialDialog);
+
+        // Create a LinearLayout
+        LinearLayout layout = new LinearLayout(getActivity());
+        layout.setOrientation(LinearLayout.VERTICAL); // Change orientation to VERTICAL
+        layout.setGravity(Gravity.CENTER);
+
+        Typeface ember_bold = ResourcesCompat.getFont(requireContext(), R.font.ember_bold);
+
+        // Create a LinearLayout for the labels
+        LinearLayout labelLayout = new LinearLayout(getActivity());
+        labelLayout.setOrientation(LinearLayout.HORIZONTAL); // Change orientation to HORIZONTAL
+        labelLayout.setGravity(Gravity.CENTER);
+
+        // Create a TextView for the first label
+        TextView label1 = new TextView(getActivity());
+        label1.setText(getResources().getQuantityString(R.plurals.minute, 2, 2)); // Set the text for the label
+        label1.setGravity(Gravity.CENTER); // Center the text
+        label1.setTextSize(18); // Set the text size
+        label1.setTypeface(ember_bold); // Set the text style to bold
+
+        // Create layout parameters for the first label with margin end
+        LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams1.setMargins(0, 0, (int) (12 * getResources().getDisplayMetrics().density), 0); // 4dp to px
+
+        // Add the first label to the layout with layout params
+        labelLayout.addView(label1, layoutParams1);
+
+        // Create a TextView for the second label
+        TextView label2 = new TextView(getActivity());
+        label2.setText(getResources().getQuantityString(R.plurals.second, 2, 2)); // Set the text for the label
+        label2.setGravity(Gravity.CENTER); // Center the text
+        label2.setTextSize(18); // Set the text size
+        label2.setTypeface(ember_bold); // Set the text style to bold
+
+        // Create layout parameters for the second label with margin start
+        LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams2.setMargins((int) (8 * getResources().getDisplayMetrics().density), 0, 0, 0); // 4dp to px
+
+        // Add the second label to the layout with layout params
+        labelLayout.addView(label2, layoutParams2);
+
+        layout.addView(labelLayout); // Add the labelLayout to the main layout
+
+        // Create the NumberPickers
+        NumberPicker numberPickerMinutes = new NumberPicker(getActivity());
+        NumberPicker numberPickerSeconds = new NumberPicker(getActivity());
+
+        // Set the min and max values for numberPickerMinutes
+        numberPickerMinutes.setMinValue(0);
+        numberPickerMinutes.setMaxValue(5);
+
+        // Set the min and max values for numberPickerSeconds
+        numberPickerSeconds.setMinValue(0);
+        numberPickerSeconds.setMaxValue(5);
+
+        // Set a formatter
+        numberPickerSeconds.setFormatter(new NumberPicker.Formatter() {
+            @Override
+            public String format(int value) {
+                return Integer.toString(value * 10);
+            }
+        });
+
+        // Create layout parameters with margins
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(0, 0, (int) (12 * getResources().getDisplayMetrics().density), 0); // 8dp to px
+
+        // Create a LinearLayout for the NumberPickers
+        LinearLayout numberPickerLayout = new LinearLayout(getActivity());
+        numberPickerLayout.setOrientation(LinearLayout.HORIZONTAL);
+        numberPickerLayout.setGravity(Gravity.CENTER);
+
+        // Add the NumberPickers to the LinearLayout
+        numberPickerLayout.addView(numberPickerMinutes, layoutParams); // Add layout params to numberPickerMinutes
+        numberPickerLayout.addView(numberPickerSeconds);
+
+        layout.addView(numberPickerLayout); // Add the numberPickerLayout to the main layout
+
+        // Set the LinearLayout as the dialog view
+        builder.setView(layout);
+
+        // Set the dialog title and buttons
+        builder.setTitle(getResources().getString(R.string.what_interval)).setMessage(getResources().getString(R.string.what_interval_message))
+                .setPositiveButton("OK", (dialog, id) -> {
+                    // User clicked OK, retrieve the selected values
+                    selectedMinutes = numberPickerMinutes.getValue();
+                    // Get the selected value from numberPickerSeconds
+                    selectedSeconds = numberPickerSeconds.getValue() * 10;
+
+
+                    String formattedSelectedInterval = "";
+
+                    AutoCompleteTextView intervalSelection = intakeLayout.findViewById(R.id.repsNumber);
+
+                    if (selectedSeconds == 0 && selectedMinutes == 0) {
+                        intervalSelection.setText(getResources().getString(R.string.no_rest));
+                    } else {
+                        if (selectedMinutes == 0) {
+                            intervalSelection.setText(selectedSeconds + " " + getResources().getQuantityString(R.plurals.second, selectedSeconds, selectedSeconds));
+                        } else {
+                            if (selectedSeconds == 0) {
+                                intervalSelection.setText(selectedMinutes + " " + getResources().getQuantityString(R.plurals.minute, selectedMinutes, selectedMinutes));
+                            } else {
+                                intervalSelection.setText(selectedMinutes + " " + getResources().getQuantityString(R.plurals.minute, selectedMinutes, selectedMinutes) + " " + selectedSeconds + " " + getResources().getQuantityString(R.plurals.second, selectedSeconds, selectedSeconds));
+                            }
+                        }
+                    }
+                })
+                .setNegativeButton("Cancel", (dialog, id) -> {
+                    // User cancelled the dialog, do something if necessary
+                });
+
+        // Create and show the dialog
+        Dialog dialog = builder.create();
+        dialog.show();
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void showRestDialog(View intakeLayout) {
         // Create a dialog builder
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireActivity(), R.style.CustomMaterialDialog);
 

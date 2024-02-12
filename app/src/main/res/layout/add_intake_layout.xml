@@ -185,33 +185,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
         android:baselineAligned="false"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:visibility="visible">
+        android:orientation="horizontal">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/repsInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:hint="@string/quantity"
-            app:startIconContentDescription="quantity"
-            app:startIconDrawable="@drawable/scale">
+            android:hint="@string/select"
+            app:startIconContentDescription="Goal"
+            app:startIconDrawable="@drawable/event_repeat">
 
             <AutoCompleteTextView
                 android:id="@+id/repsNumber"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:editable="false"
                 android:imeOptions="actionNext"
                 android:labelFor="@id/medicines_list"
-                android:inputType="number">
+                android:spinnerMode="dialog">
 
             </AutoCompleteTextView>
         </com.google.android.material.textfield.TextInputLayout>
+
     </LinearLayout>
 
     <TextView
