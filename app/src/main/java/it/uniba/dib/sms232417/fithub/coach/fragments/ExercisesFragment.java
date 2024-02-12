@@ -146,7 +146,12 @@ public class ExercisesFragment extends Fragment {
             }
         });
 
+
+
         AutoCompleteTextView exercise = parentLayout.findViewById(R.id.exerciseString);
+
+        
+
         muscleGroup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -167,6 +172,8 @@ public class ExercisesFragment extends Fragment {
                     exercises = getResources().getStringArray(R.array.abdominal_exercise_array);
 
                 }
+                TextInputLayout muscleGroupInputLayout = parentLayout.findViewById(R.id.muscleGroupInputLayout);
+                muscleGroupInputLayout.setError(null);
                 ArrayAdapter<String> adapterExercises = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_expandable_list_item_1, exercises);
                 exercise.setAdapter(adapterExercises);
             }
@@ -419,6 +426,8 @@ public class ExercisesFragment extends Fragment {
         }
 
         AutoCompleteTextView exercise = intakeLayout.findViewById(R.id.exerciseString);
+
+
         muscleGroup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -439,6 +448,8 @@ public class ExercisesFragment extends Fragment {
                     excersises = getResources().getStringArray(R.array.abdominal_exercise_array);
 
                 }
+                TextInputLayout muscleGroupInputLayout = parentLayout.findViewById(R.id.muscleGroupInputLayout);
+                muscleGroupInputLayout.setError(null);
                 ArrayAdapter<String> adapterExercises = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_expandable_list_item_1, excersises);
                 exercise.setAdapter(adapterExercises);
             }
