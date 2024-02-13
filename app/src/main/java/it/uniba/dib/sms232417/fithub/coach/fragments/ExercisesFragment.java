@@ -42,6 +42,7 @@ import java.util.List;
 
 import it.uniba.dib.sms232417.fithub.R;
 import it.uniba.dib.sms232417.fithub.entity.Exercise;
+import it.uniba.dib.sms232417.fithub.entity.WorkoutDay;
 import it.uniba.dib.sms232417.fithub.entity.WorkoutPlan;
 import it.uniba.dib.sms232417.fithub.utilities.MappedValues;
 
@@ -52,10 +53,11 @@ public class ExercisesFragment extends Fragment {
 
     private int selectedReps;
     private int selectedSeconds;
-    private ArrayList<WeekdaysDataItem> selectedWeekdays = new ArrayList<>();
     private boolean isMilliliters = false;
 
 
+    private static ArrayList<WorkoutDay> workoutDays = new ArrayList<>();
+    private WorkoutDay workoutDay;
     private List<Exercise> exercises;
     private WorkoutPlan workoutPlan;
 
@@ -115,6 +117,8 @@ public class ExercisesFragment extends Fragment {
         TextView titleText = view.findViewById(R.id.titleText);
 
         titleText.setText(getResources().getQuantityString(R.plurals.days, 1, 1) + " " + workoutDaysNumber);
+
+        workoutDay = new WorkoutDay(workoutDaysNumber);
 
         AutoCompleteTextView muscleGroup = parentLayout.findViewById(R.id.exerciseName);
         AutoCompleteTextView setsSelection = parentLayout.findViewById(R.id.setsNumber);
@@ -324,7 +328,9 @@ public class ExercisesFragment extends Fragment {
             @Override
             public void handleOnBackPressed() {
                 // Handle the back button event
-                workoutPlan.removeExerciseAtIndex(workoutPlan.getExercises().size() - 1);
+                workoutDay.removeExercise(workoutDay.getExercises().size() - 1);
+                //workoutPlan.removeExerciseAtIndex(workoutPlan.getExercises().size() - 1);
+                intakeCount--;
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
@@ -754,7 +760,10 @@ public class ExercisesFragment extends Fragment {
 
             }
         } */
-        workoutPlan.addExercise(exercise);
+
+        workoutDay.addExercise(exercise);
+        workoutPlan.addWorkoutDay(workoutDay);
+        //workoutPlan.addExercise(exercise);
 
 
         bundle.putParcelable("workoutPlan", workoutPlan);

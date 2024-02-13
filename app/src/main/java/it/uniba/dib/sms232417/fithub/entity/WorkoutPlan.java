@@ -14,7 +14,8 @@ import java.util.Locale;
 public class WorkoutPlan implements Parcelable{
     private String workoutTarget;
     private Date startDate, endDate;
-    private ArrayList<Exercise> exercises;
+
+    private ArrayList<WorkoutDay> workoutDays;
     private String notes;
 
     public WorkoutPlan() {
@@ -27,7 +28,8 @@ public class WorkoutPlan implements Parcelable{
         this.endDate = endDate;
 
         // Default values
-        this.exercises = new ArrayList<>();
+        //this.exercises = new ArrayList<>();
+        this.workoutDays = new ArrayList<>();
         this.notes = "";
     }
 
@@ -101,32 +103,26 @@ public class WorkoutPlan implements Parcelable{
     }
 
 
-    public ArrayList<Exercise> getExercises() {
-        return exercises;
+    public ArrayList<WorkoutDay> getWorkoutDays() {
+        return workoutDays;
     }
 
-    public String getMedicationsString(Context context) {
-        String medicationsString = "";
-
-        for (Exercise exercise : exercises) {
-            medicationsString = medicationsString + exercise.toString();
-        }
-
-        return medicationsString;
+    public void setWorkoutDays(ArrayList<WorkoutDay> workoutDays) {
+        this.workoutDays = workoutDays;
     }
 
-
-    public void setExercises(ArrayList<Exercise> exercises) {
-        this.exercises = exercises;
+    public void addWorkoutDay(WorkoutDay workoutDay) {
+        this.workoutDays.add(workoutDay);
     }
 
-    public void addExercise(Exercise exercise) {
-        this.exercises.add(exercise);
+    public void removeWorkoutDay(int index) {
+        this.workoutDays.remove(index);
     }
 
-    public void removeExerciseAtIndex(int index) {
-        this.exercises.remove(index);
+    public void removeWorkoutDay(WorkoutDay workoutDay) {
+        this.workoutDays.remove(workoutDay);
     }
+
 
     public String getNotes() {
         return notes;
@@ -146,8 +142,7 @@ public class WorkoutPlan implements Parcelable{
             treatmentString = treatmentString + "End date: " + getEndDateString() + "\n";
         }
 
-
-        treatmentString = treatmentString + "Medications: " + exercises.toString() + "\n";
+        treatmentString = treatmentString + "Workout days: " + getWorkoutDays().toString() + "\n";
 
 
         if (!getNotes().isEmpty()) {

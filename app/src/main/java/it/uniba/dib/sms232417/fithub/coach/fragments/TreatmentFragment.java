@@ -48,6 +48,7 @@ import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterAthlete;
 import it.uniba.dib.sms232417.fithub.entity.Exercise;
 import it.uniba.dib.sms232417.fithub.entity.Medication;
 import it.uniba.dib.sms232417.fithub.entity.Treatment;
+import it.uniba.dib.sms232417.fithub.entity.WorkoutDay;
 import it.uniba.dib.sms232417.fithub.entity.WorkoutPlan;
 import it.uniba.dib.sms232417.fithub.interfaces.OnWorkoutPlanCallback;
 import it.uniba.dib.sms232417.fithub.utilities.MappedValues;
@@ -153,6 +154,7 @@ public class TreatmentFragment extends Fragment {
             }
         });
 
+
         /*
 
         adapter.getWorkoutPlan(patientUUID, new OnTreatmentsCallback() {
@@ -213,8 +215,6 @@ public class TreatmentFragment extends Fragment {
         });
 
          */
-
-
 
 
         // register the nestedScrollView from the main layout
@@ -287,8 +287,9 @@ public class TreatmentFragment extends Fragment {
 
     protected void addTreatmentCardView(String treatmentId, WorkoutPlan workoutPlan, boolean isLast) {
         String workoutPlanTarget, notes;
-        int i;
+        int i, j;
         ArrayList<Exercise> exercises;
+        ArrayList<WorkoutDay> workoutDays;
         Exercise exercise;
 
 
@@ -327,14 +328,46 @@ public class TreatmentFragment extends Fragment {
 
         // MEDICATIONS
         LinearLayout medicationsLayout = treatmentLayout.findViewById(R.id.linearLayoutMedications);
-        exercises = workoutPlan.getExercises(); //getExerciseList();
-        for (i = 0; i < exercises.size(); i++) {
-            exercise = exercises.get(i);
-            medicationsLayout.addView(getMedicationLayout(exercise));
-            Log.d("Exercise "+ i, "Exercise: " + exercise.toString());
+        workoutDays = workoutPlan.getWorkoutDays();
+
+        for (i = 0; i < workoutDays.size(); i++) {
+            // Aggiungere la textView per il titolo del workoutDay
+            /*
+            <TextView
+        android:id="@+id/workoutDay"
+        style="@style/TitleText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="0dp"
+        android:text="Day 1" />
+             */
+
+            // Create a new TextView
+            TextView workoutDayTextView = new TextView(requireContext()); // Use 'getActivity()' instead of 'this' if you're in a fragment
+
+            // Set the TextView properties
+            //workoutDayTextView.setId(R.id.workoutDay);
+            workoutDayTextView.setText("Day 1");
+            workoutDayTextView.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT));
+
+            medicationsLayout.addView(workoutDayTextView);
+
+            exercises = workoutDays.get(i).getExercises(); //getExerciseList();
+            for (j = 0; j < exercises.size(); j++) {
+                exercise = exercises.get(j);
+                medicationsLayout.addView(getMedicationLayout(exercise));
+                Log.d("Exercise " + j, "Exercise: " + exercise.toString());
+            }
         }
 
+
         parentLayout.addView(treatmentLayout);
+
 
         // NOTES
         notes = workoutPlan.getNotes();
@@ -410,6 +443,7 @@ public class TreatmentFragment extends Fragment {
             });
         }
     }
+
 
     protected View getMedicationLayout(Exercise exercise) {
         MappedValues mappedValues = new MappedValues(requireContext());
