@@ -67,6 +67,61 @@
                     style="@style/RegularText">
 
                 </com.google.android.material.textfield.TextInputEditText>
+
+                <TextView
+                    android:id="@+id/weight"
+                    style="@style/SubtitleText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/weight"
+                    android:textColor="@color/colorPrimary" />
+
+                <sasliderdemo.salmaan.ahmsal.com.saslider.SASlider
+                    android:id="@+id/weightSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="50dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:circleColor="@android:color/darker_gray"
+                    app:defaultValue="70"
+                    app:editTextBorderColor="@color/colorPrimary"
+                    app:isDecimal="false"
+                    app:maxValue="200"
+                    app:minValue="30"
+                    app:criticalColor="@color/seed"
+                    app:upperThreshold="200"
+                    app:lowerThreshold="30"
+                    app:sliderColor="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/height"
+                    style="@style/SubtitleText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/height"
+                    android:textColor="@color/colorPrimary" />
+
+                <sasliderdemo.salmaan.ahmsal.com.saslider.SASlider
+                    android:id="@+id/heightSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="50dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:circleColor="@android:color/darker_gray"
+                    app:defaultValue="170"
+                    app:editTextBorderColor="@color/seed"
+                    app:isDecimal="false"
+                    app:maxValue="220"
+                    app:minValue="140"
+                    app:criticalColor="@color/seed"
+                    app:upperThreshold="220"
+                    app:lowerThreshold="140"
+                    app:sliderColor="@color/seed" />
+
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtEmail_inputlayout"

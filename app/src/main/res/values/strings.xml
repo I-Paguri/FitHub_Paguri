@@ -646,4 +646,6 @@
     <string name="in_progress">In progress</string>
     <string name="working_for_you">We are working for you!</string>
 
+    <string name="weight">Weight (Kg)</string>
+    <string name="height">Height (cm)</string>
 </resources>

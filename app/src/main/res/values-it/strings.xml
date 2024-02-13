@@ -347,4 +347,6 @@
 
     <string name="in_progress">In costruzione</string>
     <string name="working_for_you">Stiamo lavorando per te!</string>
+    <string name="weight">Peso (Kg)</string>
+    <string name="height">Altezza (cm)</string>
 </resources>
