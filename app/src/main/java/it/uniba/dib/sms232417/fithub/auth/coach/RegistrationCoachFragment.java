@@ -35,14 +35,10 @@ import javax.crypto.SecretKey;
 
 import it.uniba.dib.sms232417.fithub.MainActivity;
 import it.uniba.dib.sms232417.fithub.R;
-import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterAthlete;
 import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterCoach;
 import it.uniba.dib.sms232417.fithub.auth.CryptoUtil;
 import it.uniba.dib.sms232417.fithub.auth.EntryActivity;
-import it.uniba.dib.sms232417.fithub.auth.athlete.LoginFragment;
-import it.uniba.dib.sms232417.fithub.entity.Athlete;
 import it.uniba.dib.sms232417.fithub.entity.Coach;
-import it.uniba.dib.sms232417.fithub.interfaces.OnAthleteDataCallback;
 import it.uniba.dib.sms232417.fithub.interfaces.OnCoachDataCallback;
 import it.uniba.dib.sms232417.fithub.utilities.StringUtils;
 

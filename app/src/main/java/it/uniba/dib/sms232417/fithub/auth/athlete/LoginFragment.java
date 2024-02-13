@@ -173,6 +173,6 @@ public class LoginFragment extends Fragment {
     }
 
     private void onRegister(View V) {
-        ((EntryActivity) getActivity()).replaceFragment(new RegisterFragment());
+        ((EntryActivity) getActivity()).replaceFragment(new RegisterFirstFragment());
     }
 }

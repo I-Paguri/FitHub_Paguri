@@ -25,7 +25,7 @@ import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterCoach;
 import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterAthlete;
 import it.uniba.dib.sms232417.fithub.auth.coach.LoginCoachCredentialFragment;
 import it.uniba.dib.sms232417.fithub.auth.athlete.LoginFragment;
-import it.uniba.dib.sms232417.fithub.auth.athlete.RegisterFragment;
+import it.uniba.dib.sms232417.fithub.auth.athlete.RegisterFirstFragment;
 import it.uniba.dib.sms232417.fithub.entity.Coach;
 import it.uniba.dib.sms232417.fithub.entity.Athlete;
 import it.uniba.dib.sms232417.fithub.interfaces.OnCoachDataCallback;
@@ -70,6 +70,20 @@ public class EntryActivity extends AppCompatActivity {
 
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    public void replaceFragmentForRegistration(Fragment fragment, Bundle bundle) {
+        Log.d("ReplaceFragment", "ReplaceFragmentForRegistration");
+        Log.d("Bundle", bundle.toString());
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragment.setArguments(bundle);
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        fragmentTransaction.replace(R.id.fragment_container_login,fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
+
     }
 
     private void checkAutomaticLogin() {
@@ -246,7 +260,7 @@ public class EntryActivity extends AppCompatActivity {
 
         if (currentFragment instanceof LoginFragment) {
             replaceFragment(new LoginDecisionFragment());
-        }else if(currentFragment instanceof RegisterFragment) {
+        }else if(currentFragment instanceof RegisterFirstFragment) {
             replaceFragment(new LoginFragment());
         }else if(currentFragment instanceof LoginCoachCredentialFragment){
             replaceFragment(new LoginDecisionFragment());

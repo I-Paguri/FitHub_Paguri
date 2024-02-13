@@ -12,8 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -21,13 +19,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 //import java.util.Base64;
 
@@ -44,14 +42,13 @@ import it.uniba.dib.sms232417.fithub.R;
 import it.uniba.dib.sms232417.fithub.adapters.DatabaseAdapterAthlete;
 import it.uniba.dib.sms232417.fithub.auth.CryptoUtil;
 import it.uniba.dib.sms232417.fithub.auth.EntryActivity;
-import it.uniba.dib.sms232417.fithub.auth.coach.LoginCoachCredentialFragment;
 import it.uniba.dib.sms232417.fithub.entity.Athlete;
 import it.uniba.dib.sms232417.fithub.interfaces.OnAthleteDataCallback;
 import it.uniba.dib.sms232417.fithub.utilities.StringUtils;
 
 
 @SuppressWarnings("unchecked")
-public class RegisterFragment extends Fragment {
+public class RegisterFirstFragment extends Fragment {
 
     DatabaseAdapterAthlete dbAdapter;
 
@@ -61,16 +58,20 @@ public class RegisterFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.register_fragment_layout, container, false);
+        return inflater.inflate(R.layout.register_first_fragment_layout, container, false);
 
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-
+        TextView name = (TextView) getView().findViewById(R.id.txtName);
+        TextView surname = (TextView) getView().findViewById(R.id.txtSurname);
+        
         TextView login = (TextView) getView().findViewById(R.id.txtLogin);
-        Button register = (Button) getView().findViewById(R.id.btnRegister);
+        Button btn_continue = (Button) getView().findViewById(R.id.btn_continue);
+
+        
         MaterialButton btnDataNascita = (MaterialButton) getView().findViewById(R.id.date_of_birth);
         strDataNascita = "";
         btnDataNascita.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +115,7 @@ public class RegisterFragment extends Fragment {
                 onLogin(v);
             }
         });
-        register.setOnClickListener(new View.OnClickListener() {
+        btn_continue.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -125,13 +126,10 @@ public class RegisterFragment extends Fragment {
                     imm.hideSoftInputFromWindow(focusedView.getWindowToken(), 0);
                 }
 
-                String email = ((TextInputEditText) getView().findViewById(R.id.txtEmail)).getText().toString();
-                String password = ((TextInputEditText) getView().findViewById(R.id.txtPassword)).getText().toString();
-                String confermaPassword = ((TextInputEditText) getView().findViewById(R.id.txtPasswordConf)).getText().toString();
                 String nome = ((TextInputEditText) getView().findViewById(R.id.txtName)).getText().toString();
                 String cognome = ((TextInputEditText) getView().findViewById(R.id.txtSurname)).getText().toString();
 
-
+                /*
                 if(email.isEmpty()){
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                     builder.setTitle("Error")
@@ -146,7 +144,9 @@ public class RegisterFragment extends Fragment {
                             .create();
                     builder.setPositiveButton("Ok", null);
                     builder.show();
-                }else if(nome.isEmpty()){
+
+                 */
+                if(nome.isEmpty()){
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                     builder.setTitle("Error")
                             .setMessage(R.string.empty_fields_nome)
@@ -167,15 +167,10 @@ public class RegisterFragment extends Fragment {
                             .create();
                     builder.setPositiveButton("Ok", null);
                     builder.show();
-                }else if(!password.equals(confermaPassword)){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setTitle("Error")
-                            .setMessage(R.string.password_not_match)
-                            .create();
-                    builder.setPositiveButton("Ok", null);
-                    builder.show();
-                }else
-                    onRegisterUsers(v,email,password,nome,cognome, strDataNascita);
+                }else {
+                    onContinueRegistration(nome, cognome, strDataNascita);
+                }
+                    //onRegisterUsers(v,email,password,nome,cognome, strDataNascita);
             }
         });
 
@@ -187,6 +182,15 @@ public class RegisterFragment extends Fragment {
         ((EntryActivity) getActivity()).replaceFragment(new LoginFragment());
     }
 
+    public void onContinueRegistration(String nome, String cognome, String dataNascita) {
+        Bundle bundle = new Bundle();
+        bundle.putString("nome", nome);
+        bundle.putString("cognome", cognome);
+        bundle.putString("dataNascita", dataNascita);
+        ((EntryActivity) getActivity()).replaceFragmentForRegistration(new RegisterSecondFragment(), bundle);
+    }
+
+    /*
     public void onRegisterUsers(View v, String email, String password, String nome, String cognome,String dataNascita) {
 
 
@@ -249,6 +253,8 @@ public class RegisterFragment extends Fragment {
             }
         });
     }
+
+     */
 }
 
 

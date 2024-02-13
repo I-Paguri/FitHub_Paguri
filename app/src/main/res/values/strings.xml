@@ -25,7 +25,7 @@
 
     <string name="history">History</string>
     <string name="treatment">Treatment</string>
-
+    <string name="tell_us">Tell us about you</string>
     <string name="new_treatment">New treatment</string>
     <string name="decision_account" translatable="false">Who are you?</string>
     <string name="name">Name</string>

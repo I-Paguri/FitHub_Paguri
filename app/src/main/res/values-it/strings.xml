@@ -23,7 +23,7 @@
     <string name="birth_date">Inserisci la tua data di nascita</string>
     <string name="confirm_password">Conferma la password</string>
     <string name="password_not_match">Le password non corrispondono</string>
-
+    <string name="tell_us">Dicci qualcosa su di te</string>
     <string name="name" translatable="false">Nome</string>
     <string name="surname" translatable="false">Cognome</string>
     <string name="sign_in" translatable="false">Accedi</string>
