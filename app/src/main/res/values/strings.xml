@@ -639,4 +639,8 @@
     <string name="workoutPlan">Workout Plan</string>
     <string name="power_supply">Power Supply</string>
 
+    <string name="no_workout_plan_found">No workout plan found</string>
+    <string name="in_progress">In progress</string>
+    <string name="working_for_you">We are working for you!</string>
+
 </resources>

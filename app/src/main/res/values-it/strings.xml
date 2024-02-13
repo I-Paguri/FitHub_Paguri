@@ -340,4 +340,8 @@
     <string name="workoutPlan">Scheda di Allenamento</string>
     <string name="power_supply">Alimentazione</string>
 
+    <string name="no_workout_plan_found">Nessun piano di allenamento trovato</string>
+
+    <string name="in_progress">In costruzione</string>
+    <string name="working_for_you">Stiamo lavorando per te!</string>
 </resources>
