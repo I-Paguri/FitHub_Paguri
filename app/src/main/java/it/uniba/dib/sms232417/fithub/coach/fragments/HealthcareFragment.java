@@ -57,17 +57,17 @@ public class HealthcareFragment extends Fragment {
 
         // Set up for healthcare category
         ImageSlider healthcareImageSlider = view.findViewById(R.id.healthcareImageSlider);
-        String healthcareQuery = getResources().getString(R.string.healthcare);
+        String healthcareQuery = getResources().getString(R.string.gym);
         setupSlide(healthcareQuery, healthcareImageSlider);
 
         // Set up for mental health tips category
         ImageSlider mentalHealthcareimageSlider = view.findViewById(R.id.mentalHealthImageSlider);
-        String mentalHealthQuery = getResources().getString(R.string.mental_health_tips);
+        String mentalHealthQuery = getResources().getString(R.string.healthy_food_tips);
         setupSlide(mentalHealthQuery, mentalHealthcareimageSlider);
 
         // Set up for healthy food tips category
         ImageSlider healthyFoodImageSlider = view.findViewById(R.id.healthyFoodImageSlider);
-        String healthyFoodQuery = getResources().getString(R.string.healthy_food_tips);
+        String healthyFoodQuery = getResources().getString(R.string.proper_nutrition);
         setupSlide(healthyFoodQuery, healthyFoodImageSlider);
         healthyFoodImageSlider.setItemClickListener(new ItemClickListener() {
             @Override

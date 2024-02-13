@@ -82,8 +82,10 @@
     <string name="insert_note">Inserisci una nota</string>
     <string name="select_time">Seleziona l\'orario</string>
 
-    <string name="mental_health_tips">L\'importanza del benessere mentale</string>
-    <string name="healthy_food_tips">L\'importanza del cibo salutare</string>
+    <string name="gym">Palestra</string>
+    <string name="healthy_food_tips" >Cibo salutare</string>
+    <string name="proper_nutrition" >Alimentazione corretta</string>
+
 
     <string-array name="musclegroup_array">
         <item>Petto</item>

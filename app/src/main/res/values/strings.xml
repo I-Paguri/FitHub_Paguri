@@ -1,5 +1,4 @@
 <resources>
-
     <string name="app_name">FitHub</string>
     <string name="coach" translatable="false">Coach</string>
     <string name="athlete" translatable="false">Athlete</string>
@@ -109,8 +108,10 @@
     <string name="insert_note">Insert a note</string>
     <string name="select_time">Select time</string>
 
-    <string name="mental_health_tips">Mental health</string>
+    <!-- for video call -->
+    <string name="gym" >Gym</string>
     <string name="healthy_food_tips">Healthy food</string>
+    <string name="proper_nutrition" >Proper nutrition</string>
 
     <string-array name="musclegroup_array">
         <item>Chest</item>
