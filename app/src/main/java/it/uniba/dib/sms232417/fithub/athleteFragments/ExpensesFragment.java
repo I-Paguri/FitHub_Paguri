@@ -74,10 +74,12 @@ public class ExpensesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_expenses, container, false);
+        View view = inflater.inflate(R.layout.in_progress_layout, container, false);
+        return view;
+    }
 
 
-
+        /*
         MaterialCardView cardViewProducts = view.findViewById(R.id.cardViewProducts);
         cardViewProducts.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,12 +146,14 @@ public class ExpensesFragment extends Fragment {
         // Avvia l'animazione
         animator.start();
 
-         */
+
         // Imposta il valore della ProgressBar qui.
 
 
         progressBar.setProgress(75); // Imposta il progresso al 75%
 
     }
+
+         */
 
 }

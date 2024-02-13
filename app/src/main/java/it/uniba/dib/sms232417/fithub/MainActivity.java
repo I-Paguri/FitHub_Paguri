@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                                 selectedFragment = new MyAccountFragment();
                             } else {
                                 if (itemId == R.id.navigation_measure) {
-                                    checkPermission();
+                                    selectedFragment = new MeasureFragment();
                                 }
                             }
                         }
