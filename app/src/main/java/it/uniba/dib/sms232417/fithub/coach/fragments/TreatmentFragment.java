@@ -39,6 +39,7 @@ import com.touchboarder.weekdaysbuttons.WeekdaysDataItem;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
@@ -347,15 +348,44 @@ public class TreatmentFragment extends Fragment {
 
             // Create a new TextView
             TextView workoutDayTextView = new TextView(requireContext()); // Use 'getActivity()' instead of 'this' if you're in a fragment
+            LinearLayout linearLayout = new LinearLayout(requireContext());
+            linearLayout.setOrientation(LinearLayout.VERTICAL);
+            linearLayout.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT));
+
 
             // Set the TextView properties
             //workoutDayTextView.setId(R.id.workoutDay);
-            workoutDayTextView.setText("Day 1");
+            workoutDayTextView.setText(getResources().getQuantityString(R.plurals.days, 1, 1) + " " + (i + 1));
             workoutDayTextView.setLayoutParams(new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT));
+            workoutDayTextView.setTextSize(22);
+            workoutDayTextView.setTextColor(getResources().getColor(R.color.seed));
 
-            medicationsLayout.addView(workoutDayTextView);
+            Typeface amber_display_light = ResourcesCompat.getFont(requireContext(),R.font.ember_display_light);
+            workoutDayTextView.setTypeface(amber_display_light);
+
+            // Create a new LinearLayout.LayoutParams instance
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            // Set the margins (in pixels). For example, 16dp for start and end, 2dp for top and 0dp for bottom
+            int startEndMarginInDp = 16;
+            int topMarginInDp = 2;
+            int bottomMarginInDp = 0;
+
+            int startEndMarginInPx = (int) (startEndMarginInDp * density);
+            int topMarginInPx = (int) (topMarginInDp * density);
+            int bottomMarginInPx = (int) (bottomMarginInDp * density);
+
+            layoutParams.setMargins(startEndMarginInPx, topMarginInPx, startEndMarginInPx, bottomMarginInPx);
+
+
+            linearLayout.addView(workoutDayTextView, layoutParams);
+            medicationsLayout.addView(linearLayout);
 
             exercises = workoutDays.get(i).getExercises(); //getExerciseList();
             for (j = 0; j < exercises.size(); j++) {
