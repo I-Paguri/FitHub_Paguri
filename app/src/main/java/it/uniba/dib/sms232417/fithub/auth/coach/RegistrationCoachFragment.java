@@ -173,7 +173,7 @@ public class RegistrationCoachFragment extends Fragment {
     }
 
     public void onLogin(View v) {
-        ((EntryActivity) getActivity()).replaceFragment(new LoginFragment());
+        ((EntryActivity) getActivity()).replaceFragment(new LoginCoachCredentialFragment());
     }
 
     public void onRegisterCoach(View v, String email, String password, String nome, String cognome, String dataNascita) {

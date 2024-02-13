@@ -184,7 +184,7 @@ public class RegisterFragment extends Fragment {
     }
 
     public void onLogin(View v) {
-        ((EntryActivity) getActivity()).replaceFragment(new LoginCoachCredentialFragment());
+        ((EntryActivity) getActivity()).replaceFragment(new LoginFragment());
     }
 
     public void onRegisterUsers(View v, String email, String password, String nome, String cognome,String dataNascita) {
