@@ -16,7 +16,7 @@
         android:layout_gravity="center_vertical|center_horizontal"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/treatment"
-        android:src="@drawable/doctors_illustration" />
+        android:src="@drawable/workout" />
 
     <TextView
         android:id="@+id/noPatientsFoundTitle"
