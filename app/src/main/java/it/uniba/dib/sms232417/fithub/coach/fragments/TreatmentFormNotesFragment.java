@@ -126,14 +126,15 @@ public class TreatmentFormNotesFragment extends Fragment {
                     }
                 });
 
+                 */
 
-                AthleteFragment athleteFragment = new AthleteFragment();
+
+                TreatmentFragment athleteFragment = new TreatmentFragment();
                 // Create a new bundle to pass the selected tab index
                 Bundle bundleWithSelectedTab = new Bundle();
                 bundleWithSelectedTab.putString("patientUUID", patientUUID);
                 bundleWithSelectedTab.putString("patientName", patientName);
                 bundleWithSelectedTab.putString("patientAge", patientAge);
-                bundleWithSelectedTab.putInt("selectedTab", 1); // 1 is the index of the Treatment tab
 
 
                 athleteFragment.setArguments(bundleWithSelectedTab);
@@ -146,7 +147,7 @@ public class TreatmentFormNotesFragment extends Fragment {
                 //transaction.addToBackStack(null);
                 transaction.commit();
 
-                 */
+
             }
         });
 
