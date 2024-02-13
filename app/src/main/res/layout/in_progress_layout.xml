@@ -16,16 +16,16 @@
         android:layout_gravity="center_vertical|center_horizontal"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/treatment"
-        android:src="@drawable/workout" />
+        android:src="@drawable/build" />
 
     <TextView
         android:id="@+id/noPatientsFoundTitle"
-        style="@style/TitleText3"
+        style="@style/TitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:layout_marginTop="16dp"
-        android:text="@string/no_workout_plan_found"
+        android:text="@string/in_progress"
         android:textColor="@color/colorPrimary" />
 
     <TextView
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
         android:layout_marginTop="8dp"
-        android:text="@string/add_one_if_needed"
+        android:text="@string/working_for_you"
         android:textColor="@color/colorPrimary" />
 
 </LinearLayout>
