@@ -119,8 +119,6 @@ public class MyAccountFragment extends Fragment {
         if (loggedAthlete != null) {
             TextView txtName = getView().findViewById(R.id.txt_name);
             TextView txtSurname = getView().findViewById(R.id.txt_surname);
-            TextView txtRegion = getView().findViewById(R.id.txt_region);
-            TextView txtage = getView().findViewById(R.id.txt_age);
             txtName.setText(loggedAthlete.getNome());
             txtSurname.setText(loggedAthlete.getCognome());
             String dataNascita = loggedAthlete.getDataNascita();
