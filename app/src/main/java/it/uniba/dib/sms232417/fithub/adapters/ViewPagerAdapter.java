@@ -23,12 +23,13 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return new MeasurementsFragment();
-            case 1:
                 TreatmentFragment treatmentFragment = new TreatmentFragment();
                 treatmentFragment.setArguments(bundle);
                 Log.d("SonoQui", bundle.toString());
                 return treatmentFragment;
+            case 1:
+                return new MeasurementsFragment();
+
             default:
                 return null;
         }

@@ -334,4 +334,8 @@
         <item quantity="other">Ripetizioni</item>
     </plurals>
 
+
+    <string name="workoutPlan">Scheda di Allenamento</string>
+    <string name="power_supply">Alimentazione</string>
+
 </resources>

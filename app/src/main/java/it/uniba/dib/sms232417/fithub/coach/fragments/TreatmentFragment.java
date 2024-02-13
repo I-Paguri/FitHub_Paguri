@@ -100,6 +100,7 @@ public class TreatmentFragment extends Fragment {
                 user = "";
             }
         }
+        user = "doctor";
 
         adapter.getWorkoutPlan(patientUUID, new OnWorkoutPlanCallback() {
             @Override
@@ -451,7 +452,7 @@ public class TreatmentFragment extends Fragment {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     // Respond to positive button press
-                                    adapter.deleteTreatment(patientUUID, treatmentId);
+                                    adapter.deleteWorkouplan(patientUUID, treatmentId);
 
                                     // Remove the treatmentLayout from the parentLayout
                                     parentLayout.removeView(treatmentLayout);

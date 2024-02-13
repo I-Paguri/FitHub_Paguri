@@ -635,4 +635,7 @@
         <item quantity="other">Reps</item>
     </plurals>
 
+    <string name="workoutPlan">Workout Plan</string>
+    <string name="power_supply">Power Supply</string>
+
 </resources>

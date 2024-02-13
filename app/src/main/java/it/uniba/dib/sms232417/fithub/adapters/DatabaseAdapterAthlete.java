@@ -179,10 +179,10 @@ public class DatabaseAdapterAthlete {
     }
 
 
-    public void deleteTreatment(String athleteUUID, String treatmentId) {
+    public void deleteWorkouplan(String athleteUUID, String treatmentId) {
         db.collection("athlete")
                 .document(athleteUUID)
-                .collection("treatments")
+                .collection("workoutPlans")
                 .document(treatmentId)
                 .delete()
                 .addOnSuccessListener(aVoid -> {
