@@ -28,6 +28,9 @@
     <string name="surname" translatable="false">Cognome</string>
     <string name="sign_in" translatable="false">Accedi</string>
     <string name="sign_up">REGISTRATI</string>
+    <string name="gender">Sesso</string>
+    <string name="Height">Altezza</string>
+    <string name="Weight">Peso</string>
     <string name="forgett_pass" translatable="false">Hai dimenticato la password? Clicca qui</string>
     <string name="create_account" translatable="false">Non hai un account? Crealo adesso</string>
     <string name="login" translatable="false">Hai un account? Accedi</string>

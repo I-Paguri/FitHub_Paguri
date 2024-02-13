@@ -31,6 +31,9 @@
     <string name="name">Name</string>
     <string name="surname">Surname</string>
     <string name="sign_up">SIGN UP</string>
+    <string name="gender">Gender</string>
+    <string name="Height">Height</string>
+    <string name="Weight">Weight</string>
     <string name="sign_up_coach" translatable="false">JOIN US COACH</string>
     <string name="forgett_pass">Did you forget the password? Click Here!</string>
     <string name="create_account">You don\'t have an account? Create Now!</string>

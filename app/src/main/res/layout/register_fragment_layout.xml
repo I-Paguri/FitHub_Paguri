@@ -55,11 +55,25 @@
                 </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtGender_inputlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/gender"
+                android:layout_below="@id/txtSurname_inputlayout">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/RegularText">
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtEmail_inputlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="E-mail"
-                android:layout_below="@id/txtSurname_inputlayout">
+                android:layout_below="@id/txtGender_inputlayout">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtEmail"
                     android:layout_width="match_parent"
