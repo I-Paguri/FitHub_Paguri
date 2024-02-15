@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment {
             bundlePatient = new Bundle();
             bundlePatient.putParcelable("patient", loggedAthlete);
         } else if(loggedCoach != null){
-            txtusername.setText("Dottor "+ loggedCoach.getNome());
+            txtusername.setText("Coach "+ loggedCoach.getNome());
             bundleDoctor = new Bundle();
             bundleDoctor.putParcelable("doctor", loggedCoach);
         }else{

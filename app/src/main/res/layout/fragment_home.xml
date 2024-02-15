@@ -50,7 +50,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/my_patients_illustration"
+                    android:src="@drawable/my_athlete"
                     android:scaleType="centerCrop"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/my_patients" />
@@ -62,13 +62,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:text="@string/my_patients" />
+                    android:text="@string/my_athlete" />
 
                 <TextView
                     style="@style/RegularText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="My Patients are the best"
+                    android:text="@string/my_athlete_explain"
                     android:layout_marginTop="8dp"
                     android:layout_marginLeft="@dimen/text_margin"
                     android:layout_marginRight="@dimen/text_margin"
@@ -93,12 +93,14 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/healthcare_illustration"
+                    android:src="@drawable/video_consigli"
                     android:scaleType="centerCrop"
                     android:adjustViewBounds="true"
-                    android:contentDescription="Healthcare" />
+                    android:contentDescription="Healthcare"
+                    />
 
 
                 <TextView

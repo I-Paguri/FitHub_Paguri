@@ -90,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
                 if (itemId == R.id.navigation_home) {
                     selectedFragment = new HomeFragment();
                 } else {
-                    if (itemId == R.id.navigation_payments) {
-                        selectedFragment = new ExpensesFragment();
+                    if (itemId == R.id.navigation_video) {
+                        selectedFragment = new HealthcareFragment();
                     } else {
                         if (itemId == R.id.navigation_diary) {
                             selectedFragment = new AthleteFragment();

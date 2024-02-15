@@ -36,5 +36,12 @@ public class MeasureFragment extends Fragment {
         return view;
     }
 
-
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        toolbar = requireActivity().findViewById(R.id.toolbar);
+        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.md_theme_light_surface));
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(R.string.goal);
+    }
 }

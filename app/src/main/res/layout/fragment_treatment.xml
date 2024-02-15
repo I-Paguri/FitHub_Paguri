@@ -62,7 +62,7 @@
         android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/new_treatment"
-        android:text="@string/new_treatment"
+        android:text="@string/add_plan"
         app:icon="@drawable/add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

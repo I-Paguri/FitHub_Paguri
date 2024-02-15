@@ -55,6 +55,7 @@ public class HealthcareFragment extends Fragment {
         bottomNavigationView = requireActivity().findViewById(R.id.nav_view);
         toolbar = requireActivity().findViewById(R.id.toolbar);
 
+
         // Set up for healthcare category
         ImageSlider healthcareImageSlider = view.findViewById(R.id.healthcareImageSlider);
         String healthcareQuery = getResources().getString(R.string.gym);
@@ -109,7 +110,7 @@ public class HealthcareFragment extends Fragment {
         ((AppCompatActivity) requireActivity()).getSupportActionBar().setHomeAsUpIndicator(homeIcon);
 
         // Set toolbar title
-        ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.healthcare));
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle("Video");
         // Change toolbar title text color
         toolbar.setTitleTextColor(getResources().getColor(R.color.md_theme_light_surface));
 

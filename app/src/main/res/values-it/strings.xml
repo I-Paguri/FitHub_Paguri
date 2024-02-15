@@ -85,11 +85,13 @@
     <string name="insert_note">Inserisci una nota</string>
     <string name="select_time">Seleziona l\'orario</string>
 
+    <string name="my_athlete">I miei atleti</string>
+    <string name="my_athlete_explain">Qui trovi i tuoi atleti</string>
     <string name="gym">Palestra</string>
     <string name="healthy_food_tips" >Cibo salutare</string>
     <string name="proper_nutrition" >Alimentazione corretta</string>
-
-
+    <string name="goal">Obiettivo</string>
+    <string name="add_plan">Nuova Scheda</string>
     <string-array name="musclegroup_array">
         <item>Petto</item>
         <item>Dorso</item>

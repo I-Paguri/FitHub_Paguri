@@ -8,22 +8,19 @@
 
 
     <item
-        android:id="@+id/navigation_payments"
+        android:id="@+id/navigation_video"
         android:icon="@drawable/video_icon"
         android:title="Video" />
 
-
     <item
         android:id="@+id/navigation_measure"
-        android:icon="@drawable/add"
-        android:title="@string/btn_add" />
-
+        android:icon="@drawable/award"
+        android:title="@string/goal" />
 
     <item
         android:id="@+id/navigation_diary"
         android:icon="@drawable/diary"
         android:title="@string/diary" />
-
 
     <item
         android:id="@+id/navigation_my_account"

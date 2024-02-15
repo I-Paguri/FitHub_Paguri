@@ -17,12 +17,13 @@
     <string name="my_data"> My Date </string>
 
     <string name="press_back_again"> Press back again to exit </string>
-
+    <string name="my_athlete">My Athlete</string>
+    <string name="my_athlete_explain">Here you can find your Athlete</string>
     <string name="measurements">Measurements</string>
     <string name="last_measurement">Last measurement</string>
-
+    <string name="add_plan">Add plan</string>
     <string name="expenses">Expenses</string>
-
+    <string name="goal">Goal</string>
     <string name="history">History</string>
     <string name="treatment">Treatment</string>
     <string name="tell_us">Tell us about you</string>
