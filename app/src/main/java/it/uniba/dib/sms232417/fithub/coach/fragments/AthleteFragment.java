@@ -116,10 +116,10 @@ public class AthleteFragment extends Fragment {
                 (tab, position) -> {
                     switch (position) {
                         case 0:
-                            tab.setText(R.string.measurements);
+                            tab.setText(R.string.workout_plan);
                             break;
                         case 1:
-                            tab.setText(R.string.treatment);
+                            tab.setText(R.string.power_supply);
                             break;
                     }
                 }
