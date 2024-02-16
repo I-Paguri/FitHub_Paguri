@@ -588,7 +588,7 @@
     <string name="add_one_if_needed">Add one if needed</string>
     <string name="no_patient_found">No athlete found</string>
     <string name="delete">Delete</string>
-    <string name="delete_treatment">Delete this treatment?</string>
+    <string name="delete_treatment">Delete this workout plan?</string>
     <string name="keep">Keep</string>
     <string name="delete_treatment_msg">This action cannot be undone.</string>
     <string name="treatment_added_successfully"> Treatment added successfully! </string>
