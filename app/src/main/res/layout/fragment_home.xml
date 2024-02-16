@@ -109,13 +109,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:text="@string/healthcare" />
+                    android:text="@string/my_videos" />
 
                 <TextView
                     style="@style/RegularText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="My videos"
+                    android:text="@string/my_videos_explain"
                     android:layout_marginTop="8dp"
                     android:layout_marginLeft="@dimen/text_margin"
                     android:layout_marginRight="@dimen/text_margin"
